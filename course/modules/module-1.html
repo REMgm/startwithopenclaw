@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 1: Meet Your Agent | OpenClaw Course</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1e1e2e;
+            --text-primary: #ffffff;
+            --text-secondary: #e2e8f0;
+            --text-muted: #94a3b8;
+            --accent-purple: #a855f7;
+            --accent-indigo: #6366f1;
+            --accent-violet: #8b5cf6;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+        /* Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--bg-secondary);
+            z-index: 1000;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-indigo), var(--accent-violet));
+            width: 10%;
+            transition: width 0.3s ease;
+        }
+
+        /* Header */
+        .module-header {
+            padding: 80px 24px 40px;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, transparent 50%);
+            text-align: center;
+        }
+
+        .module-number {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-indigo), var(--accent-violet));
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 12px; }
+        
+        .module-subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* Content */
+        .module-content { padding: 40px 24px; }
+
+        .section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+        }
+
+        .section h2 {
+            font-size: 1.4rem;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        /* Fun Elements */
+        .fun-fact {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(99, 102, 241, 0.1));
+            border-left: 4px solid var(--accent-purple);
+            padding: 20px;
+            border-radius: 0 12px 12px 0;
+            margin: 20px 0;
+        }
+
+        .fun-fact::before {
+            content: "💡 Fun Fact: ";
+            font-weight: 600;
+            color: var(--accent-purple);
+        }
+
+        /* Examples */
+        .example-box {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 16px 0;
+        }
+
+        .example-box h4 {
+            color: var(--success);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .chat-bubble {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 16px;
+            margin: 12px 0;
+            position: relative;
+        }
+
+        .chat-bubble.user {
+            border-left: 3px solid var(--accent-indigo);
+        }
+
+        .chat-bubble.agent {
+            border-left: 3px solid var(--success);
+        }
+
+        .chat-bubble::before {
+            font-weight: 600;
+            font-size: 0.8rem;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .chat-bubble.user::before {
+            content: "👤 YOU";
+            color: var(--accent-indigo);
+        }
+
+        .chat-bubble.agent::before {
+            content: "🤖 AGENT";
+            color: var(--success);
+        }
+
+        /* Exercises */
+        .exercise {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(245, 158, 11, 0.05));
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 16px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+
+        .exercise h3 {
+            color: var(--warning);
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .exercise-prompt {
+            background: var(--bg-primary);
+            border: 2px dashed var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 16px 0;
+            font-family: monospace;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .exercise-prompt:hover {
+            border-color: var(--accent-purple);
+            background: rgba(168, 85, 247, 0.05);
+        }
+
+        .exercise-prompt::after {
+            content: "📋 Click to copy";
+            display: block;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 8px;
+            font-family: sans-serif;
+        }
+
+        /* Quiz */
+        .quiz-option {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin: 8px 0;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--accent-purple);
+            background: rgba(168, 85, 247, 0.05);
+        }
+
+        .quiz-option.correct {
+            border-color: var(--success);
+            background: rgba(34, 197, 94, 0.1);
+        }
+
+        .quiz-option.wrong {
+            border-color: #ef4444;
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        /* Navigation */
+        .module-nav {
+            display: flex;
+            justify-content: space-between;
+            padding: 40px 24px;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .nav-btn-primary {
+            background: linear-gradient(135deg, var(--accent-indigo), var(--accent-violet));
+            color: #fff;
+        }
+
+        .nav-btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        /* Celebration */
+        .celebration {
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(34, 197, 94, 0.05));
+            border-radius: 16px;
+            margin: 24px 0;
+        }
+
+        .celebration h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .emoji-big { font-size: 3rem; margin-bottom: 16px; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            .section { padding: 24px; }
+            .module-nav { flex-direction: column; gap: 12px; }
+            .nav-btn { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar">
+        <div class="progress-fill"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="module-header">
+        <div class="container">
+            <div class="module-number">Module 1 of 10</div>
+            <h1>Meet Your Agent</h1>
+            <p class="module-subtitle">The "Aha!" moment: Understanding what makes an agent different from ChatGPT</p>
+        </div>
+    </header>
+
+    <!-- Content -->
+    <main class="module-content">
+        <div class="container">
+            <!-- Introduction -->
+            <div class="section">
+                <h2>🎯 The Big Difference</h2>
+                
+                <p>You've probably used ChatGPT, Google, or other AI tools. They're great at answering questions. But your OpenClaw agent? It's different. <strong>It takes action.</strong></p>
+                
+                <div class="fun-fact">
+                    An agent doesn't just tell you the weather — it checks your calendar, sees you have a picnic planned, and suggests an indoor backup activity if rain is forecast.
+                </div>
+
+                <table style="width: 100%; border-collapse: collapse; margin: 24px 0;">
+                    <thead>
+                        <tr style="border-bottom: 1px solid var(--border);">
+                            <th style="text-align: left; padding: 12px; color: var(--text-muted);">ChatGPT/Google</th>
+                            <th style="text-align: left; padding: 12px; color: var(--accent-purple);">Your OpenClaw Agent</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid var(--border);">
+                            <td style="padding: 12px;">You ask, it answers</td>
+                            <td style="padding: 12px;">You delegate, it acts</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border);">
+                            <td style="padding: 12px;">Forgets each chat</td>
+                            <td style="padding: 12px;">Remembers everything</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border);">
+                            <td style="padding: 12px;">Only gives info</td>
+                            <td style="padding: 12px;">Browses, sends, schedules</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px;">When you open it</td>
+                            <td style="padding: 12px;">24/7 background running</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Examples -->
+            <div class="section">
+                <h2>💬 3 Real Examples</h2>
+                
+                <div class="example-box">
+                    <h4>Example 1: Trip Planning</h4>
+                    
+                    <div class="chat-bubble user">
+                        "Find me the cheapest flight to Miami next weekend, book an Airbnb under $150/night with a pool, and block my calendar."
+                    </div>
+                    
+                    <div class="chat-bubble agent">
+                        "✓ Found flights: $247 roundtrip on Saturday  
+✓ Booked Airbnb: Oceanview Studio with pool, $142/night  
+✓ Calendar blocked: Friday 6pm - Sunday 8pm  
+
+📎 Confirmation emails forwarded to you."
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <h4>Example 2: Research Assistant</h4>
+                    
+                    <div class="chat-bubble user">
+                        "Research the best noise-canceling headphones under $300. Compare 3 options with pros/cons and alert me when one goes on sale."
+                    </div>
+                    
+                    <div class="chat-bubble agent">
+                        "📊 Comparison complete:  
+
+1. **Sony WH-1000XM5** ($348→$298)  
+   ✅ Best noise canceling  
+   ❌ Less comfortable for glasses wearers  
+
+2. **Bose QC45** ($329)  
+   ✅ Most comfortable  
+   ❌ Average mic quality  
+
+3. **Sennheiser Momentum 4** ($279)  
+   ✅ Best sound quality  
+   ❌ Bulky design  
+
+🔔 Price monitoring activated for all three."
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <h4>Example 3: Life Admin</h4>
+                    
+                    <div class="chat-bubble user">
+                        "My flight's delayed 3 hours. Rebook my dinner reservation, tell Alex I'll be late, and find a lounge near gate B12."
+                    </div>
+                    
+                    <div class="chat-bubble agent">
+                        "✓ Dinner moved: 8:30pm at The Capital Grille (same restaurant)  
+✓ Message sent to Alex: "Flight delayed, see you around 9pm"  
+✓ Lounge found: United Club, Gate B10 (2 min walk)  
+
+💳 Lounge pass $59 — want me to book it?"
+                    </div>
+                </div>
+            </div>
+
+            <!-- The Mindset Shift -->
+            <div class="section">
+                <h2>🧠 The Mindset Shift</h2>
+                
+                <p>Don't treat your agent like a search engine. Treat it like a capable assistant who happens to be an AI.</p>
+
+                <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 12px; padding: 20px; margin: 16px 0;">
+                    <div style="color: #ef4444; font-weight: 600; margin-bottom: 12px;">❌ Weak (Asking)</div>
+                    <div style="font-family: monospace; color: var(--text-muted);">"What is OpenClaw?"</div>
+                    <div style="color: var(--text-muted); margin-top: 8px; font-size: 0.9rem;">→ Gets a definition. You still have to figure out what to do with it.</div>
+                </div>
+
+                <div style="background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 12px; padding: 20px; margin: 16px 0;">
+                    <div style="color: var(--success); font-weight: 600; margin-bottom: 12px;">✅ Strong (Delegating)</div>
+                    <div style="font-family: monospace; color: var(--text-secondary);">"Learn about OpenClaw, then summarize the key features and suggest which hosting option is best for a beginner with no technical background."</div>
+                    <div style="color: var(--text-muted); margin-top: 8px; font-size: 0.9rem;">→ Gets research + analysis + personalized recommendation.</div>
+                </div>
+
+                <div class="fun-fact">
+                    The magic happens when you give context + task + desired outcome. Your agent will figure out the steps.
+                </div>
+            </div>
+
+            <!-- Quick Quiz -->
+            <div class="section">
+                <h2>🎮 Quick Quiz</h2>
+                
+                <p>Which of these is the BEST way to delegate to your agent?</p>
+
+                <div class="quiz-option" onclick="this.classList.add('wrong'); document.getElementById('q1-correct').classList.add('correct');">
+                    "What should I have for dinner?"
+                </div>
+
+                <div class="quiz-option" onclick="this.classList.add('wrong'); document.getElementById('q1-correct').classList.add('correct');">
+                    "List some dinner ideas."
+                </div>
+
+                <div id="q1-correct" class="quiz-option" onclick="this.classList.add('correct');">
+                    "I have chicken, broccoli, and rice in my fridge. Suggest 3 healthy dinner recipes I can make in under 30 minutes, then create a shopping list for anything I'm missing."
+                </div>
+
+                <div id="quiz-feedback" style="margin-top: 16px; padding: 16px; background: rgba(34, 197, 94, 0.1); border-radius: 10px; display: none;">
+                    <strong>Correct! 🎉</strong> The best prompts include: context (what you have), task (suggest recipes), and outcome (shopping list).
+                </div>
+            </div>
+
+            <!-- Exercises -->
+            <div class="section">
+                <h2>💪 Your Turn: 3 Exercises</h2>
+                
+                <p>Rewrite these "asking" questions into "delegating" instructions. Click to copy each prompt!</p>
+
+                <div class="exercise">
+                    <h3>Exercise 1: Weather</h3>
+                    
+                    <p><strong>Weak version:</strong> "What's the weather tomorrow?"</p>
+                    
+                    <p><strong>Your mission:</strong> Make it actionable with context.</p>
+                    
+                    <div class="exercise-prompt" onclick="navigator.clipboard.writeText(this.innerText.replace('📋 Click to copy', '').trim())">
+                        Check the weather for tomorrow. If it's raining, remind me to bring an umbrella and suggest rescheduling my 2pm outdoor meeting. If it's sunny, suggest a nice park for my lunch break.
+                    </div>
+                </div>
+
+                <div class="exercise">
+                    <h3>Exercise 2: Shopping</h3>
+                    
+                    <p><strong>Weak version:</strong> "What laptop should I buy?"</p>
+                    
+                    <p><strong>Your mission:</strong> Add budget, use case, and desired outcome.</p>
+                    
+                    <div class="exercise-prompt" onclick="navigator.clipboard.writeText(this.innerText.replace('📋 Click to copy', '').trim())">
+                        Research laptops under $1,500 for video editing with 4K display support. Compare 3 options focusing on: performance, display quality, and battery life. Present as a comparison table and alert me when any of them go on sale.
+                    </div>
+                </div>
+
+                <div class="exercise">
+                    <h3>Exercise 3: Email</h3>
+                    
+                    <p><strong>Weak version:</strong> "Help me write an email."</p>
+                    
+                    <p><strong>Your mission:>/strong> Give it the full context and tone.</p>
+                    
+                    <div class="exercise-prompt" onclick="navigator.clipboard.writeText(this.innerText.replace('📋 Click to copy', '').trim())">
+                        Draft an email to my team about the project delay. Keep it professional but apologetic. Explain that we need 2 more days for QA testing. Suggest a new timeline and ask for their availability for a sync meeting tomorrow.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Celebration -->
+            <div class="celebration">
+                <div class="emoji-big">🎉</div>
+                <h3>Module 1 Complete!</h3>
+                
+                <p>You now understand the fundamental difference between asking and delegating. This mindset shift is 80% of the battle.</p>
+                
+                <p style="margin-top: 16px; color: var(--accent-purple); font-weight: 600;">Next: Giving your agent personality with SOUL.md</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Navigation -->
+    <nav class="module-nav">
+        <a href="/course" class="nav-btn nav-btn-secondary">
+            ← Back to Course
+        </a>
+        <a href="module-2.html" class="nav-btn nav-btn-primary">
+            Next Module →
+        </a>
+    </nav>
+
+    <script>
+        // Show quiz feedback
+        document.querySelectorAll('.quiz-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.getElementById('quiz-feedback').style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html>
