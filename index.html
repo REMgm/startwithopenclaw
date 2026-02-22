@@ -1,0 +1,1975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start with OpenClaw | Deploy Your AI Agent in 60 Seconds</title>
+    <meta name="description" content="The easiest way to start with OpenClaw without any technical knowledge or high costs. Deploy your AI agent for free in 60 seconds.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1e1e2e;
+            --bg-hover: #252538;
+            --text-primary: #ffffff;
+            --text-secondary: #e2e8f0;
+            --text-muted: #94a3b8;
+            --accent-purple: #a855f7;
+            --accent-indigo: #6366f1;
+            --accent-violet: #8b5cf6;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 16px 0;
+            transition: all 0.3s ease;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            font-size: 1.6rem;
+        }
+
+        .logo-text {
+            background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-indigo) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 140px 24px 100px;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(168, 85, 247, 0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+                var(--bg-primary);
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(168, 85, 247, 0.1);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            padding: 10px 20px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: var(--accent-purple);
+            margin-bottom: 32px;
+            font-weight: 500;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(0.9); }
+        }
+
+        h1 {
+            font-size: clamp(2.8rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.05;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #fff 0%, #c4b5fd 50%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.35rem);
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 48px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-indigo) 0%, var(--accent-violet) 100%);
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.5);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .social-proof {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .stats-row {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .trust-badges {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .stars {
+            color: #fbbf24;
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -0.01em;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            line-height: 1.6;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: rgba(168, 85, 247, 0.1);
+            color: var(--accent-purple);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+        }
+
+        /* What is OpenClaw */
+        .what-is {
+            background: var(--bg-secondary);
+        }
+
+        .problem-solution {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 64px;
+        }
+
+        .ps-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+        }
+
+        .ps-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ps-card ul {
+            list-style: none;
+        }
+
+        .ps-card li {
+            padding: 10px 0;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .ps-card li span {
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: rgba(168, 85, 247, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--accent-indigo) 0%, var(--accent-violet) 100%);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* How It Works */
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            position: relative;
+        }
+
+        .steps-container::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 15%;
+            right: 15%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-indigo), transparent);
+            opacity: 0.3;
+        }
+
+        .step {
+            text-align: center;
+            padding: 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--accent-indigo) 0%, var(--accent-violet) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 1.75rem;
+            font-weight: 800;
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+        }
+
+        .step h3 {
+            font-size: 1.35rem;
+            margin-bottom: 12px;
+        }
+
+        .step p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        /* Providers */
+        .providers {
+            background: var(--bg-secondary);
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 48px;
+            flex-wrap: wrap;
+        }
+
+        .filter-tab {
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-tab:hover,
+        .filter-tab.active {
+            background: rgba(168, 85, 247, 0.15);
+            border-color: var(--accent-purple);
+            color: var(--text-primary);
+        }
+
+        .provider-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 24px;
+        }
+
+        .provider-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 32px;
+            position: relative;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .provider-card:hover {
+            border-color: rgba(168, 85, 247, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .provider-card.featured {
+            border-color: var(--accent-purple);
+            background: linear-gradient(180deg, var(--bg-card) 0%, rgba(168, 85, 247, 0.05) 100%);
+        }
+
+        .provider-card.featured::before {
+            content: 'RECOMMENDED';
+            position: absolute;
+            top: 0;
+            right: 24px;
+            background: linear-gradient(135deg, var(--accent-indigo) 0%, var(--accent-violet) 100%);
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 8px 14px;
+            border-radius: 0 0 10px 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .provider-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .provider-name {
+            font-size: 1.6rem;
+            font-weight: 800;
+        }
+
+        .provider-price {
+            text-align: right;
+        }
+
+        .price {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--accent-purple);
+            line-height: 1;
+        }
+
+        .price-period {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .provider-specs {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .provider-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+
+        .affiliate-tag {
+            display: inline-block;
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--success);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+        }
+
+        .provider-features {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+
+        .provider-features li {
+            padding: 8px 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .provider-features li::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: 700;
+        }
+
+        .btn-full {
+            width: 100%;
+            justify-content: center;
+            margin-top: auto;
+        }
+
+        /* Comparison Table */
+        .comparison {
+            background: var(--bg-primary);
+            overflow-x: auto;
+        }
+
+        .comparison-table-wrapper {
+            overflow-x: auto;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .comparison-table th {
+            background: var(--bg-card);
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .comparison-table td {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .comparison-table tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .check {
+            color: var(--success);
+            font-weight: 700;
+        }
+
+        .dash {
+            color: var(--text-muted);
+        }
+
+        /* Use Cases */
+        .use-cases {
+            background: var(--bg-secondary);
+        }
+
+        .use-case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .use-case-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+            transition: all 0.3s ease;
+        }
+
+        .use-case-card:hover {
+            border-color: rgba(168, 85, 247, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .use-case-icon {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+
+        .use-case-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+        }
+
+        .use-case-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        /* Basics Section */
+        .basics {
+            background: var(--bg-primary);
+        }
+
+        .basics-nav {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 48px;
+            flex-wrap: wrap;
+        }
+
+        .basics-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .basics-article {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 32px;
+        }
+
+        .basics-article h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .basics-article h4 {
+            font-size: 1.1rem;
+            color: var(--accent-purple);
+            margin: 24px 0 12px;
+        }
+
+        .basics-article p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        .basics-article ul {
+            margin-left: 20px;
+            color: var(--text-secondary);
+        }
+
+        .basics-article li {
+            margin-bottom: 8px;
+        }
+
+        .code-block {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 20px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin: 16px 0;
+            overflow-x: auto;
+        }
+
+        .info-box {
+            background: rgba(99, 102, 241, 0.1);
+            border-left: 4px solid var(--accent-indigo);
+            padding: 20px;
+            border-radius: 0 10px 10px 0;
+            margin: 20px 0;
+        }
+
+        .info-box p {
+            margin: 0;
+        }
+
+        /* Checklist */
+        .checklist {
+            background: var(--bg-secondary);
+        }
+
+        .checklist-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 16px;
+            transition: all 0.2s;
+        }
+
+        .checklist-item:hover {
+            border-color: rgba(168, 85, 247, 0.3);
+        }
+
+        .checklist-checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            flex-shrink: 0;
+            margin-top: 2px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .checklist-checkbox:hover {
+            border-color: var(--accent-purple);
+        }
+
+        .checklist-content h4 {
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+
+        .checklist-content p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* FAQ */
+        .faq {
+            background: var(--bg-primary);
+        }
+
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 24px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: background 0.2s;
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .faq-answer {
+            padding: 0 24px 24px;
+            color: var(--text-muted);
+            line-height: 1.7;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            color: var(--accent-purple);
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        /* Final CTA */
+        .final-cta {
+            text-align: center;
+            padding: 140px 24px;
+            background: 
+                radial-gradient(ellipse at 50% 100%, rgba(168, 85, 247, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+                var(--bg-primary);
+        }
+
+        .final-cta h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 20px;
+        }
+
+        .final-cta p {
+            color: var(--text-muted);
+            font-size: 1.25rem;
+            margin-bottom: 40px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .trust-pills {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-top: 32px;
+            flex-wrap: wrap;
+        }
+
+        .trust-pill {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 10px 18px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 80px 0 40px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-col h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: var(--text-primary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
+                padding: 120px 20px 80px;
+            }
+
+            .problem-solution {
+                grid-template-columns: 1fr;
+            }
+
+            .steps-container::before {
+                display: none;
+            }
+
+            .provider-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-row {
+                gap: 24px;
+            }
+
+            .basics-article {
+                padding: 24px;
+            }
+
+            section {
+                padding: 80px 0;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">
+                <span class="logo-icon">🦞</span>
+                <span class="logo-text">Start with OpenClaw</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#what-is">What is OpenClaw</a></li>
+                <li><a href="#providers">Hosting</a></li>
+                <li><a href="#basics">Learn</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+            <button class="mobile-menu-btn">☰</button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">🚀 Deploy in 60 Seconds</div>
+            <h1>
+                Start with
+                <span class="gradient-text">OpenClaw</span>
+                Today for Free
+            </h1>
+            <p class="hero-subtitle">
+                The easiest way to deploy your AI agent without any technical knowledge or high costs. 
+                Let it handle your schedule, research, and daily tasks — while you focus on what matters.
+            </p>
+            <div class="cta-group">
+                <a href="https://www.ampere.sh/?ref=startwithopenclaw" class="btn btn-primary" target="_blank">
+                    Get Started Free
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                    </svg>
+                </a>
+                <a href="#providers" class="btn btn-secondary">Compare Hosting Options</a>
+            </div>
+            
+            <div class="social-proof">
+                <div class="stats-row">
+                    <div class="stat">
+                        <div class="stat-number">5,217+</div>
+                        <div class="stat-label">Agents Deployed</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">60s</div>
+                        <div class="stat-label">To Deploy</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">$0</div>
+                        <div class="stat-label">Starting Cost</div>
+                    </div>
+                </div>
+                
+                <div class="trust-badges">
+                    <div class="trust-badge">
+                        <span class="stars">★★★★★</span>
+                        <span>Trusted by beginners</span>
+                    </div>
+                    <div class="trust-badge">
+                        <span>🔒 No credit card required</span>
+                    </div>
+                    <div class="trust-badge">
+                        <span>✓ Cancel anytime</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What is OpenClaw -->
+    <section class="what-is" id="what-is">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">What is OpenClaw?</div>
+                <h2>Your Personal AI Assistant<br>That Actually Does Things</h2>
+                <p>Not just a chatbot. An agent that takes action on your behalf — 24/7.</p>
+            </div>
+            
+            <div class="problem-solution">
+                <div class="ps-card">
+                    <h3><span>❌</span> Without an Agent</h3>
+                    <ul>
+                        <li><span>😰</span> Juggling too many apps and tasks</li>
+                        <li><span>😵</span> Forgetting follow-ups and deadlines</li>
+                        <li><span>⏰</span> Research taking hours you don't have</li>
+                        <li><span>🔄</span> Repeating the same manual tasks daily</li>
+                    </ul>
+                </div>
+                
+                <div class="ps-card">
+                    <h3><span>✅</span> With OpenClaw</h3>
+                    <ul>
+                        <li><span>🤖</span> One agent handles it all — 24/7</li>
+                        <li><span>✓</span> Never miss a task or reminder</li>
+                        <li><span>😴</span> Research done while you sleep</li>
+                        <li><span>⚡</span> Automations that save hours weekly</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>Autonomous Agent</h3>
+                    <p>Not just a chatbot. Your agent browses the web, sends messages, schedules meetings, and completes tasks without constant supervision.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔌</div>
+                    <h3>Connects Everything</h3>
+                    <p>Works with Telegram, WhatsApp, Slack, Gmail, Notion, GitHub, Stripe, and 200+ other services you already use.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Zero Setup Required</h3>
+                    <p>Click once, deploy in 60 seconds. No Docker, no terminal, no server configuration. We handle the technical stuff.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">How It Works</div>
+                <h2>From Zero to AI Agent<br>in 3 Steps</h2>
+                <p>No technical knowledge required. If you can use a messaging app, you can use OpenClaw.</p>
+            </div>
+            
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Choose Your Host</h3>
+                    <p>Pick from our curated list. Start free with Ampere.sh, or upgrade for more power and features.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Deploy Instantly</h3>
+                    <p>One-click deployment. Your agent is live in under a minute — fully configured and ready to work.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Start Chatting</h3>
+                    <p>Connect Telegram or WhatsApp. Send your first message and watch your AI assistant get to work.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Providers -->
+    <section class="providers" id="providers">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Hosting Providers</div>
+                <h2>Choose Your OpenClaw Home</h2>
+                <p>Compare the best hosting providers — all tested, verified, and ready for beginners.</p>
+            </div>
+            
+            <div class="filter-tabs">
+                <button class="filter-tab active">All Options</button>
+                <button class="filter-tab">Free to Start</button>
+                <button class="filter-tab">Fully Managed</button>
+                <button class="filter-tab">VPS (More Control)</button>
+                <button class="filter-tab">AI Models</button>
+            </div>
+            
+            <div class="provider-grid">
+                <!-- Ampere.sh -->
+                <div class="provider-card featured">
+                    <div class="provider-header">
+                        <div class="provider-name">Ampere.sh</div>
+                        <div class="provider-price">
+                            <div class="price">$0</div>
+                            <div class="price-period">Free forever</div>
+                        </div>
+                    </div>
+                    <div class="provider-specs">2GB RAM • 2 vCPU • 20GB SSD • $10 AI credits/mo</div>
+                    
+                    <p class="provider-desc">The original managed OpenClaw hosting. Deploy in 60 seconds with zero configuration. Perfect for beginners.</p>
+                    
+                    <ul class="provider-features">
+                        <li>Deploy in 60 seconds</li>
+                        <li>No technical setup required</li>
+                        <li>Telegram & WhatsApp ready</li>
+                        <li>Smart model routing</li>
+                        <li>5,217+ active agents</li>
+                    </ul>
+                    
+                    <a href="https://www.ampere.sh/?ref=startwithopenclaw" class="btn btn-primary btn-full" target="_blank">
+                        Start Free
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Hostinger -->
+                <div class="provider-card">
+                    <div class="provider-header">
+                        <div class="provider-name">Hostinger</div>
+                        <div class="provider-price">
+                            <div class="price">$6.99</div>
+                            <div class="price-period">per month</div>
+                        </div>
+                    </div>
+                    <div class="provider-specs">2 vCPU • 8GB RAM • 100GB NVMe • 8TB bandwidth</div>
+                    
+                    <p class="provider-desc">1-click deployment with pre-configured Docker template. Pre-integrated AI tokens for easy credit purchases.</p>
+                    
+                    <ul class="provider-features">
+                        <li>Pre-configured Docker template</li>
+                        <li>Integrated AI token purchases</li>
+                        <li>Voice + Browser + Canvas support</li>
+                        <li>Skills platform included</li>
+                        <li>24/7 live chat support</li>
+                    </ul>
+                    
+                    <a href="https://www.hostinger.com/vps/docker/openclaw" class="btn btn-primary btn-full" target="_blank">
+                        View Plans
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- DigitalOcean -->
+                <div class="provider-card">
+                    <div class="provider-header">
+                        <div class="provider-name">DigitalOcean</div>
+                        <div class="provider-price">
+                            <div class="price">$4</div>
+                            <div class="price-period">per month</div>
+                        </div>
+                    </div>
+                    <div class="provider-specs">1GB RAM • Security-hardened • Global data centers</div>
+                    
+                    <p class="provider-desc">Official 1-Click OpenClaw app with security hardening and production-ready defaults. Developer favorite.</p>
+                    
+                    <ul class="provider-features">
+                        <li>Official OpenClaw 1-Click App</li>
+                        <li>Docker container isolation</li>
+                        <li>Authenticated communication</li>
+                        <li>$200 credit for new users</li>
+                        <li>Developer community favorite</li>
+                    </ul>
+                    
+                    <a href="https://www.digitalocean.com/community/tutorials/how-to-run-openclaw" class="btn btn-primary btn-full" target="_blank">
+                        View Plans
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Contabo -->
+                <div class="provider-card">
+                    <div class="provider-header">
+                        <div class="provider-name">Contabo</div>
+                        <div class="provider-price">
+                            <div class="price">$4.99</div>
+                            <div class="price-period">per month</div>
+                        </div>
+                    </div>
+                    <div class="provider-specs">4 vCPU • 8GB RAM • 75GB NVMe • Unlimited traffic</div>
+                    
+                    <p class="provider-desc">Budget-friendly VPS with 1-click OpenClaw installer. Best value for self-managed hosting.</p>
+                    
+                    <ul class="provider-features">
+                        <li>1-click OpenClaw installer</li>
+                        <li>9 regions, 11 locations worldwide</li>
+                        <li>DDoS protection included</li>
+                        <li>225,000+ customers worldwide</li>
+                        <li>All messaging platforms supported</li>
+                    </ul>
+                    
+                    <a href="https://contabo.com/en/openclaw-hosting/" class="btn btn-primary btn-full" target="_blank">
+                        View Plans
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- xCloud -->
+                <div class="provider-card">
+                    <div class="provider-header">
+                        <div class="provider-name">xCloud</div>
+                        <div class="provider-price">
+                            <div class="price">$24</div>
+                            <div class="price-period">per month</div>
+                        </div>
+                    </div>
+                    <div class="provider-specs">Managed hosting • 30+ locations • 24/7 expert support</div>
+                    
+                    <p class="provider-desc">Fully managed OpenClaw hosting. No Docker, no terminal, no SSH needed. Just sign up and chat.</p>
+                    
+                    <ul class="provider-features">
+                        <li>No technical skills required</li>
+                        <li>30+ global server locations</li>
+                        <li>Free SSL + automatic backups</li>
+                        <li>24/7 expert support included</li>
+                        <li>Trustpilot 5★ (280+ reviews)</li>
+                    </ul>
+                    
+                    <a href="https://xcloud.host/openclaw-hosting/" class="btn btn-primary btn-full" target="_blank">
+                        View Plans
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Kimi -->
+                <div class="provider-card">
+                    <div class="provider-header">
+                        <div class="provider-name">Kimi</div>
+                        <div class="provider-price">
+                            <div class="price">FREE</div>
+                            <div class="price-period">with OpenClaw</div>
+                        </div>
+                    </div>
+                    <div class="provider-specs">K2.5 Model • 256K context • Top-tier performance</div>
+                    
+                    <p class="provider-desc">Premium AI model integrated directly into OpenClaw. No API keys needed. Outperforms Claude with 95% lower costs.</p>
+                    
+                    <ul class="provider-features">
+                        <li>FREE via OpenClaw Kimi plugin</li>
+                        <li>Trillion-parameter K2.5 model</li>
+                        <li>256K token context window</li>
+                        <li>Excellent code generation</li>
+                        <li>Tool calling support</li>
+                    </ul>
+                    
+                    <a href="https://platform.moonshot.ai/" class="btn btn-primary btn-full" target="_blank">
+                        Learn More
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            
+            
+            <div style="margin-top: 64px;">
+                <div class="section-header">
+                    <h3>Feature Comparison</h3>
+                </div>
+                
+                <div class="comparison-table-wrapper">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Ampere.sh</th>
+                                <th>Hostinger</th>
+                                <th>DigitalOcean</th>
+                                <th>Contabo</th>
+                                <th>xCloud</th>
+                                <th>Kimi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Starting Price</td>
+                                <td>$0/mo</td>
+                                <td>$6.99/mo</td>
+                                <td>$4/mo</td>
+                                <td>$4.99/mo</td>
+                                <td>$24/mo</td>
+                                <td>FREE</td>
+                            </tr>
+                            <tr>
+                                <td>Managed Hosting</td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="dash">—</span></td>
+                                <td><span class="dash">—</span></td>
+                                <td><span class="dash">—</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td>AI Model</td>
+                            </tr>
+                            <tr>
+                                <td>Setup Time</td>
+                                <td>60 seconds</td>
+                                <td>1-click</td>
+                                <td>1-click</td>
+                                <td>1-click</td>
+                                <td>5 minutes</td>
+                                <td>Pre-integrated</td>
+                            </tr>
+                            <tr>
+                                <td>Docker Required</td>
+                                <td><span class="check">No</span></td>
+                                <td>Pre-installed</td>
+                                <td>Pre-installed</td>
+                                <td>Optional</td>
+                                <td><span class="check">No</span></td>
+                                <td>N/A</td>
+                            </tr>
+                            <tr>
+                                <td>RAM/Context</td>
+                                <td>2GB</td>
+                                <td>8GB</td>
+                                <td>1GB</td>
+                                <td>8GB</td>
+                                <td>Varies</td>
+                                <td>256K tokens</td>
+                            </tr>
+                            <tr>
+                                <td>24/7 Support</td>
+                                <td>Community</td>
+                                <td>Live Chat</td>
+                                <td>Ticket</td>
+                                <td>Ticket</td>
+                                <td><span class="check">✓</span></td>
+                                <td>Documentation</td>
+                            </tr>
+                            <tr>
+                                <td>Best For</td>
+                                <td>Beginners</td>
+                                <td>Power Users</td>
+                                <td>Developers</td>
+                                <td>Budget</td>
+                                <td>Business</td>
+                                <td>AI Model</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section class="use-cases">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Use Cases</div>
+                <h2>What Will Your Agent Do For You?</h2>
+                <p>From daily life to work tasks — one message is all it takes.</p>
+            </div>
+            
+            <div class="use-case-grid">
+                <div class="use-case-card">
+                    <div class="use-case-icon">📅</div>
+                    <h3>Daily Life Management</h3>
+                    <p>"Remind me to call Mom every Sunday. Order my usual groceries. Track my packages."</p>
+                </div>
+                
+                <div class="use-case-card">
+                    <div class="use-case-icon">✈️</div>
+                    <h3>Travel Planning</h3>
+                    <p>"Find the cheapest flight to Miami next weekend. Book an Airbnb with a pool. Add it to my calendar."</p>
+                </div>
+                
+                <div class="use-case-card">
+                    <div class="use-case-icon">📧</div>
+                    <h3>Email & Communication</h3>
+                    <p>"Summarize my unread emails. Draft responses to urgent ones. Schedule the meetings."</p>
+                </div>
+                
+                <div class="use-case-card">
+                    <div class="use-case-icon">🔍</div>
+                    <h3>Research & Analysis</h3>
+                    <p>"Research laptops under $1,500 for video editing. Compare reviews. Alert me when it goes on sale."</p>
+                </div>
+                
+                <div class="use-case-card">
+                    <div class="use-case-icon">💼</div>
+                    <h3>Work Automation</h3>
+                    <p>"Generate a weekly report from my project data. Format it and send to the team by Monday morning."</p>
+                </div>
+                
+                <div class="use-case-card">
+                    <div class="use-case-icon">🛒</div>
+                    <h3>Smart Shopping</h3>
+                    <p>"Monitor this product for price drops. Buy it when it hits $50. Use my saved payment info."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OpenClaw Basics -->
+    <section class="basics" id="basics">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Learn OpenClaw</div>
+                <h2>Understanding Your Agent</h2>
+                <p>The essential concepts every beginner should know.</p>
+            </div>
+            
+            <div class="basics-content">
+                <!-- What is an Agent -->
+                <div class="basics-article">
+                    <h3>🤖 What is an Agent?</h3>
+                    
+                    <p>An <strong>agent</strong> is an AI-powered assistant that can take actions on your behalf. Unlike a simple chatbot that only answers questions, an agent can:</p>
+                    
+                    <ul>
+                        <li>Browse websites and gather information</li>
+                        <li>Send messages and emails</li>
+                        <li>Schedule events and set reminders</li>
+                        <li>Execute code and run automations</li>
+                        <li>Connect to your apps and services</li>
+                        <li>Learn from interactions over time</li>
+                    </ul>
+                    
+                    <div class="info-box">
+                        <p><strong>Think of it this way:</strong> An agent is like a personal assistant who never sleeps. You give it instructions in plain English, and it figures out how to get things done.</p>
+                    </div>
+                </div>
+
+                <!-- Agent Memory -->
+                <div class="basics-article">
+                    <h3>🧠 How Your Agent Remembers</h3>
+                    
+                    <p>OpenClaw uses a three-tier memory system to help your agent learn and improve over time:</p>
+                    
+                    <h4>Short-Term Memory</h4>
+                    <p>Current conversation context and recent messages. This is temporary and lasts only for the active session.</p>
+                    <div class="code-block">Example: "As we discussed earlier, you wanted flights to Miami..."</div>
+                    
+                    <h4>Mid-Term Memory</h4>
+                    <p>Daily notes, active projects, and current priorities. Stored in dated files and lasts days to weeks.</p>
+                    <div class="code-block">Stored in: memory/2026-02-22.md</div>
+                    
+                    <h4>Long-Term Memory</h4>
+                    <p>Core preferences, successful patterns, and lessons learned. This is permanent and shapes your agent's behavior.</p>
+                    
+                    <div class="code-block">Stored in: MEMORY.md, SOUL.md, USER.md</div>
+                </div>
+
+                <!-- Agent Team -->
+                <div class="basics-article">
+                    <h3>👥 Building Your Agent Team</h3>
+                    
+                    <p>You can have multiple specialized agents, each with a different role. They share information through a common "main brain" while keeping role-specific knowledge separate.</p>
+                    
+                    <h4>Example Team Structure:</h4>
+                    
+                    <ul>
+                        <li><strong>Personal Assistant</strong> — Daily life, scheduling, reminders</li>
+                        <li><strong>Travel Advisor</strong> — Flight deals, trip planning, bookings</li>
+                        <li><strong>Research Assistant</strong> — Deep research, analysis, summaries</li>
+                        <li><strong>Shopping Assistant</strong> — Price tracking, deal hunting</li>
+                    </ul>
+                    
+                    <div class="info-box">
+                        <p>Each agent gets its own memory folder and specialized instructions. They can share information through the main brain (shared MEMORY.md) while keeping role-specific knowledge separate.</p>
+                    </div>
+                </div>
+
+                <!-- Cron Jobs -->
+                <div class="basics-article">
+                    <h3>⏰ What are Cron Jobs?</h3>
+                    
+                    <p><strong>Cron jobs</strong> are automated tasks that run on a schedule. Think of them as setting an alarm clock for your agent.</p>
+                    
+                    <h4>Common Uses:</h4>
+                    
+                    <ul>
+                        <li>Morning briefings (daily at 8 AM)</li>
+                        <li>Weekly planning sessions (Sundays at 8 PM)</li>
+                        <li>Price monitoring (every hour)</li>
+                        <li>Email summaries (daily at 6 PM)</li>
+                    </ul>
+                    
+                    <div class="code-block">Morning Briefing Cron Job:
+- Schedule: Every day at 8:00 AM
+- Action: Check calendar, weather, priorities
+- Delivery: Send summary to user</div>
+                </div>
+
+                <!-- Heartbeat -->
+                <div class="basics-article">
+                    <h3>💓 What is a Heartbeat?</h3>
+                    
+                    <p>A <strong>heartbeat</strong> is a periodic check-in from your agent. Instead of waiting for you to ask something, the agent proactively checks if anything needs attention.</p>
+                    
+                    <h4>How It Works:</h4>
+                    
+                    <ol>
+                        <li>System sends heartbeat prompt every 30 minutes</li>
+                        <li>Agent checks: emails, calendar, news, alerts</li>
+                        <li>If something important found → notify user</li>
+                        <li>If nothing urgent → silent (HEARTBEAT_OK)</li>
+                    </ol>
+                    
+                    <div class="info-box">
+                        <p><strong>Benefits:</strong> Proactive assistance without spam. Background monitoring 24/7. Only interrupts when truly needed.</p>
+                    </div>
+                </div>
+
+                <!-- SOUL.md -->
+                <div class="basics-article">
+                    <h3>✨ Giving Your Agent Personality (SOUL.md)</h3>
+                    
+                    <p>The <strong>SOUL.md</strong> file defines who your agent is — its personality, communication style, and core principles.</p>
+                    
+                    <h4>What to Include:</h4>
+                    
+                    <ul>
+                        <li><strong>Name & Identity</strong> — What should we call your agent?</li>
+                        <li><strong>Tone</strong> — Formal or casual? Witty or serious?</li>
+                        <li><strong>Values</strong> — What matters most? Efficiency? Warmth? Directness?</li>
+                        <li><strong>Boundaries</strong> — What should it never do?</li>
+                    </ul>
+                    
+                    <div class="code-block"># My Agent's SOUL
+
+## Identity
+- Name: Claw
+- Nature: Helpful AI assistant
+- Vibe: Efficient but friendly
+
+## Communication Style
+- Lead with the answer, then explain
+- No filler words like "Sure!"
+- Use bullet points for clarity
+
+## Core Principles
+- Act without permission for reversible decisions
+- Ask first for privacy-sensitive actions</div>
+                </div>
+
+                <!-- Lessons Learned -->
+                <div class="basics-article">
+                    <h3>📚 Lessons from the Community</h3>
+                    
+                    <h4>1. Start Simple</h4>
+                    <p>Don't over-engineer. Begin with one agent and basic tasks. Add complexity as you learn.</p>
+                    
+                    <h4>2. Write Things Down</h4>
+                    <p>Agents forget between sessions. If you want something remembered, put it in memory files.</p>
+                    
+                    <h4>3. Be Specific</h4>
+                    <p>Vague requests get vague results. "Research laptops" is weak. "Find the best laptop under $1,500 for video editing with 4K display" is strong.</p>
+                    
+                    <h4>4. Iterate</h4>
+                    <p>Your first setup won't be perfect. Adjust as you learn what works.</p>
+                    
+                    <h4>5. Use the Right Tool</h4>
+                    <p>Cron for scheduled tasks. Heartbeats for monitoring. Sub-agents for parallel research.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Checklist -->
+    <section class="checklist">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Getting Started</div>
+                <h2>Your First 24 Hours with OpenClaw</h2>
+                <p>Follow this checklist to go from zero to fully operational AI agent.</p>
+            </div>
+            
+            <div class="checklist-container">
+                <div class="checklist-item">
+                    <div class="checklist-checkbox"></div>
+                    <div class="checklist-content">
+                        <h4>Hour 1: Deploy</h4>
+                        <p>Choose a hosting provider (we recommend Ampere.sh to start free), create account, deploy your agent, and connect Telegram or WhatsApp.</p>
+                    </div>
+                </div>
+                
+                <div class="checklist-item">
+                    <div class="checklist-checkbox"></div>
+                    <div class="checklist-content">
+                        <h4>Hour 2: Configure</h4>
+                        <p>Set up your SOUL.md with personality preferences, create USER.md with your basic info, configure your first cron job.</p>
+                    </div>
+                </div>
+                
+                <div class="checklist-item">
+                    <div class="checklist-checkbox"></div>
+                    <div class="checklist-content">
+                        <h4>Day 1: Explore</h4>
+                        <p>Try 3 different tasks with your agent, set up one integration (calendar, email, etc.), review and refine based on results.</p>
+                    </div>
+                </div>
+                
+                <div class="checklist-item">
+                    <div class="checklist-checkbox"></div>
+                    <div class="checklist-content">
+                        <h4>Week 1: Expand</h4>
+                        <p>Add a second specialized agent, create your first automation workflow, join the OpenClaw Discord community.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 48px;">
+                <a href="https://www.ampere.sh/?ref=startwithopenclaw" class="btn btn-primary" target="_blank">
+                    Start Your Checklist
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">FAQ</div>
+                <h2>Common Questions</h2>
+                <p>Everything you need to know about getting started.</p>
+            </div>
+            
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                        Do I need to know how to code?
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        No. Managed hosting options like Ampere.sh require zero technical knowledge. If you can use a messaging app, you can use OpenClaw. The setup is one-click and your agent is ready to chat immediately.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                        Is it really free?
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes. Ampere.sh offers a free tier with 2GB RAM, 2 vCPU, 20GB SSD, and $10 in AI credits monthly. This is enough to run a fully functional agent. Paid options start at $4-7/month if you need more power.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                        What can my agent actually do?
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Browse the web, send messages, schedule meetings, research topics, monitor prices, generate reports, and connect to 200+ apps. If a human can do it online, your agent probably can too.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                        Is my data safe?
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        With managed hosting, your agent runs in the cloud with SSL encryption, firewalls, and security updates. Self-hosted options give you full control over your data. Both are secure; choose based on your preference.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                        What happens if I need help?
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Managed providers offer support. There's also an active Discord community and extensive documentation at docs.openclaw.ai. Most beginners find the setup straightforward and rarely need support.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                        Can I have multiple agents?
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes. Many users have a team of specialized agents — one for travel, one for work, one for daily life — that share information through a common memory while keeping role-specific knowledge separate.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                        What's the difference between OpenClaw and ChatGPT?
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        ChatGPT answers questions. OpenClaw agents take actions — they browse websites, send messages, schedule events, and work with your apps autonomously. Think of ChatGPT as a conversationalist and OpenClaw as a doer.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Your AI Agent is Waiting</h2>
+            <p>Join 5,000+ beginners who started their OpenClaw journey today. Free forever, upgrade when you're ready.</p>
+            
+            <div class="cta-group">
+                <a href="https://www.ampere.sh/?ref=startwithopenclaw" class="btn btn-primary" target="_blank">
+                    Start Free with Ampere
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                    </svg>
+                </a>
+                <a href="#providers" class="btn btn-secondary">Compare All Options</a>
+            </div>
+            
+            <div class="trust-pills">
+                <div class="trust-pill">✓ No credit card required</div>
+                <div class="trust-pill">✓ Deploy in 60 seconds</div>
+                <div class="trust-pill">✓ Cancel anytime</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="https://www.openclaw.ai" target="_blank">OpenClaw Official</a></li>
+                        <li><a href="https://docs.openclaw.ai" target="_blank">Documentation</a></li>
+                        <li><a href="https://github.com/openclaw/openclaw" target="_blank">GitHub</a></li>
+                        <li><a href="https://discord.gg/clawd" target="_blank">Discord Community</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Hosting Providers</h4>
+                    <ul>
+                        <li><a href="https://www.ampere.sh/" target="_blank">Ampere.sh</a></li>
+                        <li><a href="https://www.hostinger.com/vps/docker/openclaw" target="_blank">Hostinger</a></li>
+                        <li><a href="https://www.digitalocean.com/community/tutorials/how-to-run-openclaw" target="_blank">DigitalOcean</a></li>
+                        <li><a href="https://contabo.com/en/openclaw-hosting/" target="_blank">Contabo</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>AI Models</h4>
+                    <ul>
+                        <li><a href="https://platform.moonshot.ai/" target="_blank">Kimi API</a></li>
+                        <li><a href="https://openai.com/api" target="_blank">OpenAI</a></li>
+                        <li><a href="https://www.anthropic.com/api" target="_blank">Anthropic</a></li>
+                        <li><a href="https://clawhub.com" target="_blank">Model Router</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#basics">Getting Started Guide</a></li>
+                        <li><a href="https://clawhub.com" target="_blank">Agent Skills Library</a></li>
+                        <li><a href="https://docs.openclaw.ai/integrations" target="_blank">Integration Docs</a></li>
+                        <li><a href="https://docs.openclaw.ai/troubleshooting" target="_blank">Troubleshooting</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Affiliate Programs</h4>
+                    <ul>
+                        <li><a href="https://www.ampere.sh/" target="_blank">Ampere.sh Referral</a></li>
+                        <li><a href="https://www.hostinger.com/affiliates" target="_blank">Hostinger Affiliate</a></li>
+                        <li><a href="https://www.digitalocean.com/affiliates" target="_blank">DigitalOcean Affiliate</a></li>
+                        <li><a href="https://contabo.com/en/affiliate-program/" target="_blank">Contabo Partner</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2026 StartWithOpenClaw.com | This site contains affiliate links. We may earn a commission at no extra cost to you.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Filter tabs functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterTabs = document.querySelectorAll('.filter-tab');
+            const providerCards = document.querySelectorAll('.provider-card');
+            
+            filterTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs
+                    filterTabs.forEach(t => t.classList.remove('active'));
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    const filter = this.textContent.trim();
+                    
+                    providerCards.forEach(card => {
+                        const isFeatured = card.classList.contains('featured');
+                        const name = card.querySelector('.provider-name').textContent.trim();
+                        
+                        if (filter === 'All Options') {
+                            card.style.display = 'flex';
+                        } else if (filter === 'Free to Start') {
+                            card.style.display = isFeatured ? 'flex' : 'none';
+                        } else if (filter === 'Fully Managed') {
+                            card.style.display = (name === 'Ampere.sh' || name === 'xCloud') ? 'flex' : 'none';
+                        } else if (filter === 'AI Models') {
+                            card.style.display = (name === 'Kimi') ? 'flex' : 'none';
+                        } else if (filter === 'VPS (More Control)') {
+                            card.style.display = (name === 'Hostinger' || name === 'DigitalOcean' || name === 'Contabo') ? 'flex' : 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
