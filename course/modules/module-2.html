@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 2: Personality & Soul | OpenClaw Course</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1e1e2e;
+            --text-primary: #ffffff;
+            --text-secondary: #e2e8f0;
+            --text-muted: #94a3b8;
+            --accent-purple: #a855f7;
+            --accent-indigo: #6366f1;
+            --accent-violet: #8b5cf6;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--bg-secondary);
+            z-index: 1000;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-indigo), var(--accent-violet));
+            width: 20%;
+            transition: width 0.3s ease;
+        }
+
+        .module-header {
+            padding: 80px 24px 40px;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, transparent 50%);
+            text-align: center;
+        }
+
+        .module-number {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-indigo), var(--accent-violet));
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 12px; }
+        
+        .module-subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .module-content { padding: 40px 24px; }
+
+        .section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+        }
+
+        .section h2 {
+            font-size: 1.4rem;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .fun-fact {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(99, 102, 241, 0.1));
+            border-left: 4px solid var(--accent-purple);
+            padding: 20px;
+            border-radius: 0 12px 12px 0;
+            margin: 20px 0;
+        }
+
+        .fun-fact::before {
+            content: "💡 Fun Fact: ";
+            font-weight: 600;
+            color: var(--accent-purple);
+        }
+
+        .code-block {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin: 16px 0;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+
+        .example-box {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 16px 0;
+        }
+
+        .example-box h4 {
+            color: var(--success);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .personality-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 12px 0;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .personality-card:hover {
+            border-color: var(--accent-purple);
+            transform: translateX(8px);
+        }
+
+        .personality-card h4 {
+            color: var(--accent-purple);
+            margin-bottom: 8px;
+        }
+
+        .personality-card p {
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .exercise {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(245, 158, 11, 0.05));
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 16px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+
+        .exercise h3 {
+            color: var(--warning);
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .interactive-builder {
+            background: var(--bg-secondary);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            margin: 20px 0;
+        }
+
+        .builder-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            margin: 8px 0;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .builder-option:hover {
+            border-color: var(--accent-purple);
+        }
+
+        .builder-option.selected {
+            border-color: var(--accent-purple);
+            background: rgba(168, 85, 247, 0.1);
+        }
+
+        .builder-option input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--accent-purple);
+        }
+
+        .quiz-option {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin: 8px 0;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--accent-purple);
+            background: rgba(168, 85, 247, 0.05);
+        }
+
+        .quiz-option.correct {
+            border-color: var(--success);
+            background: rgba(34, 197, 94, 0.1);
+        }
+
+        .quiz-option.wrong {
+            border-color: #ef4444;
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        .module-nav {
+            display: flex;
+            justify-content: space-between;
+            padding: 40px 24px;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .nav-btn-primary {
+            background: linear-gradient(135deg, var(--accent-indigo), var(--accent-violet));
+            color: #fff;
+        }
+
+        .nav-btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .celebration {
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(34, 197, 94, 0.05));
+            border-radius: 16px;
+            margin: 24px 0;
+        }
+
+        .celebration h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .emoji-big { font-size: 3rem; margin-bottom: 16px; }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            .section { padding: 24px; }
+            .module-nav { flex-direction: column; gap: 12px; }
+            .nav-btn { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar">
+        <div class="progress-fill"></div>
+    </div>
+
+    <header class="module-header">
+        <div class="container">
+            <div class="module-number">Module 2 of 10</div>
+            <h1>Personality & Soul</h1>
+            <p class="module-subtitle">Give your agent a unique identity that matches your style</p>
+        </div>
+    </header>
+
+    <main class="module-content">
+        <div class="container">
+            <div class="section">
+                <h2>🎭 Why Personality Matters</h2>
+                
+                <p>Your agent is going to be your daily companion. It should feel like <em>yours</em> — not a generic robot. The SOUL.md file is where you define who your agent is.</p>
+
+                <div class="fun-fact">
+                    Agents with well-defined personalities get 3x more engagement because users actually enjoy talking to them!
+                </div>
+
+                <p>Think of SOUL.md as your agent's "character sheet" in a role-playing game. It defines:</p>
+
+                <ul style="margin-left: 20px; color: var(--text-secondary);">
+                    <li style="margin-bottom: 8px;">🎨 <strong>Identity:</strong> Name, nature, overall vibe</li>
+                    <li style="margin-bottom: 8px;">💬 <strong>Communication:</strong> Tone, style, format preferences
+                    <li style="margin-bottom: 8px;">⚖️ <strong>Values:</strong> What matters most (efficiency? warmth? precision?)
+                    <li>🚫 <strong>Boundaries:</strong> What it should never do
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>🎨 3 Personality Examples</h2>
+
+                <div class="example-box">
+                    <h4>Example 1: The Efficient Executive</h4>
+                    
+                    <div class="code-block"># Executive Assistant - SOUL
+
+## Identity
+- **Name:** Max
+- **Nature:** Executive assistant
+- **Vibe:** Professional, direct, no-nonsense
+
+## Communication Style
+- Lead with conclusions, details after if asked
+- Bullet points over paragraphs
+- Never use filler words ("Sure!", "No problem!")
+- One message, complete information
+
+## Core Values
+- Efficiency above all
+- Accuracy is non-negotiable
+- Proactive suggestions
+
+## Boundaries
+- Never make purchases without explicit approval
+- Flag uncertain information clearly
+- Respect "focus time" — no non-urgent interruptions 9am-12pm</div>
+                </div>
+
+                <div class="example-box">
+                    <h4>Example 2: The Friendly Companion</h4>
+                    
+                    <div class="code-block"># Companion - SOUL
+
+## Identity
+- **Name:** Luna
+- **Nature:** Helpful friend
+- **Vibe:** Warm, encouraging, slightly witty
+
+## Communication Style
+- Conversational and friendly
+- Use emojis naturally (not excessively)
+- Celebrate wins with enthusiasm
+- Gentle reminders, never nagging
+
+## Core Values
+- Emotional well-being matters
+- Balance work and life
+- Small joys are worth noting
+
+## Boundaries
+- Respect privacy — don't pry
+- No guilt-tripping about missed tasks
+- Keep work stress separate from personal time</div>
+                </div>
+
+                <div class="example-box">
+                    <h4>Example 3: The Technical Wizard</h4>
+                    
+                    <div class="code-block"># Tech Assistant - SOUL
+
+## Identity
+- **Name:** Byte
+- **Nature:** Technical assistant
+- **Vibe:** Precise, analytical, helpful
+
+## Communication Style
+- Include technical details by default
+- Code blocks for any technical content
+- Explain the "why" behind recommendations
+- Link to documentation when relevant
+
+## Core Values
+- Precision over speed
+- Security awareness
+- Continuous learning
+
+## Boundaries
+- Never suggest unverified solutions
+- Always mention risks of experimental approaches
+- Respect API rate limits and terms of service</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>🎯 Quick Quiz</h2>
+                
+                <p>Which SOUL.md principle is most important?</p>
+
+                <div class="quiz-option" onclick="this.classList.add('wrong'); document.getElementById('q2-correct').classList.add('correct');">
+                    Making the agent as funny as possible
+                </div>
+
+                <div class="quiz-option" onclick="this.classList.add('wrong'); document.getElementById('q2-correct').classList.add('correct');">
+                    Including as many rules as possible
+                </div>
+
+                <div id="q2-correct" class="quiz-option" onclick="this.classList.add('correct');">
+                    Matching the agent's style to how you actually work
+                </div>
+
+                <div id="quiz-feedback" style="margin-top: 16px; padding: 16px; background: rgba(34, 197, 94, 0.1); border-radius: 10px; display: none;">
+                    <strong>Correct! 🎉</strong> The best SOUL.md is one that feels natural to YOU. It should match your actual working style, not an idealized version.
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>✍️ Exercise: Build Your SOUL.md</h2>
+                
+                <p>Answer these questions to build your agent's personality:</p>
+
+                <div class="exercise">
+                    <h3>Step 1: Choose Your Agent's Name</h3>
+                    
+                    <p>Pick something you'll enjoy saying/typing:</p>
+                    
+                    <div class="interactive-builder">
+                        <div class="builder-option" onclick="selectOption(this, 'name')">
+                            <input type="radio" name="agent-name" value="professional">
+                            <div>
+                                <strong>Professional:</strong> Max, Alex, Sam, Taylor
+                            </div>
+                        </div>
+                        
+                        <div class="builder-option" onclick="selectOption(this, 'name')">
+                            <input type="radio" name="agent-name" value="friendly">
+                            <div>
+                                <strong>Friendly:</strong> Luna, Milo, Zoe, Kai
+                            </div>
+                        </div>
+                        
+                        <div class="builder-option" onclick="selectOption(this, 'name')">
+                            <input type="radio" name="agent-name" value="tech">
+                            <div>
+                                <strong>Techy:</strong> Byte, Pixel, Dash, Neo
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise">
+                    <h3>Step 2: Define Communication Style</h3>
+                    
+                    <p>How do you want your agent to communicate?</p>
+                    
+                    <div class="code-block" style="cursor: pointer;" onclick="navigator.clipboard.writeText(this.innerText)">## Communication Style
+- Lead with [answer/details/context]
+- Use [bullet points/paragraphs/mixed]
+- Tone: [formal/casual/direct/warm]
+- Always/Never [specific preference]
+
+Example:
+## Communication Style
+- Lead with the answer, explain if asked
+- Use bullet points for clarity
+- Tone: Professional but friendly
+- Never use filler words like "Sure!" or "No problem!"
+- Always include specific numbers/dates when relevant</div>
+                </div>
+
+                <div class="exercise">
+                    <h3>Step 3: Set Your Core Values</h3>
+                    
+                    <p>What matters most to you? (Pick 3)</p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 16px 0;">
+                        <div style="background: var(--bg-card); padding: 16px; border-radius: 10px; border: 1px solid var(--border);">
+                            <strong>⚡ Efficiency</strong>
+                            <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">Speed and brevity</div>
+                        </div>
+                        
+                        <div style="background: var(--bg-card); padding: 16px; border-radius: 10px; border: 1px solid var(--border);">
+                            <strong>🎯 Accuracy</strong>
+                            <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">Precision over speed</div>
+                        </div>
+                        
+                        <div style="background: var(--bg-card); padding: 16px; border-radius: 10px; border: 1px solid var(--border);">
+                            <strong>🤝 Warmth</strong>
+                            <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">Friendly and encouraging</div>
+                        </div>
+                        
+                        <div style="background: var(--bg-card); padding: 16px; border-radius: 10px; border: 1px solid var(--border);">
+                            <strong>🔍 Thoroughness</strong>
+                            <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">Complete information</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise">
+                    <h3>Final Exercise: Write Your SOUL.md</h3>
+                    
+                    <p>Use this template and fill in your preferences:</p>
+                    
+                    <div class="code-block" onclick="navigator.clipboard.writeText(this.innerText)" style="cursor: pointer;"># [Your Agent Name] - SOUL
+
+## Identity
+- **Name:** [Choose a name]
+- **Nature:** [e.g., Personal assistant, Research partner]
+- **Vibe:** [e.g., Professional, friendly, witty]
+
+## Communication Style
+- Lead with [answer/context/details]
+- Use [bullet points/paragraphs/mixed]
+- Tone: [formal/casual/direct/warm]
+- Always: [what you want]
+- Never: [what you don't want]
+
+## Core Values
+- [Value 1]
+- [Value 2]
+- [Value 3]
+
+## Boundaries
+- Never [boundary 1]
+- Always ask before [boundary 2]
+- Respect [boundary 3]
+
+## Personal Context (Optional)
+- I prefer morning meetings
+- I dislike phone calls when email works
+- My work hours are [X] to [Y]
+- My timezone is [Timezone]</div>
+                    
+                    <p style="margin-top: 16px; font-size: 0.9rem; color: var(--text-muted);">💡 Click the code block to copy it, then paste into your agent's SOUL.md file!</p>
+                </div>
+            </div>
+
+            <div class="celebration">
+                <div class="emoji-big">✨</div>
+                <h3>Module 2 Complete!</h3>
+                
+                <p>Your agent now has a personality! This makes every interaction more natural and enjoyable.</p>
+                
+                <p style="margin-top: 16px; color: var(--accent-purple); font-weight: 600;">Next: Teaching your agent about YOU</p>
+            </div>
+        </div>
+    </main>
+
+    <nav class="module-nav">
+        <a href="module-1.html" class="nav-btn nav-btn-secondary">
+            ← Previous Module
+        </a>
+        <a href="module-3.html" class="nav-btn nav-btn-primary">
+            Next Module →
+        </a>
+    </nav>
+
+    <script>
+        function selectOption(element, type) {
+            document.querySelectorAll('.builder-option').forEach(el => {
+                if (el.onclick.toString().includes(type)) {
+                    el.classList.remove('selected');
+                }
+            });
+            element.classList.add('selected');
+            element.querySelector('input').checked = true;
+        }
+
+        document.querySelectorAll('.quiz-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.getElementById('quiz-feedback').style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html>
