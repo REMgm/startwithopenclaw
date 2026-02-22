@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenClaw Beginner's Course | 10 Steps to AI Agent Mastery</title>
+    <meta name="description" content="Free 10-step course to master OpenClaw. Learn to build, personalize, and automate with your AI agent.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1e1e2e;
+            --bg-hover: #252538;
+            --text-primary: #ffffff;
+            --text-secondary: #e2e8f0;
+            --text-muted: #94a3b8;
+            --accent-purple: #a855f7;
+            --accent-indigo: #6366f1;
+            --accent-violet: #8b5cf6;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 15, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 16px 0;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            font-size: 1.5rem;
+        }
+
+        .logo-text {
+            background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-indigo) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 140px 24px 80px;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(168, 85, 247, 0.12) 0%, transparent 50%),
+                var(--bg-primary);
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(168, 85, 247, 0.1);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            padding: 10px 20px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: var(--accent-purple);
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #fff 0%, #c4b5fd 50%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 32px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent-purple);
+        }
+
+        .hero-stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Course Overview */
+        .overview {
+            padding: 80px 0;
+            background: var(--bg-secondary);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+        }
+
+        .overview-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+            text-align: center;
+        }
+
+        .overview-icon {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+
+        .overview-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .overview-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Course Steps */
+        .course-steps {
+            padding: 80px 0;
+            background: var(--bg-primary);
+        }
+
+        .step {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 32px;
+            padding: 32px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .step:hover {
+            border-color: rgba(168, 85, 247, 0.3);
+            transform: translateX(8px);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent-indigo) 0%, var(--accent-violet) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        .step-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+
+        .step-content .module-title {
+            color: var(--accent-purple);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .step-content p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .step-topics {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 16px;
+        }
+
+        .step-topic {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 24px;
+            background: var(--bg-secondary);
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 16px;
+        }
+
+        .cta-section p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto 32px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-indigo) 0%, var(--accent-violet) 100%);
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.5);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+            margin-left: 12px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-primary);
+            border-top: 1px solid var(--border);
+            padding: 40px 24px;
+            text-align: center;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .step {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .step-number {
+                width: 50px;
+                height: 50px;
+                font-size: 1.25rem;
+            }
+
+            .btn-secondary {
+                margin-left: 0;
+                margin-top: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">
+                <span class="logo-icon">🦞</span>
+                <span class="logo-text">Start with OpenClaw</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/course">Course</a></li>
+                <li><a href="/#providers">Hosting</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">📚 Free Beginner's Course</div>
+            <h1>
+                Master Your
+                <span class="gradient-text">AI Agent</span>
+                in 10 Steps
+            </h1>
+            
+            <p class="hero-subtitle">
+                Go from "what is this?" to AI agent mastery. A practical, hands-on course 
+                for complete beginners. No coding required.
+            </p>
+            
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-number">10</div>
+                    <div class="hero-stat-label">Steps</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-number">2-3</div>
+                    <div class="hero-stat-label">Hours</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-number">0</div>
+                    <div class="hero-stat-label">Cost</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview -->
+    <section class="overview">
+        <div class="container">
+            <div class="section-header">
+                <h2>What You'll Learn</h2>
+                <p>By the end of this course, you'll have a fully personalized AI agent 
+                that knows you, works for you, and handles tasks automatically.</p>
+            </div>
+            
+            <div class="overview-grid">
+                <div class="overview-card">
+                    <div class="overview-icon">🤖</div>
+                    <h3>Meet Your Agent</h3>
+                    <p>Understand what makes an agent different from ChatGPT or Google</p>
+                </div>
+                
+                <div class="overview-card">
+                    <div class="overview-icon">✨</div>
+                    <h3>Give It Personality</h3>
+                    <p>Create a unique identity and communication style for your agent</p>
+                </div>
+                
+                <div class="overview-card">
+                    <div class="overview-icon">🧠</div>
+                    <h3>Teach It About You</h3>
+                    <p>Build memory so your agent learns your preferences over time</p>
+                </div>
+                
+                <div class="overview-card">
+                    <div class="overview-icon">⚡</div>
+                    <h3>Automate Everything</h3>
+                    <p>Set up cron jobs and workflows that run while you sleep</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course Steps -->
+    <section class="course-steps">
+        <div class="container">
+            <div class="section-header">
+                <h2>The 10-Step Journey</h2>
+                <p>Each step builds on the last. Work through them at your own pace.</p>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <div class="module-title">Module 1: Meet Your Agent</div>
+                    <h3>Getting Introduced to Your Agent</h3>
+                    
+                    <p>Learn what makes an agent different from ChatGPT or Google. Understand the delegation mindset and why "asking" is different from "delegating."</p>
+                    
+                    <div class="step-topics">
+                        <span class="step-topic">Agent vs LLM</span>
+                        <span class="step-topic">The 3 ways to interact</span>
+                        <span class="step-topic">First conversation</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <div class="module-title">Module 2: Personality & Soul</div>
+                    
+                    <h3>Giving Your Agent Personality</h3>
+                    
+                    <p>Use SOUL.md to define who your agent is, how it communicates, and what it values. Create a unique identity that matches your style.</p>
+                    
+                    <div class="step-topics">
+                        <span class="step-topic">SOUL.md creation</span>
+                        <span class="step-topic">Communication style</span>
+                        <span class="step-topic">Setting boundaries</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <div class="module-title">Module 3: Teaching Your Agent</div>
+                    
+                    <h3>How Your Agent Learns About You</h3>
+                    
+                    <p>Understand the three types of memory. Build your USER.md profile so your agent knows your preferences, patterns, and important context.</p>
+                    
+                    <div class="step-topics">
+                        <span class="step-topic">Short/Mid/Long-term memory</span>
+                        <span class="step-topic">USER.md profile</span>
+                        <span class="step-topic">Teaching preferences</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <div class="module-title">Module 4: Capabilities</div>
+                    
+                    <h3>What You Can Do With Your Agent</h3>
+                    
+                    <p>Explore the 6 categories of agent tasks: research, communication, web browsing, automation, coding, and personal life management.</p>
+                    
+                    <div class="step-topics">
+                        <span class="step-topic">6 agent superpowers</span>
+                        <span class="step-topic">Real-world examples</span>
+                        <span class="step-topic">Framing requests</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <div class="module-title">Module 5: True Delegation</div>
+                    
+                    <h3>Beyond Questions - True Delegation</h3>
+                    
+                    <p>Master the mindset shift from asking to delegating. Learn the 3-part delegation formula for getting the best results from your agent.</p>
+                    
+                    <div class="step-topics">
+                        <span class="step-topic">Asking vs delegating</span>
+                        <span class="step-topic">3-part formula</span>
+                        <span class="step-topic">Building trust</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">6</div>
+                <div class="step-content">
+                    <div class="module-title">Module 6: Agent Team</div>
+                    
+                    <h3>Building Your Agent Team</h3>
+                    
+                    <p>Why one agent isn't enough. Set up specialized sub-agents for different tasks: research, communication, travel, shopping, and more.</p>
+                    
+                    <div class="step-topics">
+                        <span class="step-topic">Why multiple agents?</span>
+                        <span class="step-topic">Team structure</span>
+                        <span class="step-topic">Sub-agent setup</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">7</div>
+                <div class="step-content">
+                    <div class="module-title">Module 7: Memory & Learning</div>
+                    
+                    <h3>How Your Agent Remembers & Improves</h3>
+                    
+                    <p>Memory hygiene: daily, weekly, monthly practices. Learn how to teach your agent effectively and build institutional knowledge.</p>
+                    
+                    <div class="step-topics">
+                        <span class="step-topic">Memory hygiene</span>
+                        <span class="step-topic">Explicit & implicit learning</span>
+                        <span class="step-topic">Reference files</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">8</div>
+                <div class="step-content">
+                    <div class="module-title">Module 8: Automation</div>
+                    
+                    <h3>Setting Up Automated Workflows</h3>
+                    
+                    <p>Introduction to cron jobs. Set up your first automations: morning briefings, weekly planning, price monitoring, and more.</p>
+                    
+                    <div class="step-topics">
+                        <span class="step-topic">What are cron jobs?</span>
+                        <span class="step-topic">Common schedules</span>
+                        <span class="step-topic">First 3 automations</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">9</div>
+                <div class="step-content">
+                    <div class="module-title">Module 9: Advanced Workflows</div>
+                    
+                    <h3>Multi-Step & Cross-Agent Workflows</h3>
+                    
+                    <p>Chain multiple tasks together. Learn cross-agent collaboration and build complex automations that span multiple agents.</p>
+                    
+                    <div class="step-topics">
+                        <span class="step-topic">Workflow mapping</span>
+                        <span class="step-topic">Cross-agent handoffs</span>
+                        <span class="step-topic">Complex automations</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">10</div>
+                <div class="step-content">
+                    <div class="module-title">Module 10: Mastery</div>
+                    
+                    <h3>Optimization & Continuous Improvement</h3>
+                    
+                    <p>Measure agent effectiveness. Learn weekly review practices, optimization techniques, and advanced tips for power users.</p>
+                    
+                    <div class="step-topics">
+                        <span class="step-topic">Measuring success</span>
+                        <span class="step-topic">Weekly reviews</span>
+                        <span class="step-topic">Advanced tips</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Start Your Journey?</h2>
+            
+            <p>Deploy your free agent now and work through the course at your own pace. 
+            No credit card required.</p>
+            
+            <a href="https://www.ampere.sh/?ref=startwithopenclaw" class="btn btn-primary" target="_blank">
+                Deploy Your Free Agent
+            </a>
+            
+            <a href="/" class="btn btn-secondary">
+                Back to Home
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2026 StartWithOpenClaw.com | <a href="/">Back to Main Site</a></p>
+        </div>
+    </footer>
+</body>
+</html>
