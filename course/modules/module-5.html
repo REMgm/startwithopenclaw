@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 5: True Delegation | OpenClaw Course</title>
+    <meta name="description" content="Master the mindset shift from asking to delegating.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-primary: #0a0a0f; --bg-secondary: #12121a; --bg-card: #1e1e2e; --bg-hover: #252538; --text-primary: #ffffff; --text-secondary: #e2e8f0; --text-muted: #94a3b8; --accent-purple: #a855f7; --accent-indigo: #6366f1; --accent-violet: #8b5cf6; --success: #22c55e; --warning: #f59e0b; --border: rgba(255, 255, 255, 0.08); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; }
+        .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+        nav { position: fixed; top: 0; left: 0; right: 0; background: rgba(10, 10, 15, 0.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); z-index: 1000; padding: 16px 0; }
+        nav .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 10px; font-size: 1.3rem; font-weight: 800; color: var(--text-primary); text-decoration: none; }
+        .logo-icon { font-size: 1.5rem; }
+        .logo-text { background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-indigo) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav-links { display: flex; gap: 24px; list-style: none; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+        .nav-links a:hover { color: var(--text-primary); }
+        .progress-container { position: fixed; top: 65px; left: 0; right: 0; z-index: 999; background: var(--bg-secondary); }
+        .progress-bar { height: 4px; background: linear-gradient(90deg, var(--accent-purple) 0%, var(--accent-indigo) 100%); width: 50%; }
+        .hero { padding: 120px 24px 60px; background: radial-gradient(ellipse at 20% 20%, rgba(168, 85, 247, 0.12) 0%, transparent 50%), var(--bg-primary); text-align: center; }
+        .module-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(168, 85, 247, 0.1); border: 1px solid rgba(168, 85, 247, 0.3); padding: 10px 20px; border-radius: 100px; font-size: 0.85rem; color: var(--accent-purple); margin-bottom: 20px; }
+        h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 800; line-height: 1.2; margin-bottom: 12px; }
+        .subtitle { color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+        .content { padding: 60px 0; background: var(--bg-primary); }
+        .section { margin-bottom: 48px; }
+        .section h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
+        .section-icon { font-size: 1.5rem; }
+        .section p { color: var(--text-secondary); line-height: 1.7; margin-bottom: 16px; }
+        .fun-fact { background: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(99, 102, 241, 0.1) 100%); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 16px; padding: 24px; margin: 24px 0; }
+        .fun-fact-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+        .fun-fact-icon { font-size: 1.5rem; }
+        .fun-fact h3 { font-size: 1.1rem; color: var(--accent-purple); }
+        .fun-fact p { color: var(--text-secondary); margin: 0; }
+        .comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+        .comparison-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+        .comparison-card.wrong { border-color: rgba(239, 68, 68, 0.3); }
+        .comparison-card.right { border-color: rgba(34, 197, 94, 0.3); }
+        .comparison-card h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+        .comparison-card.wrong h4 { color: #ef4444; }
+        .comparison-card.right h4 { color: var(--success); }
+        .comparison-card p { color: var(--text-secondary); font-size: 0.9rem; margin: 0; font-style: italic; }
+        .formula-box { background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 16px; padding: 32px; margin: 24px 0; text-align: center; }
+        .formula-box h3 { font-size: 1.2rem; margin-bottom: 20px; color: var(--accent-indigo); }
+        .formula { display: flex; flex-direction: column; gap: 12px; }
+        .formula-part { background: rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 16px; }
+        .formula-label { font-size: 0.8rem; color: var(--accent-purple); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+        .formula-text { font-size: 1.1rem; font-weight: 600; }
+        .example { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin: 24px 0; }
+        .example h4 { font-size: 1rem; color: var(--text-muted); margin-bottom: 16px; }
+        .chat { display: flex; flex-direction: column; gap: 12px; }
+        .chat-bubble { max-width: 85%; padding: 14px 18px; border-radius: 18px; font-size: 0.95rem; line-height: 1.5; }
+        .chat-user { align-self: flex-end; background: linear-gradient(135deg, var(--accent-indigo) 0%, var(--accent-violet) 100%); color: #fff; border-bottom-right-radius: 4px; }
+        .chat-agent { align-self: flex-start; background: var(--bg-hover); color: var(--text-primary); border-bottom-left-radius: 4px; border: 1px solid var(--border); }
+        .chat-label { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 4px; font-weight: 600; }
+        .quiz { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin: 24px 0; }
+        .quiz h3 { font-size: 1.1rem; margin-bottom: 16px; }
+        .quiz-options { display: flex; flex-direction: column; gap: 12px; }
+        .quiz-option { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 12px; }
+        .quiz-option:hover { border-color: rgba(168, 85, 247, 0.4); background: rgba(168, 85, 247, 0.05); }
+        .quiz-option.correct { border-color: var(--success); background: rgba(34, 197, 94, 0.1); }
+        .quiz-option.wrong { border-color: #ef4444; background: rgba(239, 68, 68, 0.1); }
+        .quiz-option input { display: none; }
+        .quiz-radio { width: 20px; height: 20px; border: 2px solid var(--text-muted); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .quiz-option.correct .quiz-radio { border-color: var(--success); background: var(--success); }
+        .quiz-option.wrong .quiz-radio { border-color: #ef4444; background: #ef4444; }
+        .quiz-radio::after { content: ''; width: 8px; height: 8px; background: #fff; border-radius: 50%; opacity: 0; }
+        .quiz-option.correct .quiz-radio::after { opacity: 1; }
+        .quiz-feedback { margin-top: 16px; padding: 14px 16px; border-radius: 10px; font-size: 0.95rem; display: none; }
+        .quiz-feedback.show { display: block; }
+        .quiz-feedback.correct { background: rgba(34, 197, 94, 0.1); border: 1px solid var(--success); color: var(--success); }
+        .quiz-feedback.wrong { background: rgba(239, 68, 68, 0.1); border: 1px solid #ef4444; color: #ef4444; }
+        .exercise { background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 16px; padding: 24px; margin: 24px 0; }
+        .exercise-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+        .exercise-number { background: var(--warning); color: #000; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 700; }
+        .exercise h4 { font-size: 1rem; }
+        .exercise p { color: var(--text-secondary); margin-bottom: 12px; }
+        .exercise-prompt { background: #0d0d12; border: 1px solid var(--border); border-radius: 10px; padding: 16px; font-size: 0.9rem; color: var(--text-secondary); position: relative; }
+        .exercise-copy { position: absolute; top: 12px; right: 12px; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border); color: var(--text-muted); padding: 6px 12px; border-radius: 6px; font-size: 0.75rem; cursor: pointer; }
+        .exercise-copy:hover { background: rgba(255, 255, 255, 0.1); color: var(--text-primary); }
+        .exercise-copy.copied { background: rgba(34, 197, 94, 0.2); color: var(--success); border-color: var(--success); }
+        .celebration { background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(34, 197, 94, 0.05) 100%); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 20px; padding: 48px 32px; text-align: center; margin: 48px 0; }
+        .celebration-icon { font-size: 4rem; margin-bottom: 16px; animation: bounce 1s ease infinite; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        .celebration h2 { font-size: 1.8rem; margin-bottom: 12px; }
+        .celebration p { color: var(--text-secondary); margin-bottom: 24px; }
+        .module-nav { display: flex; justify-content: space-between; align-items: center; padding: 32px 0; border-top: 1px solid var(--border); margin-top: 48px; }
+        .nav-btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 24px; border-radius: 10px; font-size: 0.95rem; font-weight: 600; text-decoration: none; transition: all 0.3s; }
+        .nav-btn-prev { background: rgba(255, 255, 255, 0.05); color: var(--text-primary); border: 1px solid var(--border); }
+        .nav-btn-prev:hover { background: rgba(255, 255, 255, 0.1); }
+        .nav-btn-next { background: linear-gradient(135deg, var(--accent-indigo) 0%, var(--accent-violet) 100%); color: #fff; box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4); }
+        .nav-btn-next:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(99, 102, 241, 0.5); }
+        footer { background: var(--bg-primary); border-top: 1px solid var(--border); padding: 40px 24px; text-align: center; }
+        footer p { color: var(--text-muted); font-size: 0.9rem; }
+        footer a { color: var(--text-secondary); text-decoration: none; }
+        @media (max-width: 768px) { .nav-links { display: none; } .comparison { grid-template-columns: 1fr; } .module-nav { flex-direction: column; gap: 12px; } .nav-btn { width: 100%; justify-content: center; } }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="/" class="logo"><span class="logo-icon">🦞</span><span class="logo-text">Start with OpenClaw</span></a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/course">Course</a></li>
+                <li><a href="module-4.html">← Previous</a></li>
+                <li><a href="module-6.html">Next →</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="progress-container"><div class="progress-bar"></div></div>
+    <section class="hero">
+        <div class="container">
+            <div class="module-badge">📚 Module 5 of 10</div>
+            <h1>Beyond Questions — True Delegation</h1>
+            <p class="subtitle">Master the mindset shift from asking to delegating. Learn the 3-part formula for getting the best results.</p>
+        </div>
+    </section>
+    <section class="content">
+        <div class="container">
+            <div class="section">
+                <h2><span class="section-icon">🎯</span> Asking vs Delegating</h2>
+                <p>The biggest mistake new users make? Treating their agent like a search engine. Here's the difference:</p>
+                
+                <div class="comparison">
+                    <div class="comparison-card wrong">
+                        <h4>❌ Asking (LLM Style)</h4>
+                        <p>"What are good Italian restaurants near me?"</p>
+                    </div>
+                    <div class="comparison-card right">
+                        <h4>✅ Delegating (Agent Style)</h4>
+                        <p>"Find 3 highly-rated Italian restaurants within 10 minutes. Check availability Saturday 7pm. Book the best one."</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="formula-box">
+                <h3>The 3-Part Delegation Formula</h3>
+                <div class="formula">
+                    <div class="formula-part">
+                        <div class="formula-label">1. What</div>
+                        <div class="formula-text">The task you want done</div>
+                    </div>
+                    <div class="formula-part">
+                        <div class="formula-label">2. Context</div>
+                        <div class="formula-text">Background information</div>
+                    </div>
+                    <div class="formula-part">
+                        <div class="formula-label">3. Success Criteria</div>
+                        <div class="formula-text">How you want the result</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fun-fact">
+                <div class="fun-fact-header"><span class="fun-fact-icon">💡</span><h3>Why This Matters</h3></div>
+                <p>Agents are action-oriented. When you ask "what is..." they answer. When you delegate "find and book..." they execute. The more you delegate, the more value you get.</p>
+            </div>
+
+            <div class="section">
+                <h2><span class="section-icon">💬</span> Before & After Examples</h2>
+                
+                <div class="example">
+                    <h4>Investment Research</h4>
+                    <div class="chat">
+                        <div class="chat-bubble chat-user"><div class="chat-label">❌ Weak</div>How do I invest in index funds?</div>
+                        <div class="chat-bubble chat-agent"><div class="chat-label">✅ Strong</div>Research index fund investing for beginners. Create a summary of the 3 best options for someone with $10,000 to invest. Include risk levels and expected returns in a comparison table.</div>
+                    </div>
+                </div>
+
+                <div class="example">
+                    <h4>Travel Planning</h4>
+                    <div class="chat">
+                        <div class="chat-bubble chat-user"><div class="chat-label">❌ Weak</div>What's the weather tomorrow?</div>
+                        <div class="chat-bubble chat-agent"><div class="chat-label">✅ Strong</div>Check the weather for tomorrow. If it's raining, remind me to bring an umbrella and suggest rescheduling my 2pm outdoor coffee meeting.</div>
+                    </div>
+                </div>
+
+                <div class="example">
+                    <h4>Workout Planning</h4>
+                    <div class="chat">
+                        <div class="chat-bubble chat-user"><div class="chat-label">❌ Weak</div>What's a good workout routine?</div>
+                        <div class="chat-bubble chat-agent"><div class="chat-label">✅ Strong</div>I'm a beginner with 30 minutes daily. Create a 4-week workout plan that requires no equipment. Schedule the workouts on my calendar for 7am weekdays. Remind me each morning.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quiz">
+                <h3>🎯 Quick Quiz: Fix This Request</h3>
+                <p style="color: var(--text-muted); margin-bottom: 16px;">"How do I meal prep?" — Which is the best delegation rewrite?</p>
+                <div class="quiz-options">
+                    <label class="quiz-option" onclick="selectOption(this, false)"><input type="radio" name="quiz"><span class="quiz-radio"></span><span>"Tell me about meal prepping"</span></label>
+                    <label class="quiz-option" onclick="selectOption(this, true)"><input type="radio" name="quiz"><span class="quiz-radio"></span><span>"Create a 5-day meal prep plan for a beginner. Include a shopping list and prep instructions. Focus on high-protein, budget-friendly meals."</span></label>
+                    <label class="quiz-option" onclick="selectOption(this, false)"><input type="radio" name="quiz"><span class="quiz-radio"></span><span>"What are some meal prep ideas?"</span></label>
+                </div>
+                <div class="quiz-feedback correct">✅ Correct! This includes what (meal plan), context (beginner, 5-day), and success criteria (shopping list, high-protein, budget-friendly).</div>
+                <div class="quiz-feedback wrong">❌ Still too vague. The best answer includes specific context and deliverables.</div>
+            </div>
+
+            <div class="section">
+                <h2><span class="section-icon">✏️</span> Your Turn — 3 Exercises</h2>
+                
+                <div class="exercise">
+                    <div class="exercise-header"><span class="exercise-number">1</span><h4>Rewrite "Asking" Questions</h4></div>
+                    <p>Take these weak requests and rewrite them as delegations:</p>
+                    <div class="exercise-prompt">
+                        <button class="exercise-copy" onclick="copyExercise(this)">Copy</button>
+                        Rewrite these as delegations: 1) "What's a good workout routine?" 2) "How do I meal prep?" 3) "What should I read next?"
+                    </div>
+                </div>
+
+                <div class="exercise">
+                    <div class="exercise-header"><span class="exercise-number">2</span><h4>Use the 3-Part Formula</h4></div>
+                    <p>Create a delegation using What + Context + Success Criteria.</p>
+                    <div class="exercise-prompt">
+                        <button class="exercise-copy" onclick="copyExercise(this)">Copy</button>
+                        Research [what] for [context: your situation]. Present the results as [success criteria: format you want].
+                    </div>
+                </div>
+
+                <div class="exercise">
+                    <div class="exercise-header"><span class="exercise-number">3</span><h4>Build Trust Through Verification</h4></div>
+                    <p>Start with a small delegation, review the result, and give feedback.</p>
+                    <div class="exercise-prompt">
+                        <button class="exercise-copy" onclick="copyExercise(this)">Copy</button>
+                        Find 3 articles about [topic] from this month. Summarize each in 2-3 sentences and include the source links. Present as a bulleted list.
+                    </div>
+                </div>
+            </div>
+
+            <div class="celebration">
+                <div class="celebration-icon">🎉</div>
+                <h2>Module 5 Complete!</h2>
+                <p>You've mastered the delegation mindset. Next: building your agent team.</p>
+            </div>
+
+            <div class="module-nav">
+                <a href="module-4.html" class="nav-btn nav-btn-prev">← Previous: Capabilities</a>
+                <a href="module-6.html" class="nav-btn nav-btn-next">Next: Agent Team →</a>
+            </div>
+        </div>
+    </section>
+
+    <footer><div class="container"><p>© 2026 StartWithOpenClaw.com | <a href="/course">Back to Course</a></p></div></footer>
+
+    <script>
+        function copyExercise(btn) {
+            const text = btn.parentElement.innerText.replace('Copy', '').trim();
+            navigator.clipboard.writeText(text);
+            btn.textContent = 'Copied!';
+            btn.classList.add('copied');
+            setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+        }
+        function selectOption(option, isCorrect) {
+            const options = option.parentElement.querySelectorAll('.quiz-option');
+            options.forEach(opt => { opt.classList.remove('correct', 'wrong'); opt.style.pointerEvents = 'none'; });
+            if (isCorrect) {
+                option.classList.add('correct');
+                option.parentElement.nextElementSibling.classList.add('show');
+            } else {
+                option.classList.add('wrong');
+                option.parentElement.nextElementSibling.nextElementSibling.classList.add('show');
+            }
+        }
+    </script>
+</body>
+</html>
