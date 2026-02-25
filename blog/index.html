@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-S438BQTGEF"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-S438BQTGEF');
+    </script>
+
+    <!-- Consent Manager -->
+    <script type="text/javascript" data-cmp-ab="1" src="https://cdn.consentmanager.net/delivery/autoblocking/e90a6b8a42f34.js" data-cmp-host="a.delivery.consentmanager.net" data-cmp-cdn="cdn.consentmanager.net" data-cmp-codesrc="16"></script>
+
+    <title>Blog | Start with OpenClaw</title>
+    <meta name="description" content="Learn about OpenClaw, self-hosted AI agents, tutorials, and best practices.">
+    <link rel="canonical" href="https://startwithopenclaw.com/blog/">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1e1e2e;
+            --text-primary: #ffffff;
+            --text-secondary: #e2e8f0;
+            --text-muted: #94a3b8;
+            --accent-purple: #a855f7;
+            --accent-indigo: #6366f1;
+            --accent-violet: #8b5cf6;
+            --border: rgba(255, 255, 255, 0.08);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        
+        nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            background: rgba(10, 10, 15, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 16px 0;
+        }
+        nav .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 10px; font-size: 1.3rem; font-weight: 800; color: var(--text-primary); text-decoration: none; }
+        .logo-text { background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-indigo) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav-links { display: flex; gap: 24px; list-style: none; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+        .nav-links a:hover { color: var(--text-primary); }
+        
+        .hero {
+            padding: 140px 0 80px;
+            text-align: center;
+            background: var(--bg-secondary);
+        }
+        h1 { font-size: clamp(2rem, 5vw, 3rem); color: var(--text-primary); margin-bottom: 16px; }
+        .subtitle { color: var(--text-muted); font-size: 1.1rem; }
+        
+        .blog-grid {
+            padding: 60px 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 24px;
+        }
+        .blog-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+        .blog-card:hover {
+            border-color: rgba(168, 85, 247, 0.3);
+            transform: translateY(-4px);
+        }
+        .blog-meta { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 12px; }
+        .blog-card h2 { color: var(--text-primary); font-size: 1.3rem; margin-bottom: 12px; }
+        .blog-card p { color: var(--text-secondary); font-size: 0.95rem; }
+        
+        footer { background: var(--bg-secondary); border-top: 1px solid var(--border); padding: 40px 0; text-align: center; color: var(--text-muted); }
+        footer a { color: var(--text-secondary); }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">
+                <span>🦞</span>
+                <span class="logo-text">Start with OpenClaw</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/course/">Course</a></li>
+                <li><a href="/blog/">Blog</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Blog</h1>
+            <p class="subtitle">Learn about OpenClaw, self-hosted AI, and building your own AI agents.</p>
+        </div>
+    </section>
+
+    <section class="container">
+        <div class="blog-grid">
+            <a href="/blog/what-is-openclaw/" class="blog-card">
+                <div class="blog-meta">February 25, 2026 • 8 min read</div>
+                <h2>What is OpenClaw? A Beginner's Guide to Self-Hosted AI Agents</h2>
+                <p>Discover why thousands are switching from ChatGPT to their own private AI agents — and how you can too, even if you've never written a line of code.</p>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 StartWithOpenClaw.com • <a href="/">Home</a> • <a href="/course/">Free Course</a></p>
+        </div>
+    </footer>
+</body>
+</html>
