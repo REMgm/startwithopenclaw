@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenClaw Not Working? Ultimate Fix Guide | Troubleshoot in 5 Min</title>
+    <meta name="description" content="OpenClaw not working? Fix gateway errors, unauthorized issues, connection problems fast. Step-by-step troubleshooting guide with copy-paste commands. Get running in 5 minutes.">
+    <meta name="keywords" content="openclaw not working, openclaw setup error, openclaw gateway not connecting, openclaw unauthorized error, openclaw troubleshooting, openclaw fix connection, openclaw control ui not loading, openclaw command not found">
+    <meta name="author" content="StartWithOpenClaw">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://startwithopenclaw.com/bugfixing/">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="OpenClaw Not Working? Ultimate Fix Guide | Troubleshoot in 5 Min">
+    <meta property="og:description" content="Fix gateway errors, unauthorized issues, connection problems fast. Step-by-step troubleshooting with copy-paste commands.">
+    <meta property="og:url" content="https://startwithopenclaw.com/bugfixing/">
+    <meta property="og:site_name" content="Start With OpenClaw">
+    <meta property="og:image" content="https://startwithopenclaw.com/images/openclaw-troubleshooting-og.jpg">
+    <meta property="article:published_time" content="2026-02-25">
+    <meta property="article:modified_time" content="2026-02-25">
+    <meta property="article:section" content="Troubleshooting">
+    <meta property="article:tag" content="OpenClaw, Troubleshooting, Fix, Error, Gateway">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="OpenClaw Not Working? Ultimate Fix Guide">
+    <meta name="twitter:description" content="Fix gateway errors, unauthorized issues fast. Step-by-step with copy-paste commands.">
+    <meta name="twitter:image" content="https://startwithopenclaw.com/images/openclaw-troubleshooting-og.jpg">
+    
+    <!-- Schema.org Article -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "OpenClaw Not Working? The Ultimate Bugfixing Guide",
+        "description": "Complete troubleshooting guide for OpenClaw setup errors, gateway connection issues, unauthorized errors, and common fixes. Step-by-step solutions with copy-paste commands.",
+        "image": "https://startwithopenclaw.com/images/openclaw-troubleshooting-og.jpg",
+        "author": {"@type": "Organization", "name": "StartWithOpenClaw"},
+        "publisher": {
+            "@type": "Organization",
+            "name": "StartWithOpenClaw",
+            "logo": {"@type": "ImageObject", "url": "https://startwithopenclaw.com/images/logo.png"}
+        },
+        "datePublished": "2026-02-25",
+        "dateModified": "2026-02-25",
+        "mainEntityOfPage": {"@type": "WebPage", "@id": "https://startwithopenclaw.com/bugfixing/"},
+        "keywords": "openclaw not working, openclaw troubleshooting, openclaw gateway error, openclaw unauthorized"
+    }
+    </script>
+    
+    <!-- Schema.org FAQPage -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Why is my OpenClaw not working?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "OpenClaw typically fails due to: 1) Missing gateway auth token (shows 'Unauthorized'), 2) PATH not configured (command not found), 3) Port conflicts, 4) Docker issues, or 5) Permission problems. Each has a specific fix - check our troubleshooting guide for step-by-step solutions."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How do I fix OpenClaw unauthorized error?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "The 'Unauthorized' error means the Control UI lacks the gateway auth token. Fix it by running 'openclaw config get gateway.auth.token' in terminal, then paste the token into the Control UI's Gateway Token field. Or use 'openclaw dashboard --no-open' for automatic token injection."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Why does OpenClaw say command not found?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "This happens when npm global binaries aren't in your PATH. Fix by adding: export PATH=\"$(npm prefix -g)/bin:$PATH\" to your ~/.zshrc (macOS) or ~/.bashrc (Linux), then run 'source ~/.zshrc' to apply."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How do I reset OpenClaw gateway?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Stop the gateway with 'openclaw gateway stop', then clear the config: 'rm ~/.openclaw/openclaw.json', then restart: 'openclaw gateway'. If issues persist, run 'openclaw doctor --generate-gateway-token' to regenerate auth."
+                }
+            }
+        ]
+    }
+    </script>
+    
+    <!-- Schema.org HowTo for Gateway Fix -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "How to Fix OpenClaw Gateway Connection Error",
+        "description": "Step-by-step guide to resolve OpenClaw gateway unauthorized errors and connection issues.",
+        "totalTime": "PT5M",
+        "tool": [{"@type": "HowToTool", "name": "Terminal"}],
+        "step": [
+            {
+                "@type": "HowToStep",
+                "position": 1,
+                "name": "Check if gateway token exists",
+                "text": "Run 'openclaw config get gateway.auth.token' to check if a token is configured.",
+                "url": "https://startwithopenclaw.com/bugfixing/#gateway-fix"
+            },
+            {
+                "@type": "HowToStep",
+                "position": 2,
+                "name": "Generate new token if missing",
+                "text": "If no token, run 'openclaw doctor --generate-gateway-token' to create one.",
+                "url": "https://startwithopenclaw.com/bugfixing/#gateway-fix"
+            },
+            {
+                "@type": "HowToStep",
+                "position": 3,
+                "name": "Copy token to Control UI",
+                "text": "Retrieve token with 'openclaw config get gateway.auth.token' and paste into Control UI Gateway Token field.",
+                "url": "https://startwithopenclaw.com/bugfixing/#gateway-fix"
+            }
+        ]
+    }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1e1e2e;
+            --bg-hover: #252538;
+            --text-primary: #ffffff;
+            --text-secondary: #e2e8f0;
+            --text-muted: #94a3b8;
+            --accent-purple: #a855f7;
+            --accent-indigo: #6366f1;
+            --accent-violet: #8b5cf6;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        /* Navigation */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 16px 0;
+        }
+        nav .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 10px; font-size: 1.4rem; font-weight: 800; color: var(--text-primary); text-decoration: none; }
+        .logo-icon { font-size: 1.6rem; }
+        .logo-text { background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-indigo) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .nav-links { display: flex; gap: 28px; list-style: none; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text-primary); }
+        .mobile-menu-btn { display: none; background: none; border: none; color: var(--text-primary); font-size: 1.5rem; cursor: pointer; }
+
+        /* Mobile Navigation */
+        .nav-links.active {
+            display: flex; flex-direction: column; position: absolute;
+            top: 100%; left: 0; right: 0;
+            background: rgba(10, 10, 15, 0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 20px 24px; gap: 16px; z-index: 999;
+        }
+        .nav-links.active a { padding: 12px 0; font-size: 1rem; border-bottom: 1px solid var(--border); }
+        .nav-links.active a:last-child { border-bottom: none; }
+
+        /* Hero */
+        .hero {
+            min-height: 70vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; padding: 140px 24px 80px;
+            background: radial-gradient(ellipse at 20% 20%, rgba(168, 85, 247, 0.12) 0%, transparent 50%),
+                        radial-gradient(ellipse at 80% 80%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+                        var(--bg-primary);
+            position: relative;
+        }
+        .hero::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 60px 60px; pointer-events: none;
+        }
+        .hero-content { position: relative; z-index: 1; max-width: 850px; }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3);
+            padding: 10px 20px; border-radius: 100px; font-size: 0.85rem; color: var(--error);
+            margin-bottom: 32px; font-weight: 500;
+        }
+        .hero-badge::before { content: '🔧'; }
+        h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; line-height: 1.1; margin-bottom: 24px; letter-spacing: -0.02em; }
+        .gradient-text { background: linear-gradient(135deg, #fff 0%, #c4b5fd 50%, #a5b4fc 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero-subtitle { font-size: clamp(1.1rem, 2vw, 1.35rem); color: var(--text-muted); max-width: 650px; margin: 0 auto 40px; line-height: 1.6; }
+        .cta-group { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+        .btn { display: inline-flex; align-items: center; gap: 10px; padding: 16px 32px; border-radius: 12px; font-size: 1rem; font-weight: 600; text-decoration: none; transition: all 0.3s ease; cursor: pointer; border: none; }
+        .btn-primary { background: linear-gradient(135deg, var(--accent-indigo) 0%, var(--accent-violet) 100%); color: #fff; box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(99, 102, 241, 0.5); }
+        .btn-secondary { background: rgba(255, 255, 255, 0.05); color: var(--text-primary); border: 1px solid var(--border); }
+        .btn-secondary:hover { background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.2); }
+
+        /* Sections */
+        section { padding: 80px 0; }
+        .section-header { text-align: center; margin-bottom: 48px; max-width: 700px; margin-left: auto; margin-right: auto; }
+        .section-header h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 800; margin-bottom: 16px; letter-spacing: -0.01em; }
+        .section-header p { color: var(--text-muted); font-size: 1.1rem; line-height: 1.6; }
+        .section-badge { display: inline-block; background: rgba(168, 85, 247, 0.1); color: var(--accent-purple); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; padding: 6px 14px; border-radius: 20px; margin-bottom: 16px; }
+
+        /* Quick Fix Cards */
+        .quick-fixes { background: var(--bg-secondary); }
+        .fix-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .fix-card {
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
+            padding: 28px; cursor: pointer; transition: all 0.3s ease;
+        }
+        .fix-card:hover { border-color: rgba(168, 85, 247, 0.3); transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3); }
+        .fix-card.active { border-color: var(--accent-purple); }
+        .fix-header { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+        .fix-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; }
+        .fix-icon.error { background: rgba(239, 68, 68, 0.1); }
+        .fix-icon.warning { background: rgba(245, 158, 11, 0.1); }
+        .fix-icon.success { background: rgba(34, 197, 94, 0.1); }
+        .fix-icon.info { background: rgba(99, 102, 241, 0.1); }
+        .fix-title { font-size: 1.1rem; font-weight: 700; }
+        .fix-symptom { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 12px; }
+        .fix-solution { display: none; padding-top: 16px; border-top: 1px solid var(--border); }
+        .fix-card.active .fix-solution { display: block; }
+        .code-block {
+            background: var(--bg-primary); border: 1px solid var(--border); border-radius: 10px;
+            padding: 16px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.85rem;
+            color: var(--text-secondary); overflow-x: auto; margin: 12px 0;
+        }
+        .code-block .comment { color: var(--text-muted); }
+        .code-block .command { color: var(--accent-purple); }
+        .fix-steps { list-style: none; margin-top: 12px; }
+        .fix-steps li { padding: 8px 0; color: var(--text-secondary); display: flex; align-items: flex-start; gap: 10px; }
+        .fix-steps li::before { content: '→'; color: var(--accent-purple); font-weight: 700; }
+
+        /* Detailed Guides */
+        .detailed-guides { background: var(--bg-primary); }
+        .guide { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 32px; margin-bottom: 24px; }
+        .guide-header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+        .guide-number { width: 40px; height: 40px; background: linear-gradient(135deg, var(--accent-indigo) 0%, var(--accent-violet) 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.1rem; }
+        .guide h3 { font-size: 1.4rem; }
+        .guide h4 { font-size: 1.1rem; margin: 24px 0 12px; color: var(--accent-purple); }
+        .guide p { color: var(--text-muted); margin-bottom: 16px; line-height: 1.7; }
+        .guide ul { list-style: none; margin: 16px 0; }
+        .guide li { padding: 8px 0; color: var(--text-secondary); display: flex; align-items: flex-start; gap: 12px; }
+        .guide li::before { content: '✓'; color: var(--success); font-weight: 700; }
+        .info-box { background: rgba(99, 102, 241, 0.1); border-left: 4px solid var(--accent-indigo); padding: 16px 20px; border-radius: 0 10px 10px 0; margin: 20px 0; }
+        .info-box.error { background: rgba(239, 68, 68, 0.1); border-left-color: var(--error); }
+        .info-box.success { background: rgba(34, 197, 94, 0.1); border-left-color: var(--success); }
+        .info-box p { margin: 0; color: var(--text-secondary); }
+
+        /* FAQ */
+        .faq { background: var(--bg-secondary); }
+        .faq-list { max-width: 800px; margin: 0 auto; }
+        .faq-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 16px; overflow: hidden; }
+        .faq-question { padding: 24px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 1.05rem; transition: background 0.2s; }
+        .faq-question:hover { background: rgba(255, 255, 255, 0.02); }
+        .faq-answer { padding: 0 24px 24px; color: var(--text-muted); line-height: 1.7; display: none; }
+        .faq-item.active .faq-answer { display: block; }
+        .faq-icon { font-size: 1.5rem; color: var(--accent-purple); transition: transform 0.3s; }
+        .faq-item.active .faq-icon { transform: rotate(45deg); }
+
+        /* People Also Ask */
+        .people-ask { background: var(--bg-primary); }
+        .ask-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; }
+        .ask-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
+        .ask-card h3 { font-size: 1.05rem; margin-bottom: 12px; color: var(--text-primary); }
+        .ask-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+
+        /* CTA Section */
+        .cta-section { background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%); text-align: center; padding: 80px 24px; }
+        .cta-section h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 16px; }
+        .cta-section p { color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto 32px; }
+
+        /* Footer */
+        footer { background: var(--bg-secondary); border-top: 1px solid var(--border); padding: 60px 0 40px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 48px; }
+        .footer-col h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 20px; color: var(--text-primary); text-transform: uppercase; letter-spacing: 0.5px; }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 12px; }
+        .footer-col a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+        .footer-col a:hover { color: var(--text-primary); }
+        .footer-bottom { text-align: center; padding-top: 40px; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.85rem; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.active { display: flex; }
+            .mobile-menu-btn { display: block; }
+            .hero { padding: 120px 20px 60px; }
+            section { padding: 60px 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">
+                <span class="logo-icon">🦞</span>
+                <span class="logo-text">Start with OpenClaw</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/course/">Course</a></li>
+                <li><a href="/mac-mini/">Mac Mini</a></li>
+                <li><a href="/bugfixing/">Bugfixing</a></li>
+                <li><a href="/#providers">Hosting</a></li>
+            </ul>
+            <button class="mobile-menu-btn">☰</button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">🔧 Ultimate Troubleshooting Guide</div>
+            <h1>OpenClaw <span class="gradient-text">Not Working?</span></h1>
+            <p class="hero-subtitle">Fix gateway errors, unauthorized issues, connection problems fast. Step-by-step solutions with copy-paste commands. Get running in 5 minutes.</p>
+            <div class="cta-group">
+                <a href="#quick-fixes" class="btn btn-primary">Find Your Fix</a>
+                <a href="#gateway-fix" class="btn btn-secondary">Gateway Error →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Fixes -->
+    <section class="quick-fixes" id="quick-fixes">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Quick Diagnosis</div>
+                <h2>What's Your Issue?</h2>
+                <p>Click the card that matches your problem to see the fix.</p>
+            </div>
+            <div class="fix-grid">
+                <!-- Gateway Unauthorized -->
+                <div class="fix-card" onclick="this.classList.toggle('active')">
+                    <div class="fix-header">
+                        <div class="fix-icon error">🔒</div>
+                        <div class="fix-title">"Unauthorized" Error</div>
+                    </div>
+                    <p class="fix-symptom">Control UI shows "Unauthorized" or can't connect. Config file is empty.</p>
+                    <div class="fix-solution">
+                        <div class="code-block"><span class="comment"># Option 1: Get existing token</span>
+<span class="command">openclaw config get</span> gateway.auth.token
+
+<span class="comment"># Option 2: Generate new token</span>
+<span class="command">openclaw doctor</span> --generate-gateway-token
+
+<span class="comment"># Option 3: Auto-connect (quickest)</span>
+<span class="command">openclaw dashboard</span> --no-open</div>
+                        <p style="color: var(--text-muted); margin-top: 12px;">Copy the token and paste into Control UI → Overview → Gateway Token field.</p>
+                    </div>
+                </div>
+                
+                <!-- Command Not Found -->
+                <div class="fix-card" onclick="this.classList.toggle('active')">
+                    <div class="fix-header">
+                        <div class="fix-icon warning">⚠️</div>
+                        <div class="fix-title">"command not found"</div>
+                    </div>
+                    <p class="fix-symptom">Terminal says "openclaw: command not found" after installation.</p>
+                    <div class="fix-solution">
+                        <div class="code-block"><span class="comment"># Add npm global to PATH (macOS/Linux)</span>
+<span class="command">echo</span> 'export PATH="$(npm prefix -g)/bin:$PATH"' >> ~/.zshrc
+<span class="command">source</span> ~/.zshrc
+
+<span class="comment"># For Linux/bash users:</span>
+<span class="command">echo</span> 'export PATH="$(npm prefix -g)/bin:$PATH"' >> ~/.bashrc
+<span class="command">source</span> ~/.bashrc</div>
+                    </div>
+                </div>
+                
+                <!-- Docker Issues -->
+                <div class="fix-card" onclick="this.classList.toggle('active')">
+                    <div class="fix-header">
+                        <div class="fix-icon error">🐳</div>
+                        <div class="fix-title">Docker Won't Start</div>
+                    </div>
+                    <p class="fix-symptom">Docker Desktop won't launch or containers fail to start on Apple Silicon.</p>
+                    <div class="fix-solution">
+                        <div class="code-block"><span class="comment"># Install Rosetta 2 (Apple Silicon only)</span>
+<span class="command">softwareupdate</span> --install-rosetta --agree-to-license
+
+<span class="comment"># Restart Docker Desktop</span>
+<span class="command">killall</span> Docker && open -a Docker</div>
+                    </div>
+                </div>
+                
+                <!-- Port Conflict -->
+                <div class="fix-card" onclick="this.classList.toggle('active')">
+                    <div class="fix-header">
+                        <div class="fix-icon warning">🔌</div>
+                        <div class="fix-title">Port 18789 in Use</div>
+                    </div>
+                    <p class="fix-symptom">Error says port 18789 is already occupied by another process.</p>
+                    <div class="fix-solution">
+                        <div class="code-block"><span class="comment"># Find and kill process using port 18789</span>
+<span class="command">lsof</span> -ti:18789 | <span class="command">xargs</span> kill -9
+
+<span class="comment"># Or use a different port</span>
+<span class="command">openclaw gateway</span> --port 18790</div>
+                    </div>
+                </div>
+                
+                <!-- Permission Issues -->
+                <div class="fix-card" onclick="this.classList.toggle('active')">
+                    <div class="fix-header">
+                        <div class="fix-icon error">🔐</div>
+                        <div class="fix-title">Permission Denied</div>
+                    </div>
+                    <p class="fix-symptom">OpenClaw can't write to directories or access files.</p>
+                    <div class="fix-solution">
+                        <div class="code-block"><span class="comment"># Fix ownership of OpenClaw directory</span>
+<span class="command">sudo chown</span> -R $(whoami) ~/.openclaw
+
+<span class="comment"># Fix permissions</span>
+<span class="command">chmod</span> -R 755 ~/.openclaw</div>
+                    </div>
+                </div>
+                
+                <!-- Sharp Build Errors -->
+                <div class="fix-card" onclick="this.classList.toggle('active')">
+                    <div class="fix-header">
+                        <div class="fix-icon warning">📦</div>
+                        <div class="fix-title">Sharp/libvips Errors</div>
+                    </div>
+                    <p class="fix-symptom">Installation fails with errors about sharp or libvips during npm install.</p>
+                    <div class="fix-solution">
+                        <div class="code-block"><span class="comment"># Force prebuilt binaries (ignore system libvips)</span>
+<span class="command">SHARP_IGNORE_GLOBAL_LIBVIPS=1</span> npm install -g openclaw@latest
+
+<span class="comment"># Ensure Xcode CLI tools installed</span>
+<span class="command">xcode-select</span> --install</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Gateway Fix Guide -->
+    <section class="detailed-guides" id="gateway-fix">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Step-by-Step</div>
+                <h2>Fix Gateway "Unauthorized" Error</h2>
+                <p>The most common OpenClaw issue — solved in 3 steps.</p>
+            </div>
+            
+            <div class="guide">
+                <div class="guide-header">
+                    <div class="guide-number">1</div>
+                    <h3>Check if Gateway Token Exists</h3>
+                </div>
+                <p>First, let's see if you already have a token configured:</p>
+                <div class="code-block"><span class="command">openclaw config get</span> gateway.auth.token</div>
+                <ul>
+                    <li>If you see a long string (token) → Go to Step 3</li>
+                    <li>If you see nothing or "undefined" → Go to Step 2</li>
+                </ul>
+            </div>
+            
+            <div class="guide">
+                <div class="guide-header">
+                    <div class="guide-number">2</div>
+                    <h3>Generate a New Gateway Token</h3>
+                </div>
+                <p>If no token exists, generate one:</p>
+                <div class="code-block"><span class="command">openclaw doctor</span> --generate-gateway-token</div>
+                <div class="info-box success">
+                    <p>✅ This creates a secure token and saves it to your config file.</p>
+                </div>
+                <p>Now retrieve it to copy:</p>
+                <div class="code-block"><span class="command">openclaw config get</span> gateway.auth.token</div>
+            </div>
+            
+            <div class="guide">
+                <div class="guide-header">
+                    <div class="guide-number">3</div>
+                    <h3>Paste Token into Control UI</h3>
+                </div>
+                <p>Copy the token from Step 1 or 2, then:</p>
+                <ul>
+                    <li>Open OpenClaw Control UI in your browser</li>
+                    <li>Go to <strong>Overview</strong> page</li>
+                    <li>Find the <strong>Gateway Token</strong> field</li>
+                    <li>Paste your token</li>
+                    <li>Click <strong>Connect</strong></li>
+                </ul>
+                <div class="info-box">
+                    <p>💡 <strong>Quickest method:</strong> Run <code>openclaw dashboard --no-open</code> and open the printed URL — it includes the token and auto-connects!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">FAQ</div>
+                <h2>Common Questions</h2>
+                <p>Quick answers to frequent troubleshooting questions.</p>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item active">
+                    <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                        Why is my OpenClaw not working?
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        OpenClaw typically fails due to: 1) Missing gateway auth token (shows 'Unauthorized'), 2) PATH not configured (command not found), 3) Port conflicts, 4) Docker issues, or 5) Permission problems. Each has a specific fix — click the cards above or follow our step-by-step guides.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                        How do I fix OpenClaw unauthorized error?
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        The 'Unauthorized' error means the Control UI lacks the gateway auth token. Fix it by running <code>openclaw config get gateway.auth.token</code> in terminal, then paste the token into the Control UI's Gateway Token field. Or use <code>openclaw dashboard --no-open</code> for automatic token injection.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                        Why does OpenClaw say command not found?
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        This happens when npm global binaries aren't in your PATH. Fix by adding: <code>export PATH="$(npm prefix -g)/bin:$PATH"</code> to your ~/.zshrc (macOS) or ~/.bashrc (Linux), then run <code>source ~/.zshrc</code> to apply.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                        How do I reset OpenClaw gateway?
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Stop the gateway with <code>openclaw gateway stop</code>, then clear the config: <code>rm ~/.openclaw/openclaw.json</code>, then restart: <code>openclaw gateway</code>. If issues persist, run <code>openclaw doctor --generate-gateway-token</code> to regenerate auth.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                        Can I run OpenClaw without Docker?
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes! OpenClaw runs natively with Node.js. Docker is optional. Install with <code>npm install -g openclaw</code> and run <code>openclaw gateway</code> directly. Docker is only needed if you prefer containerized deployment.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- People Also Ask -->
+    <section class="people-ask" id="people-ask">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">People Also Ask</div>
+                <h2>Related Questions</h2>
+                <p>More troubleshooting questions from searchers.</p>
+            </div>
+            <div class="ask-grid">
+                <div class="ask-card">
+                    <h3>How do I know if OpenClaw gateway is running?</h3>
+                    <p>Run <code>openclaw gateway status</code> or check if port 18789 is listening with <code>lsof -i :18789</code>. You can also visit <code>http://localhost:18789</code> in your browser.</p>
+                </div>
+                
+                <div class="ask-card">
+                    <h3>Why is OpenClaw Control UI blank?</h3>
+                    <p>Usually means the gateway isn't running or the auth token is wrong. Start the gateway with <code>openclaw gateway</code> and ensure your token is set correctly in the UI.</p>
+                </div>
+                
+                <div class="ask-card">
+                    <h3>Can I change OpenClaw's default port?</h3>
+                    <p>Yes! Start with a different port: <code>openclaw gateway --port 3000</code>. Or set it permanently in your config file.</p>
+                </div>
+                
+                <div class="ask-card">
+                    <h3>Where are OpenClaw logs stored?</h3>
+                    <p>Logs are in <code>/tmp/openclaw/</code> by default. View with <code>tail -f /tmp/openclaw/gateway.log</code> for real-time monitoring.</p>
+                </div>
+                
+                <div class="ask-card">
+                    <h3>How do I update OpenClaw?</h3>
+                    <p>Run <code>npm update -g openclaw</code> or <code>pnpm update -g openclaw</codeu003e depending on your package manager. Restart the gateway after updating.</p>
+                </div>
+                
+                <div class="ask-card">
+                    <h3>Is there an OpenClaw Discord for help?</h3>
+                    <p>Yes! Join the official OpenClaw Discord at <a href="https://discord.com/invite/clawd" style="color: var(--accent-indigo);">discord.com/invite/clawd</a> for community support and troubleshooting help.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Still Stuck?</h2>
+            <p>Get help from the OpenClaw community or start fresh with managed hosting.</p>
+            <div class="cta-group">
+                <a href="https://discord.com/invite/clawd" target="_blank" class="btn btn-primary">Get Help on Discord</a>
+                <a href="https://www.ampere.sh/?ref=remco" target="_blank" class="btn btn-secondary">Try Managed Hosting</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Learn</h4>
+                    <ul>
+                        <li><a href="/course/">Free Course</a></li>
+                        <li><a href="/mac-mini/">Mac Mini Guide</a></li>
+                        <li><a href="/bugfixing/">Bugfixing Guide</a></li>
+                        <li><a href="https://docs.openclaw.ai" target="_blank">Documentation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Hosting</h4>
+                    <ul>
+                        <li><a href="https://www.ampere.sh/?ref=remco" target="_blank">Ampere.sh (Free)</a></li>
+                        <li><a href="https://xcloud.host/openclaw-hosting/" target="_blank">xCloud</a></li>
+                        <li><a href="/#providers">Compare All</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="https://discord.com/invite/clawd" target="_blank">Discord</a></li>
+                        <li><a href="https://github.com/openclaw/openclaw" target="_blank">GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 StartWithOpenClaw.com | <a href="/">Back to Home</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.nav-links').classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
