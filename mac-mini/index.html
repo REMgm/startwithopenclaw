@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mac Mini OpenClaw Setup Guide | Self-Host AI at Home</title>
+    <meta name="description" content="Complete guide to running OpenClaw on Mac Mini. Self-host your AI agent on Apple Silicon with Ollama local models. Setup in 30 minutes, costs ~$1-2/month.">
+    <meta name="keywords" content="mac mini openclaw, self host openclaw mac, mac mini ai server, openclaw mac mini setup, apple silicon openclaw, mac mini ollama, headless mac mini server">
+    <meta name="author" content="StartWithOpenClaw">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://startwithopenclaw.com/mac-mini/">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Mac Mini OpenClaw Setup Guide | Self-Host AI at Home">
+    <meta property="og:description" content="Complete guide to running OpenClaw on Mac Mini. Self-host your AI agent on Apple Silicon with Ollama local models.">
+    <meta property="og:url" content="https://startwithopenclaw.com/mac-mini/">
+    <meta property="og:site_name" content="Start With OpenClaw">
+    <meta property="og:image" content="https://startwithopenclaw.com/images/mac-mini-openclaw-og.jpg">
+    <meta property="article:published_time" content="2026-02-25">
+    <meta property="article:modified_time" content="2026-02-25">
+    <meta property="article:author" content="StartWithOpenClaw">
+    <meta property="article:section" content="Tutorials">
+    <meta property="article:tag" content="Mac Mini, OpenClaw, Self-Hosting, AI, Apple Silicon">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mac Mini OpenClaw Setup Guide | Self-Host AI at Home">
+    <meta name="twitter:description" content="Complete guide to running OpenClaw on Mac Mini. Self-host your AI agent on Apple Silicon with Ollama local models.">
+    <meta name="twitter:image" content="https://startwithopenclaw.com/images/mac-mini-openclaw-og.jpg">
+    <meta name="twitter:site" content="@startwithopenclaw">
+    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Mac Mini OpenClaw Setup Guide: Self-Host Your AI Agent on Apple Silicon",
+        "description": "Complete guide to running OpenClaw on Mac Mini. Learn why Mac Mini is ideal for self-hosting, hardware recommendations, headless setup, auto-start configuration, and running local AI models with Ollama.",
+        "image": "https://startwithopenclaw.com/images/mac-mini-openclaw-og.jpg",
+        "author": {
+            "@type": "Organization",
+            "name": "StartWithOpenClaw"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "StartWithOpenClaw",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://startwithopenclaw.com/images/logo.png"
+            }
+        },
+        "datePublished": "2026-02-25",
+        "dateModified": "2026-02-25",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://startwithopenclaw.com/mac-mini/"
+        },
+        "keywords": "mac mini openclaw, self host openclaw mac, mac mini ai server, openclaw mac mini setup, apple silicon openclaw"
+    }
+    </script>
+    
+    <!-- Schema.org HowTo for Setup Steps -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "How to Set Up OpenClaw on Mac Mini",
+        "description": "Step-by-step guide to install and configure OpenClaw on Apple Silicon Mac Mini for 24/7 AI agent hosting.",
+        "image": "https://startwithopenclaw.com/images/mac-mini-setup.jpg",
+        "totalTime": "PT30M",
+        "estimatedCost": {
+            "@type": "MonetaryAmount",
+            "currency": "USD",
+            "value": "599-1599"
+        },
+        "supply": [
+            {"@type": "HowToSupply", "name": "Mac Mini (M2/M3/M4)"},
+            {"@type": "HowToSupply", "name": "Ethernet cable or WiFi"},
+            {"@type": "HowToSupply", "name": "External display (for initial setup)"}
+        ],
+        "tool": [
+            {"@type": "HowToTool", "name": "Terminal"},
+            {"@type": "HowToTool", "name": "Homebrew"}
+        ],
+        "step": [
+            {
+                "@type": "HowToStep",
+                "position": 1,
+                "name": "Prepare Your Mac Mini",
+                "text": "Update macOS, enable remote login, and configure power settings for 24/7 operation.",
+                "url": "https://startwithopenclaw.com/mac-mini/#step1"
+            },
+            {
+                "@type": "HowToStep",
+                "position": 2,
+                "name": "Install Dependencies",
+                "text": "Install Homebrew, Docker Desktop, and Git on your Mac Mini.",
+                "url": "https://startwithopenclaw.com/mac-mini/#step2"
+            },
+            {
+                "@type": "HowToStep",
+                "position": 3,
+                "name": "Install OpenClaw",
+                "text": "Clone the OpenClaw repository and configure environment variables.",
+                "url": "https://startwithopenclaw.com/mac-mini/#step3"
+            },
+            {
+                "@type": "HowToStep",
+                "position": 4,
+                "name": "Configure Auto-Start",
+                "text": "Set up LaunchDaemon to automatically start OpenClaw on boot.",
+                "url": "https://startwithopenclaw.com/mac-mini/#step4"
+            },
+            {
+                "@type": "HowToStep",
+                "position": 5,
+                "name": "Set Up Ollama (Optional)",
+                "text": "Install Ollama for running local AI models on Apple Silicon.",
+                "url": "https://startwithopenclaw.com/mac-mini/#step5"
+            }
+        ]
+    }
+    </script>
+    
+    <!-- Schema.org FAQPage -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Can you run OpenClaw on a Mac Mini?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, Mac Mini is an excellent choice for running OpenClaw. Apple Silicon Macs (M2, M3, M4) offer exceptional performance per watt, making them ideal for 24/7 AI agent hosting. The unified memory architecture allows efficient handling of AI models, and macOS provides a stable Unix-based environment."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How much does it cost to run a Mac Mini 24/7 for OpenClaw?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Running a Mac Mini M2 or M4 24/7 costs approximately $1-2 per month in electricity, depending on your local rates. The M4 Pro uses slightly more at $2-4/month. This is significantly cheaper than cloud VPS options which typically cost $10-50/month for comparable performance."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What Mac Mini specs do I need for OpenClaw?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "For basic OpenClaw usage, a Mac Mini M2 with 8GB RAM is sufficient. For running local AI models with Ollama, we recommend 16GB RAM minimum. For advanced use with multiple agents or larger models (70B+), consider the M4 Pro with 24GB or 48GB unified memory."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can I run OpenClaw on Mac Mini without a monitor?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, you can run OpenClaw headless (without a monitor) after initial setup. Configure Remote Login (SSH) during setup, then disconnect the display. Use Screen Sharing or SSH for remote management. Enable Wake for Network Access to ensure your agent stays accessible."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is Mac Mini better than Raspberry Pi for OpenClaw?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Mac Mini significantly outperforms Raspberry Pi for OpenClaw. Apple Silicon offers 10-20x better AI inference performance, runs cooler and quieter, and handles multiple tasks simultaneously without slowdowns. While Raspberry Pi is cheaper upfront, Mac Mini provides better value for serious AI agent hosting."
+                }
+            }
+        ]
+    }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1e1e2e;
+            --bg-hover: #252538;
+            --text-primary: #ffffff;
+            --text-secondary: #e2e8f0;
+            --text-muted: #94a3b8;
+            --accent-purple: #a855f7;
+            --accent-indigo: #6366f1;
+            --accent-violet: #8b5cf6;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        /* Navigation */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 16px 0;
+        }
+        nav .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 10px; font-size: 1.4rem; font-weight: 800; color: var(--text-primary); text-decoration: none; }
+        .logo-icon { font-size: 1.6rem; }
+        .logo-text { background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-indigo) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text-primary); }
+        .mobile-menu-btn { display: none; background: none; border: none; color: var(--text-primary); font-size: 1.5rem; cursor: pointer; }
+
+        /* Hero */
+        .hero {
+            min-height: 85vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; padding: 140px 24px 80px;
+            background: radial-gradient(ellipse at 20% 20%, rgba(168, 85, 247, 0.12) 0%, transparent 50%), radial-gradient(ellipse at 80% 80%, rgba(99, 102, 241, 0.08) 0%, transparent 50%), var(--bg-primary);
+            position: relative;
+        }
+        .hero::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 60px 60px; pointer-events: none;
+        }
+        .hero-content { position: relative; z-index: 1; max-width: 850px; }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(168, 85, 247, 0.1); border: 1px solid rgba(168, 85, 247, 0.3);
+            padding: 10px 20px; border-radius: 100px; font-size: 0.85rem; color: var(--accent-purple);
+            margin-bottom: 32px; font-weight: 500;
+        }
+        .hero-badge::before { content: ''; width: 8px; height: 8px; background: var(--success); border-radius: 50%; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.6; transform: scale(0.9); } }
+        h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; line-height: 1.1; margin-bottom: 24px; letter-spacing: -0.02em; }
+        .gradient-text { background: linear-gradient(135deg, #fff 0%, #c4b5fd 50%, #a5b4fc 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero-subtitle { font-size: clamp(1.1rem, 2vw, 1.35rem); color: var(--text-muted); max-width: 650px; margin: 0 auto 40px; line-height: 1.6; }
+        .hero-stats { display: flex; gap: 48px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
+        .hero-stat { text-align: center; }
+        .hero-stat-value { font-size: 2.5rem; font-weight: 800; background: linear-gradient(135deg, var(--accent-indigo) 0%, var(--accent-violet) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero-stat-label { font-size: 0.9rem; color: var(--text-muted); }
+        .cta-group { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+        .btn { display: inline-flex; align-items: center; gap: 10px; padding: 16px 32px; border-radius: 12px; font-size: 1rem; font-weight: 600; text-decoration: none; transition: all 0.3s ease; cursor: pointer; border: none; }
+        .btn-primary { background: linear-gradient(135deg, var(--accent-indigo) 0%, var(--accent-violet) 100%); color: #fff; box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(99, 102, 241, 0.5); }
+        .btn-secondary { background: rgba(255, 255, 255, 0.05); color: var(--text-primary); border: 1px solid var(--border); }
+        .btn-secondary:hover { background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.2); }
+        .btn svg { width: 20px; height: 20px; }
+
+        /* Sections */
+        section { padding: 100px 0; }
+        .section-header { text-align: center; margin-bottom: 64px; max-width: 700px; margin-left: auto; margin-right: auto; }
+        .section-header h2 { font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 800; margin-bottom: 16px; letter-spacing: -0.01em; }
+        .section-header p { color: var(--text-muted); font-size: 1.15rem; line-height: 1.6; }
+        .section-badge { display: inline-block; background: rgba(168, 85, 247, 0.1); color: var(--accent-purple); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; padding: 6px 14px; border-radius: 20px; margin-bottom: 16px; }
+
+        /* Why Mac Mini */
+        .why-macmini { background: var(--bg-secondary); }
+        .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+        .benefit-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 32px; transition: all 0.3s ease; }
+        .benefit-card:hover { border-color: rgba(168, 85, 247, 0.3); transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3); }
+        .benefit-icon { width: 56px; height: 56px; background: linear-gradient(135deg, var(--accent-indigo) 0%, var(--accent-violet) 100%); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 28px; margin-bottom: 20px; }
+        .benefit-card h3 { font-size: 1.25rem; margin-bottom: 12px; }
+        .benefit-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+
+        /* Hardware */
+        .hardware { background: var(--bg-primary); }
+        .hardware-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+        .hardware-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 32px; position: relative; transition: all 0.3s ease; display: flex; flex-direction: column; }
+        .hardware-card:hover { border-color: rgba(168, 85, 247, 0.3); transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3); }
+        .hardware-card.recommended { border-color: var(--accent-purple); background: linear-gradient(180deg, var(--bg-card) 0%, rgba(168, 85, 247, 0.05) 100%); }
+        .hardware-card.recommended::before { content: 'RECOMMENDED'; position: absolute; top: 0; right: 24px; background: linear-gradient(135deg, var(--accent-indigo) 0%, var(--accent-violet) 100%); color: #fff; font-size: 0.7rem; font-weight: 700; padding: 8px 14px; border-radius: 0 0 10px 10px; letter-spacing: 0.5px; }
+        .hardware-header { margin-bottom: 20px; }
+        .hardware-name { font-size: 1.4rem; font-weight: 800; margin-bottom: 8px; }
+        .hardware-specs { font-size: 0.9rem; color: var(--text-muted); }
+        .hardware-price { font-size: 2rem; font-weight: 800; color: var(--accent-purple); margin-bottom: 16px; }
+        .hardware-price span { font-size: 0.9rem; color: var(--text-muted); font-weight: 500; }
+        .hardware-features { list-style: none; margin-bottom: 24px; flex-grow: 1; }
+        .hardware-features li { padding: 8px 0; color: var(--text-secondary); font-size: 0.95rem; display: flex; align-items: center; gap: 10px; }
+        .hardware-features li::before { content: '✓'; color: var(--success); font-weight: 700; }
+        .hardware-usecase { background: rgba(99, 102, 241, 0.1); border-radius: 10px; padding: 16px; font-size: 0.9rem; color: var(--text-secondary); }
+        .hardware-usecase strong { color: var(--accent-purple); }
+
+        /* Setup Guide */
+        .setup-guide { background: var(--bg-secondary); }
+        .steps-container { max-width: 800px; margin: 0 auto; }
+        .step { display: flex; gap: 24px; margin-bottom: 48px; position: relative; }
+        .step:last-child { margin-bottom: 0; }
+        .step::before { content: ''; position: absolute; left: 28px; top: 64px; bottom: -48px; width: 2px; background: linear-gradient(180deg, var(--accent-indigo) 0%, transparent 100%); }
+        .step:last-child::before { display: none; }
+        .step-number { width: 56px; height: 56px; background: linear-gradient(135deg, var(--accent-indigo) 0%, var(--accent-violet) 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 800; flex-shrink: 0; box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4); position: relative; z-index: 1; }
+        .step-content { flex: 1; background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 28px; }
+        .step-content h3 { font-size: 1.3rem; margin-bottom: 12px; }
+        .step-content p { color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; }
+        .code-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 10px; padding: 20px; font-family: 'Monaco', 'Menlo', 'SF Mono', monospace; font-size: 0.85rem; color: var(--text-secondary); overflow-x: auto; margin: 16px 0; }
+        .code-block .comment { color: var(--text-muted); }
+        .code-block .command { color: var(--accent-purple); }
+        .step-list { list-style: none; margin: 16px 0; }
+        .step-list li { padding: 8px 0; color: var(--text-secondary); display: flex; align-items: flex-start; gap: 12px; }
+        .step-list li::before { content: '→'; color: var(--accent-purple); font-weight: 700; }
+        .info-box { background: rgba(34, 197, 94, 0.1); border-left: 4px solid var(--success); padding: 16px 20px; border-radius: 0 10px 10px 0; margin: 20px 0; }
+        .info-box.warning { background: rgba(245, 158, 11, 0.1); border-left-color: var(--warning); }
+        .info-box p { margin: 0; color: var(--text-secondary); }
+
+        /* Power Management */
+        .power-mgmt { background: var(--bg-primary); }
+        .power-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-bottom: 48px; }
+        .power-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 28px; text-align: center; }
+        .power-card h3 { font-size: 1.1rem; margin-bottom: 12px; color: var(--accent-purple); }
+        .power-value { font-size: 2.5rem; font-weight: 800; margin-bottom: 8px; }
+        .power-card p { color: var(--text-muted); font-size: 0.9rem; }
+        .power-tips { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 32px; }
+        .power-tips h3 { font-size: 1.3rem; margin-bottom: 20px; }
+        .power-tips ul { list-style: none; }
+        .power-tips li { padding: 12px 0; color: var(--text-secondary); display: flex; align-items: flex-start; gap: 12px; border-bottom: 1px solid var(--border); }
+        .power-tips li:last-child { border-bottom: none; }
+        .power-tips li span { font-size: 1.2rem; }
+
+        /* Ollama Section */
+        .ollama-section { background: var(--bg-secondary); }
+        .ollama-intro { text-align: center; max-width: 700px; margin: 0 auto 48px; }
+        .ollama-intro p { color: var(--text-muted); font-size: 1.1rem; line-height: 1.7; }
+        .ollama-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+        .ollama-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 28px; }
+        .ollama-card h3 { font-size: 1.2rem; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+        .ollama-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 16px; }
+        .model-list { list-style: none; }
+        .model-list li { padding: 8px 0; color: var(--text-secondary); font-size: 0.9rem; display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); }
+        .model-list li:last-child { border-bottom: none; }
+        .model-size { color: var(--text-muted); font-size: 0.8rem; }
+
+        /* Comparison */
+        .comparison { background: var(--bg-primary); }
+        .comparison-table-wrapper { overflow-x: auto; border-radius: 16px; border: 1px solid var(--border); }
+        .comparison-table { width: 100%; border-collapse: collapse; min-width: 700px; }
+        .comparison-table th, .comparison-table td { padding: 16px 20px; text-align: left; border-bottom: 1px solid var(--border); }
+        .comparison-table th { background: var(--bg-card); color: var(--text-muted); font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        .comparison-table td { color: var(--text-secondary); font-size: 0.95rem; }
+        .comparison-table tr:hover td { background: rgba(255, 255, 255, 0.02); }
+        .comparison-table .highlight { background: rgba(168, 85, 247, 0.1); }
+        .check { color: var(--success); font-weight: 700; }
+        .partial { color: var(--warning); }
+        .dash { color: var(--text-muted); }
+
+        /* FAQ */
+        .faq { background: var(--bg-secondary); }
+        .faq-list { max-width: 800px; margin: 0 auto; }
+        .faq-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 16px; overflow: hidden; }
+        .faq-question { padding: 24px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 1.05rem; transition: background 0.2s; }
+        .faq-question:hover { background: rgba(255, 255, 255, 0.02); }
+        .faq-answer { padding: 0 24px 24px; color: var(--text-muted); line-height: 1.7; display: none; }
+        .faq-item.active .faq-answer { display: block; }
+        .faq-icon { font-size: 1.5rem; color: var(--accent-purple); transition: transform 0.3s; }
+        .faq-item.active .faq-icon { transform: rotate(45deg); }
+
+        /* People Also Ask */
+        .people-ask { background: var(--bg-primary); }
+        .ask-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; }
+        .ask-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
+        .ask-card h3 { font-size: 1.05rem; margin-bottom: 12px; color: var(--text-primary); }
+        .ask-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+
+        /* CTA Section */
+        .cta-section { background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%); text-align: center; padding: 80px 24px; }
+        .cta-section h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 16px; }
+        .cta-section p { color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto 32px; }
+        .cta-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; max-width: 900px; margin: 48px auto 0; }
+        .cta-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 28px; transition: all 0.3s ease; }
+        .cta-card:hover { border-color: rgba(168, 85, 247, 0.3); transform: translateY(-4px); }
+        .cta-card h3 { font-size: 1.2rem; margin-bottom: 12px; }
+        .cta-card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px; }
+
+        /* Troubleshooting */
+        .troubleshooting { background: var(--bg-secondary); }
+        .trouble-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+        .trouble-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; }
+        .trouble-card h3 { font-size: 1.1rem; margin-bottom: 12px; color: var(--error); }
+        .trouble-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+        .trouble-card .solution { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); }
+        .trouble-card .solution strong { color: var(--success); }
+
+        /* Final CTA */
+        .final-cta { text-align: center; padding: 120px 24px; background: radial-gradient(ellipse at 50% 100%, rgba(168, 85, 247, 0.15) 0%, transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 50%), var(--bg-primary); }
+        .final-cta h2 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 20px; }
+        .final-cta p { color: var(--text-muted); font-size: 1.2rem; margin-bottom: 40px; max-width: 550px; margin-left: auto; margin-right: auto; }
+
+        /* Footer */
+        footer { background: var(--bg-secondary); border-top: 1px solid var(--border); padding: 60px 0 40px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 48px; }
+        .footer-col h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 20px; color: var(--text-primary); text-transform: uppercase; letter-spacing: 0.5px; }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 12px; }
+        .footer-col a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+        .footer-col a:hover { color: var(--text-primary); }
+        .footer-bottom { text-align: center; padding-top: 40px; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.85rem; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
+            .hero { padding: 120px 20px 60px; }
+            .hero-stats { gap: 24px; }
+            .step { flex-direction: column; gap: 16px; }
+            .step::before { display: none; }
+            .step-number { width: 48px; height: 48px; font-size: 1.25rem; }
+            .comparison-table { min-width: 600px; }
+            section { padding: 80px 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">
+                <span class="logo-icon">🦞</span>
+                <span class="logo-text">Start with OpenClaw</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/course/">Course</a></li>
+                <li><a href="/#providers">Hosting</a></li>
+                <li><a href="/#faq">FAQ</a></li>
+            </ul>
+            <button class="mobile-menu-btn">☰</button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">🍎 Apple Silicon Optimized</div>
+            <h1>Self-Host OpenClaw on Your <span class="gradient-text">Mac Mini</span></h1>
+            <p class="hero-subtitle">The complete guide to running your AI agent 24/7 on Apple Silicon. Local models with Ollama, headless setup, and ~$1-2/month power costs.</p>
+            <div class="hero-stats">
+                <div class="hero-stat"><div class="hero-stat-value">$1-2</div><div class="hero-stat-label">Monthly Power Cost</div></div>
+                <div class="hero-stat"><div class="hero-stat-value">30min</div><div class="hero-stat-label">Setup Time</div></div>
+                <div class="hero-stat"><div class="hero-stat-value">100%</div><div class="hero-stat-label">Privacy Control</div></div>
+            </div>
+            <div class="cta-group">
+                <a href="#setup" class="btn btn-primary">Start Setup Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg></a>
+                <a href="#hardware" class="btn btn-secondary">View Hardware Options</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Mac Mini -->
+    <section class="why-macmini" id="why-macmini">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Why Mac Mini?</div>
+                <h2>The Perfect Home for Your AI Agent</h2>
+                <p>Apple Silicon Macs offer unmatched efficiency and performance for 24/7 AI hosting.</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">⚡</div>
+                    <h3>Exceptional Power Efficiency</h3>
+                    <p>Mac Mini M4 idles at just 4-7 watts and peaks around 25-30 watts. That's 10x more efficient than most desktop PCs and 3x better than Intel NUCs. Run your agent 24/7 for the cost of a cup of coffee per month.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🧠</div>
+                    <h3>Unified Memory Architecture</h3>
+                    <p>Apple Silicon's shared memory pool means CPU and GPU access the same RAM. For AI workloads, this eliminates data copying overhead and allows running larger models than equivalent discrete GPU setups.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🔇</div>
+                    <h3>Silent 24/7 Operation</h3>
+                    <p>With no fans at idle and whisper-quiet operation under load, Mac Mini won't disturb your home or office. Perfect for living room deployment where noise matters.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🔒</div>
+                    <h3>Complete Privacy Control</h3>
+                    <p>Self-hosting means your data never leaves your home. No cloud provider has access to your conversations, files, or agent memory. Full GDPR compliance by default.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🚀</div>
+                    <h3>Native Ollama Support</h3>
+                    <p>Ollama runs natively on Apple Silicon with Metal GPU acceleration. Local models like Llama 3, Mistral, and Qwen achieve excellent performance without API costs or internet dependency.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🛠️</div>
+                    <h3>Developer-Friendly Environment</h3>
+                    <p>macOS provides a full Unix environment with Homebrew, Docker Desktop, and native Python support. No Linux compatibility layers or complex driver installations needed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hardware Recommendations -->
+    <section class="hardware" id="hardware">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Hardware</div>
+                <h2>Choose Your Mac Mini Configuration</h2>
+                <p>From entry-level to power user setups — find the perfect match for your needs.</p>
+            </div>
+            <div class="hardware-grid">
+                <div class="hardware-card">
+                    <div class="hardware-header">
+                        <div class="hardware-name">Mac Mini M2</div>
+                        <div class="hardware-specs">8-core CPU • 8GB Unified Memory</div>
+                    </div>
+                    <div class="hardware-price">$599 <span>starting</span></div>
+                    <ul class="hardware-features">
+                        <li>Perfect for basic OpenClaw usage</li>
+                        <li>Runs 7B parameter models locally</li>
+                        <li>~4-6W idle power consumption</li>
+                        <li>Handles 1-2 concurrent agents</li>
+                        <li>Silent operation</li>
+                    </ul>
+                    <div class="hardware-usecase"><strong>Best for:</strong> Beginners, single users, cloud model users who want local fallback</div>
+                </div>
+                <div class="hardware-card recommended">
+                    <div class="hardware-header">
+                        <div class="hardware-name">Mac Mini M4</div>
+                        <div class="hardware-specs">10-core CPU • 16GB Unified Memory</div>
+                    </div>
+                    <div class="hardware-price">$799 <span>starting</span></div>
+                    <ul class="hardware-features">
+                        <li>Ideal for most OpenClaw users</li>
+                        <li>Runs 13B-14B models smoothly</li>
+                        <li>~5-7W idle, 25W peak</li>
+                        <li>Handles 3-5 concurrent agents</li>
+                        <li>Future-proof for growing needs</li>
+                    </ul>
+                    <div class="hardware-usecase"><strong>Best for:</strong> Power users, families, small teams, local AI enthusiasts</div>
+                </div>
+                <div class="hardware-card">
+                    <div class="hardware-header">
+                        <div class="hardware-name">Mac Mini M4 Pro</div>
+                        <div class="hardware-specs">14-core CPU • 24-48GB Memory</div>
+                    </div>
+                    <div class="hardware-price">$1,399 <span>starting</span></div>
+                    <ul class="hardware-features">
+                        <li>Maximum performance for AI workloads</li>
+                        <li>Runs 70B+ parameter models</li>
+                        <li>Multiple large models simultaneously</li>
+                        <li>10+ concurrent agents</li>
+                        <li>Professional-grade inference speed</li>
+                    </ul>
+                    <div class="hardware-usecase"><strong>Best for:</strong> AI researchers, developers, multi-agent systems, enterprise use</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Setup Guide -->
+    <section class="setup-guide" id="setup">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Setup Guide</div>
+                <h2>Mac Mini OpenClaw Setup in 5 Steps</h2>
+                <p>From unboxing to running agent — complete walkthrough for beginners.</p>
+            </div>
+            <div class="steps-container">
+                <div class="step" id="step1">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Prepare Your Mac Mini</h3>
+                        <p>Initial system configuration for 24/7 server operation.</p>
+                        <ul class="step-list">
+                            <li>Complete macOS setup and create admin account</li>
+                            <li>Update to latest macOS (System Settings → General → Software Update)</li>
+                            <li>Enable Remote Login: System Settings → General → Sharing → Remote Login</li>
+                            <li>Configure Power settings: System Settings → Lock Screen → Never sleep when plugged in</li>
+                            <li>Enable Wake for network access in Energy settings</li>
+                        </ul>
+                        <div class="info-box"><p><strong>Tip:</strong> Connect via Ethernet for best reliability. WiFi works but may cause occasional disconnections.</p></div>
+                    </div>
+                </div>
+                <div class="step" id="step2">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Install Dependencies</h3>
+                        <p>Install the tools needed to run OpenClaw.</p>
+                        <div class="code-block"><span class="comment"># Install Homebrew (package manager)</span>
+<span class="command">/bin/bash</span> -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+<span class="comment"># Install Docker Desktop</span>
+<span class="command">brew install</span> --cask docker
+
+<span class="comment"># Install Git</span>
+<span class="command">brew install</span> git
+
+<span class="comment"># Verify installations</span>
+<span class="command">docker --version</span>
+<span class="command">git --version</span></div>
+                        <p>Launch Docker Desktop from Applications and wait for it to fully start (whale icon in menu bar stops animating).</p>
+                    </div>
+                </div>
+                <div class="step" id="step3">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Install OpenClaw</h3>
+                        <p>Download and configure OpenClaw on your Mac Mini.</p>
+                        <div class="code-block"><span class="comment"># Create directory for OpenClaw</span>
+<span class="command">mkdir -p</span> ~/.openclaw && <span class="command">cd</span> ~/.openclaw
+
+<span class="comment"># Install OpenClaw via npm</span>
+<span class="command">npm install -g</span> openclaw
+
+<span class="comment"># Run the setup wizard</span>
+<span class="command">openclaw</span> setup
+
+<span class="comment"># Start the gateway</span>
+<span class="command">openclaw</span> gateway</div>
+                        <p>The setup wizard will guide you through configuring your first agent and connecting messaging channels like Telegram or WhatsApp.</p>
+                    </div>
+                </div>
+                <div class="step" id="step4">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Configure Auto-Start with LaunchDaemon</h3>
+                        <p>Set OpenClaw to start automatically when your Mac Mini boots.</p>
+                        <div class="code-block"><span class="comment"># Install the LaunchDaemon during onboarding</span>
+<span class="command">openclaw onboard</span> --install-daemon
+
+<span class="comment"># Or manually create the plist file</span>
+<span class="command">sudo nano</span> /Library/LaunchDaemons/io.openclaw.gateway.plist</div>
+                        <p>Add this content (replace <code>yourusername</code> with your actual username):</p>
+                        <div class="code-block">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" 
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
+&lt;plist version="1.0"&gt;
+&lt;dict&gt;
+    &lt;key&gt;Label&lt;/key&gt;
+    &lt;string&gt;io.openclaw.gateway&lt;/string&gt;
+    &lt;key&gt;ProgramArguments&lt;/key&gt;
+    &lt;array&gt;
+        &lt;string&gt;/usr/local/bin/openclaw&lt;/string&gt;
+        &lt;string&gt;gateway&lt;/string&gt;
+    &lt;/array&gt;
+    &lt;key&gt;RunAtLoad&lt;/key&gt;&lt;true/&gt;
+    &lt;key&gt;KeepAlive&lt;/key&gt;&lt;true/&gt;
+    &lt;key&gt;StandardOutPath&lt;/key&gt;
+    &lt;string&gt;/var/log/openclaw.log&lt;/string&gt;
+    &lt;key&gt;StandardErrorPath&lt;/key&gt;
+    &lt;string&gt;/var/log/openclaw.err&lt;/string&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;</div>
+                        <div class="code-block"><span class="comment"># Load the daemon</span>
+<span class="command">sudo launchctl load</span> /Library/LaunchDaemons/io.openclaw.gateway.plist
+
+<span class="comment"># Verify it's running</span>
+<span class="command">sudo launchctl list</span> | grep openclaw</div>
+                        <div class="info-box"><p><strong>KeepAlive</strong> ensures OpenClaw restarts automatically if it crashes. Your agent will survive reboots and power outages.</p></div>
+                    </div>
+                </div>
+                <div class="step" id="step5">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3>Set Up Ollama for Local AI Models</h3>
+                        <p>Install Ollama to run AI models locally on your Mac Mini's Apple Silicon GPU.</p>
+                        <div class="code-block"><span class="comment"># Install Ollama</span>
+<span class="command">brew install</span> ollama
+
+<span class="comment"># Start Ollama service</span>
+<span class="command">ollama serve</span>
+
+<span class="comment"># Pull a model (Llama 3.1 8B is a great starting point)</span>
+<span class="command">ollama pull</span> llama3.1
+
+<span class="comment"># Test it</span>
+<span class="command">ollama run</span> llama3.1 "Hello, are you working?"</div>
+                        <p>Now configure OpenClaw to use your local Ollama instance:</p>
+                        <div class="code-block"><span class="comment"># In your OpenClaw config, set the model provider</span>
+<span class="command">openclaw config set</span> agents.defaults.model.provider ollama
+<span class="command">openclaw config set</span> agents.defaults.model.baseUrl http://localhost:11434
+<span class="command">openclaw config set</span> agents.defaults.model.model llama3.1</div>
+                        <div class="info-box"><p><strong>Model sizes by RAM:</strong> 8GB → 7B models, 16GB → 13B models, 24GB → 34B models, 48GB → 70B models</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Power Management -->
+    <section class="power-mgmt" id="power">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">24/7 Operation</div>
+                <h2>Power Management for Always-On Operation</h2>
+                <p>Configure your Mac Mini to run continuously with minimal power consumption.</p>
+            </div>
+            <div class="power-grid">
+                <div class="power-card">
+                    <h3>🔌 Idle Power Draw</h3>
+                    <div class="power-value">4-7W</div>
+                    <p>Mac Mini M4 at idle with OpenClaw running</p>
+                </div>
+                <div class="power-card">
+                    <h3>⚡ Peak Power Draw</h3>
+                    <div class="power-value">25W</div>
+                    <p>During active AI inference with Ollama</p>
+                </div>
+                <div class="power-card">
+                    <h3>💰 Monthly Cost</h3>
+                    <div class="power-value">$1-2</div>
+                    <p>At average US electricity rates ($0.16/kWh)</p>
+                </div>
+                <div class="power-card">
+                    <h3>📅 Annual Savings</h3>
+                    <div class="power-value">$200+</div>
+                    <p>Compared to cloud VPS alternatives</p>
+                </div>
+            </div>
+            <div class="power-tips">
+                <h3>Essential Power Settings for 24/7 Operation</h3>
+                <ul>
+                    <li><span>🔋</span> <strong>Prevent Sleep:</strong> <code>sudo pmset -a sleep 0 displaysleep 0 disksleep 0</code></li>
+                    <li><span>🔄</span> <strong>Auto-Restart:</strong> <code>sudo pmset -a autorestart 1</code> — boots after power outages</li>
+                    <li><span>📡</span> <strong>Wake for Network:</strong> Enable in System Settings → Energy to allow remote access</li>
+                    <li><span>🔥</span> <strong>Thermal Management:</strong> Ensure 6+ inches clearance around Mac Mini for airflow</li>
+                    <li><span>⚡</span> <strong>UPS Recommended:</strong> Connect to uninterruptible power supply for clean shutdowns</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ollama Section -->
+    <section class="ollama-section" id="ollama">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Local AI</div>
+                <h2>Run AI Models Locally with Ollama</h2>
+                <p>Apple Silicon + Ollama = Private, fast, and free AI inference.</p>
+            </div>
+            <div class="ollama-intro">
+                <p>Ollama is a tool for running large language models locally. Combined with Apple Silicon's Metal GPU acceleration, you get excellent performance without sending data to the cloud or paying API fees.</p>
+            </div>
+            <div class="ollama-grid">
+                <div class="ollama-card">
+                    <h3>🚀 Recommended Models by RAM</h3>
+                    <p>Choose models that fit your Mac Mini's memory configuration:</p>
+                    <ul class="model-list">
+                        <li>8GB Mac Mini <span class="model-size">Llama 3.1 7B, Mistral 7B, Qwen2.5 7B</span></li>
+                        <li>16GB Mac Mini <span class="model-size">Llama 3.1 13B, Mistral Nemo, Qwen2.5 14B</span></li>
+                        <li>24GB Mac Mini <span class="model-size">Llama 3.1 34B, Mixtral 8x7B</span></li>
+                        <li>48GB+ Mac Mini <span class="model-size">Llama 3.1 70B, Qwen2.5 72B</span></li>
+                    </ul>
+                </div>
+                <div class="ollama-card">
+                    <h3>⚡ Performance Expectations</h3>
+                    <p>Typical inference speeds on Apple Silicon:</p>
+                    <ul class="model-list">
+                        <li>7B models <span class="model-size">~25-40 tokens/sec</span></li>
+                        <li>13B models <span class="model-size">~15-25 tokens/sec</span></li>
+                        <li>34B models <span class="model-size">~8-15 tokens/sec</span></li>
+                        <li>70B models <span class="model-size">~4-8 tokens/sec</span></li>
+                    </ul>
+                </div>
+                <div class="ollama-card">
+                    <h3>💡 Pro Tips</h3>
+                    <p>Get the most out of local model inference:</p>
+                    <ul class="model-list">
+                        <li>Use quantized models (Q4_K_M) for 4x speedup</li>
+                        <li>Keep models on SSD for faster loading</li>
+                        <li>First inference is slow (model loading) — subsequent are fast</li>
+                        <li>Combine local + cloud models for cost optimization</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section class="comparison" id="comparison">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Compare</div>
+                <h2>Mac Mini vs Alternatives</h2>
+                <p>How Apple Silicon compares to other self-hosting options.</p>
+            </div>
+            <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th class="highlight">Mac Mini M4</th>
+                            <th>Cloud VPS</th>
+                            <th>Raspberry Pi 5</th>
+                            <th>Intel NUC</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Initial Cost</strong></td>
+                            <td class="highlight">$599-799</td>
+                            <td>$0</td>
+                            <td>$80</td>
+                            <td>$400-600</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Monthly Cost</strong></td>
+                            <td class="highlight">$1-2 (power)</td>
+                            <td>$10-50</td>
+                            <td>$1-2 (power)</td>
+                            <td>$3-5 (power)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>AI Inference Speed</strong></td>
+                            <td class="highlight">Excellent (Metal GPU)</td>
+                            <td>Good (cloud GPUs)</td>
+                            <td>Poor (no GPU)</td>
+                            <td>Fair (iGPU)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Local Model Support</strong></td>
+                            <td class="highlight"><span class="check">✓</span> Up to 70B</td>
+                            <td><span class="dash">—</span> (cloud only)</td>
+                            <td><span class="partial">△</span> Up to 3B</td>
+                            <td><span class="partial">△</span> Up to 13B</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Noise Level</strong></td>
+                            <td class="highlight"><span class="check">✓</span> Silent</td>
+                            <td><span class="check">✓</span> Silent</td>
+                            <td><span class="check">✓</span> Silent</td>
+                            <td><span class="partial">△</span> Fan noise</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Setup Complexity</strong></td>
+                            <td class="highlight"><span class="check">✓</span> Easy</td>
+                            <td><span class="check">✓</span> Easy</td>
+                            <td><span class="partial">△</span> Moderate</td>
+                            <td><span class="partial">△</span> Moderate</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Data Privacy</strong></td>
+                            <td class="highlight"><span class="check">✓</span> 100% Private</td>
+                            <td><span class="dash">—</span> Cloud-hosted</td>
+                            <td><span class="check">✓</span> 100% Private</td>
+                            <td><span class="check">✓</span> 100% Private</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Maintenance</strong></td>
+                            <td class="highlight"><span class="check">✓</span> Minimal</td>
+                            <td><span class="check">✓</span> None</td>
+                            <td><span class="partial">△</span> Some</td>
+                            <td><span class="partial">△</span> Some</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">FAQ</div>
+                <h2>Frequently Asked Questions</h2>
+                <p>Common questions about running OpenClaw on Mac Mini.</p>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item active">
+                    <div class="faq-question">Can you run OpenClaw on a Mac Mini? <span class="faq-icon">+</span></div>
+                    <div class="faq-answer">Yes, Mac Mini is an excellent choice for running OpenClaw. Apple Silicon Macs (M2, M3, M4) offer exceptional performance per watt, making them ideal for 24/7 AI agent hosting. The unified memory architecture allows efficient handling of AI models, and macOS provides a stable Unix-based environment with native Docker support.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How much does it cost to run a Mac Mini 24/7 for OpenClaw? <span class="faq-icon">+</span></div>
+                    <div class="faq-answer">Running a Mac Mini M2 or M4 24/7 costs approximately $1-2 per month in electricity, depending on your local rates. The M4 Pro uses slightly more at $2-4/month. This is significantly cheaper than cloud VPS options which typically cost $10-50/month for comparable performance. The Mac Mini pays for itself in 1-2 years compared to cloud hosting.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">What Mac Mini specs do I need for OpenClaw? <span class="faq-icon">+</span></div>
+                    <div class="faq-answer">For basic OpenClaw usage with cloud models, a Mac Mini M2 with 8GB RAM is sufficient. For running local AI models with Ollama, we recommend 16GB RAM minimum (M4 base model). For advanced use with multiple agents or larger models (70B+ parameters), consider the M4 Pro with 24GB or 48GB unified memory.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Can I run OpenClaw on Mac Mini without a monitor? <span class="faq-icon">+</span></div>
+                    <div class="faq-answer">Yes, you can run OpenClaw headless (without a monitor) after initial setup. Configure Remote Login (SSH) during setup, then disconnect the display. Use Screen Sharing or SSH for remote management. Enable "Wake for Network Access" in Energy settings to ensure your agent stays accessible even after sleep.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Is Mac Mini better than Raspberry Pi for OpenClaw? <span class="faq-icon">+</span></div>
+                    <div class="faq-answer">Mac Mini significantly outperforms Raspberry Pi for OpenClaw. Apple Silicon offers 10-20x better AI inference performance with Metal GPU acceleration, runs cooler and quieter, and handles multiple tasks simultaneously without slowdowns. While Raspberry Pi is cheaper upfront ($80 vs $599+), Mac Mini provides better value for serious AI agent hosting with local model support.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Do I need coding skills to set up OpenClaw on Mac Mini? <span class="faq-icon">+</span></div>
+                    <div class="faq-answer">Basic familiarity with the Terminal is helpful but not required. Our step-by-step guide walks you through every command. If you can copy and paste commands, you can set up OpenClaw. For a completely code-free experience, consider managed hosting options like <a href="https://www.ampere.sh/?ref=remco" target="_blank">Ampere.sh</a> instead.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- People Also Ask -->
+    <section class="people-ask" id="people-ask">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">People Also Ask</div>
+                <h2>Related Questions</h2>
+                <p>More questions people search for about Mac Mini and OpenClaw.</p>
+            </div>
+            <div class="ask-grid">
+                <div class="ask-card">
+                    <h3>Can I use an Intel Mac Mini for OpenClaw?</h3>
+                    <p>Yes, but Apple Silicon is strongly recommended. Intel Macs lack the unified memory architecture and Metal GPU acceleration that make local AI models practical. They also consume 3-4x more power.</p>
+                </div>
+                <div class="ask-card">
+                    <h3>How do I access OpenClaw remotely from my iPhone?</h3>
+                    <p>Connect via Telegram or WhatsApp for instant mobile access. For the web dashboard, use Tailscale to create a secure VPN to your home network, or access via your Mac Mini's local IP when on home WiFi.</p>
+                </div>
+                <div class="ask-card">
+                    <h3>Can I run multiple AI agents on one Mac Mini?</h3>
+                    <p>Absolutely. A 16GB Mac Mini can comfortably run 3-5 concurrent agents. Each agent can have different personalities, skills, and connected channels. They share the same OpenClaw gateway but maintain separate memories.</p>
+                </div>
+                <div class="ask-card">
+                    <h3>What happens if my Mac Mini loses power?</h3>
+                    <p>With <code>sudo pmset -a autorestart 1</code> configured, your Mac Mini will automatically boot when power returns. The LaunchDaemon will start OpenClaw automatically. Consider a UPS for clean shutdowns during outages.</p>
+                </div>
+                <div class="ask-card">
+                    <h3>Is my data safe on a self-hosted Mac Mini?</h3>
+                    <p>Yes — your data never leaves your home network. Enable FileVault for disk encryption, use strong passwords, and keep macOS updated. This is the most private way to run an AI agent.</p>
+                </div>
+                <div class="ask-card">
+                    <h3>Can I mix local and cloud AI models?</h3>
+                    <p>Yes! Many users run local models (via Ollama) for routine tasks and privacy-sensitive queries, while using cloud APIs (Claude, GPT-4) for complex reasoning. OpenClaw supports both simultaneously.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Troubleshooting -->
+    <section class="troubleshooting" id="troubleshooting">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Troubleshooting</div>
+                <h2>Common Issues & Solutions</h2>
+                <p>Quick fixes for problems you might encounter.</p>
+            </div>
+            <div class="trouble-grid">
+                <div class="trouble-card">
+                    <h3>"openclaw: command not found"</h3>
+                    <p>The npm global binaries directory isn't in your PATH.</p>
+                    <div class="solution"><strong>Fix:</strong> <code>echo 'export PATH="$(npm prefix -g)/bin:$PATH"' >> ~/.zshrc && source ~/.zshrc</code></div>
+                </div>
+                <div class="trouble-card">
+                    <h3>Docker Desktop won't start</h3>
+                    <p>Rosetta 2 may not be installed on Apple Silicon.</p>
+                    <div class="solution"><strong>Fix:</strong> <code>softwareupdate --install-rosetta --agree-to-license</code></div>
+                </div>
+                <div class="trouble-card">
+                    <h3>Ollama models are slow</h3>
+                    <p>Model may be too large for your RAM, causing swap usage.</p>
+                    <div class="solution"><strong>Fix:</strong> Use smaller quantized models (Q4_K_M) or upgrade RAM. Monitor with <code>ollama ps</code></div>
+                </div>
+                <div class="trouble-card">
+                    <h3>Mac Mini goes to sleep</h3>
+                    <p>Power settings need adjustment for 24/7 operation.</p>
+                    <div class="solution"><strong>Fix:</strong> <code>sudo pmset -a sleep 0 displaysleep 0 disksleep 0</code></div>
+                </div>
+                <div class="trouble-card">
+                    <h3>Can't access from outside home</h3>
+                    <p>Your router blocks external connections by default.</p>
+                    <div class="solution"><strong>Fix:</strong> Use Tailscale for secure remote access without port forwarding. <code>brew install tailscale</code></div>
+                </div>
+                <div class="trouble-card">
+                    <h3>OpenClaw doesn't start on boot</h3>
+                    <p>LaunchDaemon permissions or path issues.</p>
+                    <div class="solution"><strong>Fix:</strong> Check logs: <code>tail -f /var/log/openclaw.err</code> and verify plist syntax.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Not Ready for Self-Hosting?</h2>
+            <p>Try managed OpenClaw hosting with zero setup required. Deploy in 60 seconds.</p>
+            <div class="cta-group">
+                <a href="https://www.ampere.sh/?ref=remco" target="_blank" class="btn btn-primary">Start Free with Ampere.sh <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg></a>
+                <a href="/#providers" class="btn btn-secondary">Compare All Hosts</a>
+            </div>
+            <div class="cta-cards">
+                <div class="cta-card">
+                    <h3>🚀 Ampere.sh</h3>
+                    <p>Free tier with 2GB RAM. No credit card required. Perfect for beginners.</p>
+                    <a href="https://www.ampere.sh/?ref=remco" target="_blank" class="btn btn-primary" style="width:100%;justify-content:center;">Start Free</a>
+                </div>
+                <div class="cta-card">
+                    <h3>📚 OpenClaw Course</h3>
+                    <p>Learn OpenClaw fundamentals with 10 interactive modules. Free forever.</p>
+                    <a href="/course/" class="btn btn-secondary" style="width:100%;justify-content:center;">Start Learning</a>
+                </div>
+                <div class="cta-card">
+                    <h3>💬 Community</h3>
+                    <p>Join 5,000+ OpenClaw users on Discord. Get help and share tips.</p>
+                    <a href="https://discord.com/invite/clawd" target="_blank" class="btn btn-secondary" style="width:100%;justify-content:center;">Join Discord</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <h2>Your Private AI Agent Awaits</h2>
+        <p>Self-host OpenClaw on Mac Mini for complete privacy, local AI models, and ~$1-2/month operating costs.</p>
+        <div class="cta-group">
+            <a href="#setup" class="btn btn-primary">Start Setup Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg></a>
+            <a href="https://github.com/openclaw/openclaw" target="_blank" class="btn btn-secondary">View on GitHub</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Learn</h4>
+                    <ul>
+                        <li><a href="/course/">Free Course</a></li>
+                        <li><a href="/mac-mini/">Mac Mini Guide</a></li>
+                        <li><a href="https://docs.openclaw.ai" target="_blank">Documentation</a></li>
+                        <li><a href="https://github.com/openclaw/openclaw" target="_blank">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Hosting</h4>
+                    <ul>
+                        <li><a href="https://www.ampere.sh/?ref=remco" target="_blank">Ampere.sh (Free)</a></li>
+                        <li><a href="https://xcloud.host/openclaw-hosting/" target="_blank">xCloud</a></li>
+                        <li><a href="https://contabo.com/en/openclaw-hosting/" target="_blank">Contabo</a></li>
+                        <li><a href="/#providers">Compare All</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="https://discord.com/invite/clawd" target="_blank">Discord</a></li>
+                        <li><a href="https://twitter.com/openclaw" target="_blank">Twitter/X</a></li>
+                        <li><a href="https://github.com/openclaw/openclaw/discussions" target="_blank">Discussions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/terms">Terms of Service</a></li>
+                        <li><a href="/affiliate">Affiliate Disclosure</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 StartWithOpenClaw.com | This site contains affiliate links. We may earn a commission at no extra cost to you.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(q => {
+            q.addEventListener('click', () => {
+                const item = q.parentElement;
+                const isActive = item.classList.contains('active');
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                if (!isActive) item.classList.add('active');
+            });
+        });
+
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    </script>
+</body>
+</html>
