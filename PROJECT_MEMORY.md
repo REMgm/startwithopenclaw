@@ -34,16 +34,24 @@ StartWithOpenClaw.com is a beginner-focused educational website and affiliate ma
 - `MARKETING_CAMPAIGN.md` — 12-week strategic marketing plan
 - `SOCIAL_CONTENT.md` — Ready-to-post social media templates
 
+## Marketing Assets
+
+### Documents Created
+- `MARKETING_CAMPAIGN.md` — 12-week strategic marketing plan
+- `SOCIAL_CONTENT.md` — Ready-to-post social media templates
+
 ### SEO Strategy
 **Target Keywords:**
 - Primary: "openclaw", "self hosted ai", "mac mini openclaw"
 - Long-tail: "openclaw not working", "openclaw setup error", "openclaw vs chatgpt"
 
-**Content Calendar:**
-- Week 1: "What is OpenClaw?" (published)
-- Week 2: "OpenClaw vs ChatGPT"
-- Week 3: "Mac Mini Setup Deep Dive"
-- Week 4: "Troubleshooting Guide"
+### Content Calendar & Published Articles
+| Week | Topic | Status | Publish Date | URL |
+|------|-------|--------|--------------|-----|
+| Week 1 | "What is OpenClaw?" | ✅ Published | Feb 25, 2026 | /blog/what-is-openclaw/ |
+| Week 2 | "OpenClaw vs ChatGPT" | ✅ Published | Mar 4, 2026 | /blog/openclaw-vs-chatgpt/ |
+| Week 3 | "Mac Mini Setup Deep Dive" | 📝 Planned | — | — |
+| Week 4 | "Troubleshooting Guide" | 📝 Planned | — | — |
 
 ## Technical Stack
 - **Hosting:** GitHub Pages
@@ -95,4 +103,4 @@ StartWithOpenClaw.com is a beginner-focused educational website and affiliate ma
 - OpenClaw GitHub: https://github.com/openclaw/openclaw
 
 ---
-*Last updated: February 25, 2026*
+*Last updated: March 4, 2026*
