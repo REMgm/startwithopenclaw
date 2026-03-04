@@ -78,17 +78,57 @@
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 16px;
-            padding: 28px;
             text-decoration: none;
             color: inherit;
             transition: all 0.3s ease;
+            overflow: hidden;
         }
         .blog-card:hover {
             border-color: rgba(168, 85, 247, 0.3);
             transform: translateY(-4px);
         }
+        .blog-card-image {
+            height: 180px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .card-emoji {
+            font-size: 60px;
+            z-index: 2;
+            position: relative;
+        }
+        .card-emoji-float {
+            font-size: 40px;
+            position: absolute;
+            left: 15%;
+            top: 20%;
+            opacity: 0.7;
+            animation: float 4s ease-in-out infinite;
+        }
+        .card-emoji-bounce {
+            font-size: 35px;
+            position: absolute;
+            right: 15%;
+            bottom: 20%;
+            opacity: 0.7;
+            animation: bounce 2s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        .blog-card-content {
+            padding: 24px;
+        }
         .blog-meta { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 12px; }
-        .blog-card h2 { color: var(--text-primary); font-size: 1.3rem; margin-bottom: 12px; }
+        .blog-card h2 { color: var(--text-primary); font-size: 1.2rem; margin-bottom: 12px; }
         .blog-card p { color: var(--text-secondary); font-size: 0.95rem; }
         
         footer { background: var(--bg-secondary); border-top: 1px solid var(--border); padding: 40px 0; text-align: center; color: var(--text-muted); }
@@ -121,15 +161,41 @@
 
     <section class="container">
         <div class="blog-grid">
+            <a href="/blog/mac-mini-setup-guide/" class="blog-card">
+                <div class="blog-card-image" style="background: linear-gradient(135deg, #a855f7 0%, #ec4899 50%, #06b6d4 100%);">
+                    <span class="card-emoji">🍎</span>
+                    <span class="card-emoji-float">🦞</span>
+                    <span class="card-emoji-bounce">⚡</span>
+                </div>
+                <div class="blog-card-content">
+                    <div class="blog-meta">March 4, 2026 • 15 min read</div>
+                    <h2>Mac Mini OpenClaw Setup: Complete Self-Hosting Guide 2026</h2>
+                    <p>Turn your Mac Mini into a powerful AI agent server. Step-by-step guide for M1/M2/M4 with Docker — no experience required.</p>
+                </div>
+            </a>
             <a href="/blog/openclaw-vs-chatgpt/" class="blog-card">
-                <div class="blog-meta">March 4, 2026 • 12 min read</div>
-                <h2>OpenClaw vs ChatGPT: Complete 2026 Comparison Guide</h2>
-                <p>Compare privacy, cost, features, and control. See why thousands are switching to self-hosted AI — with real numbers and honest recommendations.</p>
+                <div class="blog-card-image" style="background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);">
+                    <span class="card-emoji">🦞</span>
+                    <span class="card-emoji-float">⚔️</span>
+                    <span class="card-emoji-bounce">🤖</span>
+                </div>
+                <div class="blog-card-content">
+                    <div class="blog-meta">March 4, 2026 • 12 min read</div>
+                    <h2>OpenClaw vs ChatGPT: Complete 2026 Comparison Guide</h2>
+                    <p>Compare privacy, cost, features, and control. See why thousands are switching to self-hosted AI — with real numbers.</p>
+                </div>
             </a>
             <a href="/blog/what-is-openclaw/" class="blog-card">
-                <div class="blog-meta">February 25, 2026 • 8 min read</div>
-                <h2>What is OpenClaw? A Beginner's Guide to Self-Hosted AI Agents</h2>
-                <p>Discover why thousands are switching from ChatGPT to their own private AI agents — and how you can too, even if you've never written a line of code.</p>
+                <div class="blog-card-image" style="background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);">
+                    <span class="card-emoji">🚀</span>
+                    <span class="card-emoji-float">🦞</span>
+                    <span class="card-emoji-bounce">✨</span>
+                </div>
+                <div class="blog-card-content">
+                    <div class="blog-meta">February 25, 2026 • 8 min read</div>
+                    <h2>What is Openclaw? A Beginner's Guide to Self-Hosted AI Agents</h2>
+                    <p>Discover why thousands are switching from ChatGPT to their own private AI agents — no coding required.</p>
+                </div>
             </a>
         </div>
     </section>
