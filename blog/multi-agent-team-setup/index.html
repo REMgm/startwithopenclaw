@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-S438BQTGEF"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-S438BQTGEF');</script>
+    <script type="text/javascript" data-cmp-ab="1" src="https://cdn.consentmanager.net/delivery/autoblocking/e90a6b8a42f34.js" data-cmp-host="a.delivery.consentmanager.net" data-cmp-cdn="cdn.consentmanager.net" data-cmp-codesrc="16"></script>
+    <title>Building Your Agent Team: Multi-Agent Architecture Guide | Start with OpenClaw</title>
+    <meta name="description" content="Learn to build multi-agent teams with OpenClaw. Create specialized AI agents that work together, share memory, and handle complex workflows.">
+    <meta name="keywords" content="multi-agent system, openclaw agent team, ai agent collaboration, agent swarm">
+    <link rel="canonical" href="https://startwithopenclaw.com/blog/multi-agent-team-setup/">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>:root{--bg-primary:#0a0a0f;--bg-secondary:#12121a;--bg-card:#1e1e2e;--text-primary:#fff;--text-secondary:#e2e8f0;--text-muted:#94a3b8;--accent-purple:#a855f7;--accent-teal:#14b8a6;--accent-indigo:#6366f1;--accent-pink:#ec4899;--border:rgba(255,255,255,0.08)}*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Inter',sans-serif;background:var(--bg-primary);color:var(--text-secondary);line-height:1.7}.container{max-width:800px;margin:0 auto;padding:0 24px}.hero-image{width:100%;height:400px;background:linear-gradient(135deg,#0a0a0f 0%,#1e1e2e 50%,#0f172a 100%);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}.hero-image::before{content:"🦞";font-size:80px;position:absolute;left:20%;top:30%;animation:bounce 2s ease-in-out infinite}.hero-image::after{content:"🦞";font-size:60px;position:absolute;right:25%;bottom:25%;animation:bounce 2s ease-in-out infinite 0.5s}.agent-central{font-size:100px;z-index:10;position:relative;animation:pulse 2s ease-in-out infinite}.connection-line{position:absolute;width:100px;height:2px;background:linear-gradient(90deg,var(--accent-teal),transparent);animation:scan 2s linear infinite}@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}@keyframes scan{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}.hero-content{text-align:center;z-index:20;position:relative}.hero-badge{display:inline-block;background:rgba(20,184,166,0.2);backdrop-filter:blur(10px);padding:8px 16px;border-radius:50px;font-size:0.9rem;color:var(--accent-teal);border:1px solid var(--accent-teal);margin-bottom:16px}.hero-title{font-size:2.5rem;font-weight:800;color:var(--text-primary);text-shadow:0 0 30px var(--accent-teal)}nav{position:fixed;top:0;left:0;right:0;background:rgba(10,10,15,0.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);z-index:1000;padding:16px 0}nav .container{display:flex;justify-content:space-between;align-items:center}.logo{display:flex;align-items:center;gap:10px;font-size:1.3rem;font-weight:800;color:var(--text-primary);text-decoration:none}.logo-text{background:linear-gradient(135deg,var(--accent-purple) 0%,#6366f1 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}.nav-links{display:flex;gap:24px;list-style:none}.nav-links a{color:var(--text-muted);text-decoration:none;font-size:0.9rem;font-weight:500}.nav-links a:hover{color:var(--text-primary)}article{padding:60px 0 80px}.article-header{text-align:center;margin-bottom:48px;margin-top:-60px;position:relative;z-index:10}.article-meta{color:var(--text-muted);font-size:0.9rem;margin-bottom:16px;background:var(--bg-card);display:inline-block;padding:8px 16px;border-radius:50px;border:1px solid var(--border)}h1{font-size:clamp(2rem,5vw,3rem);color:var(--text-primary);line-height:1.2;margin-bottom:24px}.lead{font-size:1.25rem;color:var(--text-secondary);margin-bottom:32px}.content h2{font-size:1.8rem;color:var(--text-primary);margin:48px 0 20px}.content h3{font-size:1.3rem;color:var(--text-primary);margin:32px 0 16px}.content p{margin-bottom:20px}.content ul,.content ol{margin:20px 0;padding-left:24px}.content li{margin-bottom:12px}.content a{color:#6366f1}.highlight-box{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:24px;margin:32px 0}.highlight-box h3{margin-top:0;color:var(--accent-teal)}.code-block{background:#0f172a;border:1px solid var(--border);border-radius:12px;padding:20px;margin:20px 0;overflow-x:auto;font-family:'Courier New',monospace;font-size:0.9rem;color:#7dd3fc}.team-diagram{background:linear-gradient(135deg,rgba(168,85,247,0.1) 0%,rgba(20,184,166,0.1) 100%);border:1px solid rgba(168,85,247,0.3);border-radius:16px;padding:24px;margin:24px 0;text-align:center}.cta-box{background:linear-gradient(135deg,rgba(99,102,241,0.1) 0%,rgba(139,92,246,0.1) 100%);border:1px solid rgba(99,102,241,0.3);border-radius:16px;padding:32px;text-align:center;margin:48px 0}.btn{display:inline-block;padding:14px 28px;background:linear-gradient(135deg,#6366f1 0%,#8b5cf6 100%);color:#fff!important;text-decoration:none;border-radius:10px;font-weight:600;margin-top:16px}footer{background:var(--bg-secondary);border-top:1px solid var(--border);padding:40px 0;text-align:center;color:var(--text-muted)}footer a{color:var(--text-secondary)}</style>
+</head>
+<body>
+    <nav><div class="container"><a href="/" class="logo"><span>🦞</span><span class="logo-text">Start with OpenClaw</span></a><ul class="nav-links"><li><a href="/">🏠 Home</a></li><li><a href="/course/">📚 Course</a></li><li><a href="/mac-mini/">🍎 Mac Mini</a></li><li><a href="/blog/">📝 Blog</a></li><li><a href="/bugfixing/">🔧 Bugfixing</a></li></ul></div></nav>
+    <div class="hero-image"><div class="connection-line" style="top:40%;left:10%;transform:rotate(25deg)"></div><div class="connection-line" style="bottom:35%;right:15%;transform:rotate(-30deg);animation-delay:0.5s"></div><div class="agent-central">🦞</div><div class="hero-content"><div class="hero-badge">🦞 Agent Team + 🧠 Shared Brain = 🚀 Synergy</div><h1 class="hero-title">Build Your Dream Team</h1></div></div>
+    <article><div class="container"><header class="article-header"><div class="article-meta">March 5, 2026 • 19 min read • 🦞 Multi-Agent</div><h1>Building Your Agent Team: Multi-Agent Architecture Guide</h1><p class="lead">Why have one AI assistant when you can have a specialized team? Learn to build collaborative agent systems that handle complex tasks through intelligent division of labor.</p></header>
+    <div class="content"><p>A single AI agent is powerful. A team of specialized agents, each with unique skills and shared memory, is unstoppable. This guide shows you how to architect multi-agent systems that scale.</p>
+    <h2>The Agent Team Concept</h2>
+    <p>Think of it like a human organization. You don't have one employee doing everything — you have specialists:</p>
+    <div class="team-diagram"><h3>🏢 Example: Personal Operations Team</h3><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin-top:16px"><div style="background:var(--bg-card);padding:16px;border-radius:12px"><div style="font-size:40px;margin-bottom:8px">📅</div><strong>Scheduler</strong><br/><small>Calendar, meetings, reminders</small></div><div style="background:var(--bg-card);padding:16px;border-radius:12px"><div style="font-size:40px;margin-bottom:8px">✈️</div><strong>Travel Agent</strong><br/><small>Flights, hotels, itineraries</small></div><div style="background:var(--bg-card);padding:16px;border-radius:12px"><div style="font-size:40px;margin-bottom:8px">🔍</div><strong>Researcher</strong><br/><small>Deep research, analysis</small></div><div style="background:var(--bg-card);padding:16px;border-radius:12px"><div style="font-size:40px;margin-bottom:8px">🛒</div><strong>Shopper</strong><br/><small>Price tracking, deals</small></div></div><p style="margin-top:16px;color:var(--text-muted)">All share the same brain (MEMORY.md) but have specialized skills</p></div>
+    <h2>Architecture: Shared Brain, Specialized Skills</h2>
+    <div class="highlight-box"><h3>🧠 The Shared Memory Model</h3><p>All agents access common memory files while keeping role-specific knowledge separate:</p><pre style="color:#e2e8f0">memory/
+├── MEMORY.md          <span style="color:#6b7280"># Shared: Universal facts, preferences</span>
+├── USER.md            <span style="color:#6b7280"># Shared: User profile, context</span>
+├── SOUL.md            <span style="color:#6b7280"># Shared: Core principles</span>
+└── agents/
+    ├── scheduler/
+    │   ├── context.md   <span style="color:#6b7280"># Role: Scheduling preferences</span>
+    │   └── longterm.md  <span style="color:#6b7280"># Role: Calendar patterns</span>
+    ├── travel/
+    │   └── context.md   <span style="color:#6b7280"># Role: Travel preferences, history</span>
+    └── research/
+        └── context.md   <span style="color:#6b7280"># Role: Research notes, sources</span>
+</pre></div>
+    <h2>Creating Your First Agent Team</h2>
+    <div class="code-block"><pre><span style="color:#6b7280"># 1. Create agent directory structure</span>agents/
+├── scheduler/
+│   ├── __init__.py
+│   ├── personality.py    <span style="color:#6b7280"># Agent definition</span>
+│   └── skills/
+│       ├── calendar.py
+│       └── reminders.py
+├── travel/
+│   ├── __init__.py
+│   ├── personality.py
+│   └── skills/
+│       ├── flights.py
+│       └── hotels.py
+└── coordinator/          <span style="color:#6b7280"># Optional: Orchestrator</span>    ├── __init__.py
+    └── router.py         <span style="color:#6b7280"># Decides which agent handles what</span>
+</pre></div>
+    <h3>Step 1: Define Agent Personalities</h3>
+    <div class="code-block"><pre><span style="color:#6b7280"># agents/scheduler/personality.py</span>
+SCHEDULER_PERSONALITY = """
+You are the Scheduler Agent — precise, organized, and time-conscious.
+
+Your expertise:
+- Calendar management and optimization
+- Meeting scheduling across time zones
+- Deadline tracking and reminders
+- Time blocking for deep work
+
+Your personality:
+- Direct and efficient
+- Proactive about conflicts
+- Always considers time zones
+- Protects user's focus time
+
+You have access to:
+- Google Calendar
+- User's scheduling preferences
+- Meeting templates
+- Time zone database
+
+When uncertain about priorities, consult the Coordinator Agent.
+"""
+
+<span style="color:#6b7280"># agents/travel/personality.py</span>
+TRAVEL_PERSONALITY = """
+You are the Travel Agent — adventurous, detail-oriented, and deal-savvy.
+
+Your expertise:
+- Flight search and booking
+- Hotel research and reservations
+- Itinerary planning
+- Travel deal hunting
+
+Your personality:
+- Enthusiastic about travel
+- Detail-obsessed (seat selection, layover times)
+- Budget-conscious but value-focused
+- Remembers past preferences
+
+You have access to:
+- Flight APIs (Skyscanner, Kayak)
+- Hotel booking platforms
+- User's travel history
+- Reward program balances
+
+Always optimize for both price and convenience.
+"""
+</pre></div>
+    <h3>Step 2: Agent Router (The Coordinator)</h3>
+    <div class="code-block"><pre><span style="color:#6b7280"># agents/coordinator/router.py</span>
+from agents.scheduler import SchedulerAgent
+from agents.travel import TravelAgent
+from agents.research import ResearchAgent
+
+class AgentRouter:
+    """Decides which agent should handle a request"""
+    
+    AGENT_KEYWORDS = {
+        'scheduler': ['meeting', 'calendar', 'schedule', 'remind', 'deadline', 'appointment'],
+        'travel': ['flight', 'hotel', 'trip', 'vacation', 'booking', 'travel'],
+        'research': ['research', 'find', 'analyze', 'compare', 'investigate', 'study'],
+        'shopper': ['buy', 'price', 'deal', 'purchase', 'shopping', 'order']
+    }
+    
+    def __init__(self):
+        self.agents = {
+            'scheduler': SchedulerAgent(),
+            'travel': TravelAgent(),
+            'research': ResearchAgent(),
+            'shopper': ShopperAgent()
+        }
+    
+    def route(self, user_message):
+        """Determine which agent should handle this"""
+        message_lower = user_message.lower()
+        
+        <span style="color:#6b7280"># Score each agent by keyword matches</span>
+        scores = {}
+        for agent_name, keywords in self.AGENT_KEYWORDS.items():
+            score = sum(1 for kw in keywords if kw in message_lower)
+            if score > 0:
+                scores[agent_name] = score
+        
+        if not scores:
+            <span style="color:#6b7280"># No clear match — use general assistant or ask</span>
+            return self.agents['general']
+        
+        <span style="color:#6b7280"># Return highest scoring agent</span>
+        best_agent = max(scores, key=scores.get)
+        return self.agents[best_agent]
+    
+    def handle(self, user_message, context):
+        """Route and execute"""
+        agent = self.route(user_message)
+        return agent.process(user_message, context)
+
+<span style="color:#6b7280"># Usage in main agent:</span>@agent.on_message
+def handle_team_request(ctx, message):
+    router = AgentRouter()
+    response = router.handle(message, ctx)
+    return response
+</pre></div>
+    <h2>Advanced: Parallel Agent Execution</h2>
+    <p>For complex tasks, multiple agents can work simultaneously:</p>
+    <div class="code-block"><pre><span style="color:#6b7280"># Example: Planning a business trip</span>
+User: "I'm going to SF next week for the conference. Handle everything."
+
+<span style="color:#6b7280"># Coordinator breaks this into parallel tasks:</span>
+async def plan_business_trip(destination, dates, purpose):
+    
+    <span style="color:#6b7280"># Launch agents in parallel</span>
+    results = await asyncio.gather(
+        travel_agent.find_flights(destination, dates),
+        travel_agent.find_hotels(destination, dates, preferences),
+        scheduler_agent.block_calendar(dates, f"Travel: {purpose}"),
+        scheduler_agent.find_available_meeting_slots(dates),
+        research_agent.research_conference(purpose)
+    )
+    
+    flights, hotels, calendar_blocks, free_slots, conf_info = results
+    
+    <span style="color:#6b7280"># Compile comprehensive plan</span>
+    return {
+        'flights': flights,
+        'hotel': hotels[0] if hotels else None,
+        'calendar': calendar_blocks,
+        'meeting_slots': free_slots,
+        'conference_details': conf_info
+    }
+</pre></div>
+    <h2>Real-World Agent Team Examples</h2>
+    <div class="highlight-box"><h3>🏢 Business Operations Team</h3><ul><li><strong>Executive Assistant:</strong> Calendar, emails, scheduling</li><li><strong>Sales Support:</strong> CRM updates, lead research, follow-ups</li><li><strong>Content Manager:</strong> Social media, blog posts, newsletters</li><li><strong>Data Analyst:</strong> Reports, metrics, insights</li></ul></div>
+    <div class="highlight-box"><h3>🏠 Personal Life Team></h3><ul><li><strong>Health Coach:</strong> Fitness tracking, meal planning, reminders</li><li><strong>Finance Manager:</strong> Budget tracking, bill pay, investments</li><li><strong>Social Coordinator:</strong> Event planning, gift reminders, RSVPs</li><li><strong>Learning Assistant:</strong> Course tracking, research, summaries</li></ul></div>
+    <div class="highlight-box"><h3>🔬 Research & Development Team</h3><ul><li><strong>Literature Reviewer:</strong> Paper discovery, summarization</li><li><strong>Data Collector:</strong> API aggregation, dataset building</li><li><strong>Code Assistant:</strong> Implementation, debugging, documentation</li><li><strong>Writer:</strong> Report generation, presentation creation</li></ul></div>
+    <h2>Communication Between Agents</h2>
+    <div class="code-block"><pre><span style="color:#6b7280"># Agents can signal each other via memory files:</span>
+class TravelAgent:
+    def book_flight(self, details):
+        <span style="color:#6b7280"># After booking</span>        self.write_to_memory(
+            "upcoming_trips.md",
+            f"Trip to {details['destination']} on {details['date']}"
+        )
+        
+        <span style="color:#6b7280"># Signal scheduler agent</span>
+        self.create_signal(
+            to="scheduler",
+            signal="travel_booked",
+            data={
+                "dates": [details['departure'], details['return']],
+                "destination": details['destination']
+            }
+        )
+
+class SchedulerAgent:
+    def on_signal(self, signal):
+        if signal['type'] == 'travel_booked':
+            <span style="color:#6b7280"># Automatically block travel time</span>            self.block_calendar(signal['data']['dates'])
+            
+            <span style="color:#6b7280"># Set reminder for check-in</span>
+            self.set_reminder(
+                time=signal['data']['departure'] - timedelta(hours=24),
+                message=f"Check in for flight to {signal['data']['destination']}"
+            )
+</pre></div>
+    <div class="cta-box"><h3>🦞 Ready to Build Your Team?</h3><p>Get the complete multi-agent starter template with 5 pre-configured agent personalities.</p><a href="/course/" class="btn">Get Agent Team Template →</a></div>
+    <p><strong>Remember:</strong> Start with 2-3 agents. Add more as you identify needs. The goal is specialization, not complexity. 🦞🦞🦞</p></div></div></article>
+    <footer><div class="container"><p>© 2026 StartWithOpenClaw.com • <a href="/">Home</a> • <a href="/course/">Free Course</a> • <a href="/blog/">Blog</a></p></div></footer>
+</body>
+</html>
