@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-S438BQTGEF"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-S438BQTGEF');</script>
+    <script type="text/javascript" data-cmp-ab="1" src="https://cdn.consentmanager.net/delivery/autoblocking/e90a6b8a42f34.js" data-cmp-host="a.delivery.consentmanager.net" data-cmp-cdn="cdn.consentmanager.net" data-cmp-codesrc="16"></script>
+    <title>Building CLI Tools That Spark Joy | Start with OpenClaw</title>
+    <meta name="description" content="Learn the principles behind CLI tools developers love. Discover patterns for intuitive command-line interfaces and delightful developer experience.">
+    <link rel="canonical" href="https://startwithopenclaw.com/blog/building-cli-tools-that-spark-joy/">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>:root{--bg-primary:#0a0a0f;--bg-secondary:#12121a;--bg-card:#1e1e2e;--text-primary:#fff;--text-secondary:#e2e8f0;--text-muted:#94a3b8;--accent-purple:#a855f7;--accent-teal:#14b8a6;--accent-pink:#ec4899;--border:rgba(255,255,255,0.08)}*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Inter',sans-serif;background:var(--bg-primary);color:var(--text-secondary);line-height:1.7}.container{max-width:800px;margin:0 auto;padding:0 24px}.hero-image{width:100%;height:400px;background:linear-gradient(135deg,#0a0a0f 0%,#1e1e2e 50%,#0f172a 100%);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}.hero-image::before{content:"⌨️";font-size:100px;position:absolute;animation:pulse 2s ease-in-out infinite}.hero-image::after{content:"✨";font-size:60px;position:absolute;right:20%;top:30%;animation:sparkle 2s ease-in-out infinite}.terminal-cursor{position:absolute;width:20px;height:40px;background:var(--accent-teal);animation:blink 1s step-end infinite;left:30%;top:40%}@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}@keyframes sparkle{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.2)}}@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}.hero-content{text-align:center;z-index:20;position:relative}.hero-badge{display:inline-block;background:rgba(20,184,166,0.2);backdrop-filter:blur(10px);padding:8px 16px;border-radius:50px;font-size:0.9rem;color:var(--accent-teal);border:1px solid var(--accent-teal);margin-bottom:16px}.hero-title{font-size:2.5rem;font-weight:800;color:var(--text-primary);text-shadow:0 0 30px var(--accent-teal)}nav{position:fixed;top:0;left:0;right:0;background:rgba(10,10,15,0.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);z-index:1000;padding:16px 0}nav .container{display:flex;justify-content:space-between;align-items:center}.logo{display:flex;align-items:center;gap:10px;font-size:1.3rem;font-weight:800;color:var(--text-primary);text-decoration:none}.logo-text{background:linear-gradient(135deg,var(--accent-purple) 0%,#6366f1 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}.nav-links{display:flex;gap:24px;list-style:none}.nav-links a{color:var(--text-muted);text-decoration:none;font-size:0.9rem;font-weight:500}.nav-links a:hover{color:var(--text-primary)}article{padding:60px 0 80px}.article-header{text-align:center;margin-bottom:48px;margin-top:-60px;position:relative;z-index:10}.article-meta{color:var(--text-muted);font-size:0.9rem;margin-bottom:16px;background:var(--bg-card);display:inline-block;padding:8px 16px;border-radius:50px;border:1px solid var(--border)}h1{font-size:clamp(2rem,5vw,3rem);color:var(--text-primary);line-height:1.2;margin-bottom:24px}.lead{font-size:1.25rem;color:var(--text-secondary);margin-bottom:32px}.content h2{font-size:1.8rem;color:var(--text-primary);margin:48px 0 20px}.content h3{font-size:1.3rem;color:var(--text-primary);margin:32px 0 16px}.content p{margin-bottom:20px}.content ul,.content ol{margin:20px 0;padding-left:24px}.content li{margin-bottom:12px}.content a{color:#6366f1}.highlight-box{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:24px;margin:32px 0}.highlight-box h3{margin-top:0;color:var(--accent-teal)}.code-block{background:#0f172a;border:1px solid var(--border);border-radius:12px;padding:20px;margin:20px 0;overflow-x:auto;font-family:'Courier New',monospace;font-size:0.85rem;line-height:1.6;color:#e2e8f0}.code-block .comment{color:#6b7280}.code-block .keyword{color:#c084fc}.code-block .string{color:#86efac}.cta-box{background:linear-gradient(135deg,rgba(99,102,241,0.1) 0%,rgba(139,92,246,0.1) 100%);border:1px solid rgba(99,102,241,0.3);border-radius:16px;padding:32px;text-align:center;margin:48px 0}.btn{display:inline-block;padding:14px 28px;background:linear-gradient(135deg,#6366f1 0%,#8b5cf6 100%);color:#fff!important;text-decoration:none;border-radius:10px;font-weight:600;margin-top:16px}footer{background:var(--bg-secondary);border-top:1px solid var(--border);padding:40px 0;text-align:center;color:var(--text-muted)}footer a{color:var(--text-secondary)}</style>
+</head>
+<body>
+    <nav><div class="container"><a href="/" class="logo"><span>🦞</span><span class="logo-text">Start with OpenClaw</span></a><ul class="nav-links"><li><a href="/">🏠 Home</a></li><li><a href="/course/">📚 Course</a></li><li><a href="/mac-mini/">🍎 Mac Mini</a></li><li><a href="/blog/">📝 Blog</a></li><li><a href="/bugfixing/">🔧 Bugfixing</a></li></ul></div></nav>
+    <div class="hero-image"><div class="terminal-cursor"></div><div class="hero-content"><div class="hero-badge">⌨️ Developer Experience</div><h1 class="hero-title">CLI Tools That Spark Joy</h1></div></div>
+    <article><div class="container"><header class="article-header"><div class="article-meta">March 5, 2026 • 12 min read</div><h1>Building CLI Tools That Spark Joy</h1><p class="lead">Great CLI tools feel like an extension of your mind. Learn the principles behind command-line interfaces that developers actually love using.</p></header>
+    <div class="content"><p>The best CLI tools share a common trait: they respect the user's time and intelligence. They anticipate needs, provide clear feedback, and fail gracefully. In this guide, we'll explore the patterns that make command-line tools delightful to use.</p>
+    <h2>The Psychology of CLI Design</h2>
+    <p>When you use a well-designed CLI tool, you don't think about the tool itself. You think about the problem you're solving. The interface becomes invisible, allowing you to focus on what matters.</p>
+    <div class="highlight-box"><h3>🎯 Core Principles</h3><ul><li><strong>Speed:</strong> Every millisecond counts. Fast feedback loops keep users in flow.</li><li><strong>Clarity:</strong> Output should be scannable. Use color, spacing, and formatting intentionally.</li><li><strong>Forgiveness:</strong> Users make mistakes. Good tools help them recover quickly.</li><li><strong>Consistency:</strong> Follow conventions. Surprise violates trust.</li></ul></div>
+    <h2>Design Patterns for Delight</h2>
+    <h3>Progressive Disclosure</h3>
+    <p>Don't overwhelm users with options. Show the essentials by default, reveal complexity on demand:</p>
+    <div class="code-block"><pre><span class="comment"># Good: Simple by default</span>
+$ deploy
+✓ Deployed to production in 2.3s
+
+<span class="comment"># Power when needed</span>
+$ deploy --verbose
+→ Building application...
+→ Running tests (45 passed)
+→ Optimizing assets
+→ Uploading to CDN
+✓ Deployed to production in 2.3s
+</pre></div>
+    <h3>Intelligent Defaults>/h3>
+    <p>Make the right thing the easy thing. Users shouldn't need to configure what the tool can infer:</p>
+    <div class="code-block"><pre><span class="comment"># Bad: Requires unnecessary input</span>
+$ git commit -m "fix login" --author="John Doe" --date="2026-03-05"
+
+<span class="comment"># Good: Smart defaults, minimal input</span>
+$ git commit -m "fix login"
+</pre></div>
+    <h3>Meaningful Feedback</h3>
+    <p>Every action should have a visible reaction. Users need to know their command was received and understood:</p>
+    <div class="code-block"><pre><span class="comment"># Good: Clear progress indication</span>
+$ download large-file.zip
+Downloading... ████████████ 45% (12MB/s)
+
+<span class="comment"># Good: Completion confirmation with details</span>
+✓ Downloaded large-file.zip (234MB in 19s)
+</pre></div>
+    <h2>Error Messages That Help</h2>
+    <p>Errors are inevitable. How you handle them defines the user experience:</p>
+    <div class="code-block"><pre><span class="comment"># Bad: Cryptic error</span>
+$ mytool run
+Error: ECODE_4932
+
+<span class="comment"># Good: Clear explanation + solution</span>
+$ mytool run
+✗ Couldn't connect to database
+  
+  The connection to localhost:5432 timed out after 5s.
+  
+  Possible fixes:
+  1. Check if PostgreSQL is running: pg_ctl status
+  2. Verify the port in config.yml
+  3. Check your firewall settings
+  
+  Run with --debug for full connection logs.
+</pre></div>
+    <h2>Building Your First CLI</h2>
+    <p>When creating a new CLI tool, start with these essentials:</p>
+    <ol><li><strong>One clear purpose</strong> — Do one thing well</li><li><strong>Consistent naming</strong> — Use standard flags like --help, --version</li><li><strong>Good help text</strong> — Examples are worth a thousand descriptions</li><li><strong>Sensible exit codes</strong> — 0 for success, non-zero for specific errors</li><li><strong>Piped input support</strong> — Enable composition with other tools</li></ol>
+    <div class="highlight-box"><h3>📋 CLI Checklist</h3><ul><li> ☐ --help shows clear usage examples</li><li> ☐ --version displays current version</li><li> ☐ Colors work and respect NO_COLOR</li><li> ☐ Supports both interactive and script modes</li><li> ☐ Error messages suggest fixes</li><li> ☐ Documentation includes real-world examples</li></ul></div>
+    <h2>The Joy of Composition</h2>
+    <p>The Unix philosophy still matters: small tools that do one thing well, chained together:</p>
+    <div class="code-block"><pre>$ cat logs.txt | grep ERROR | wc -l
+42
+
+$ cat logs.txt | grep ERROR | head -5 | jq '.message'
+"Connection timeout"
+"Database unavailable"
+"Rate limit exceeded"
+"Invalid API key"
+"Service unavailable"
+</pre></div>
+    <p>Design your tool to participate in this ecosystem. Accept stdin, write to stdout, errors to stderr.</p>
+    <div class="cta-box"><h3>🚀 Ready to Build?</h3><p>Start small. Pick one task you do frequently and build a tool that makes it faster. Joy comes from utility.</p><a href="/course/" class="btn">Explore OpenClaw CLI Tools →</a></div>
+    <p>Remember: The best CLI tool is the one that gets out of your way and lets you do great work. ⌨️✨</p></div></div></article>
+    <footer><div class="container"><p>© 2026 StartWithOpenClaw.com • <a href="/">Home</a> • <a href="/course/">Free Course</a> • <a href="/blog/">Blog</a></p></div></footer>
+</body>
+</html>
