@@ -16,7 +16,6 @@
         *{margin:0;padding:0;box-sizing:border-box}
         body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg-primary);color:var(--text-secondary);line-height:1.6}
         .container{max-width:1200px;margin:0 auto;padding:0 24px}
-        
         nav{position:fixed;top:0;left:0;right:0;background:rgba(10,10,15,0.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);z-index:1000;padding:16px 0}
         nav .container{display:flex;justify-content:space-between;align-items:center}
         .logo{display:flex;align-items:center;gap:10px;font-size:1.3rem;font-weight:800;color:var(--text-primary);text-decoration:none}
@@ -24,31 +23,23 @@
         .nav-links{display:flex;gap:24px;list-style:none}
         .nav-links a{color:var(--text-muted);text-decoration:none;font-size:0.9rem;font-weight:500}
         .nav-links a:hover{color:var(--text-primary)}
-        
         .hero{padding:140px 0 60px;text-align:center;background:var(--bg-secondary)}
         h1{font-size:clamp(2rem,5vw,3rem);color:var(--text-primary);margin-bottom:16px}
         .subtitle{color:var(--text-muted);font-size:1.1rem}
-        
-        /* Clean Blog Grid */
         .blog-grid{padding:40px 0 80px;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px}
-        
         .blog-card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;text-decoration:none;color:inherit;transition:all 0.3s ease;overflow:hidden;display:flex;flex-direction:column}
         .blog-card:hover{border-color:rgba(168,85,247,0.4);transform:translateY(-6px);box-shadow:0 20px 40px rgba(0,0,0,0.3)}
-        
         .blog-card-image{height:160px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
         .card-emoji{font-size:48px;z-index:2;position:relative;filter:drop-shadow(0 4px 8px rgba(0,0,0,0.3))}
         .card-emoji-float{font-size:32px;position:absolute;left:12%;top:18%;opacity:0.8;animation:float 4s ease-in-out infinite}
         .card-emoji-bounce{font-size:28px;position:absolute;right:12%;bottom:18%;opacity:0.8;animation:bounce 2s ease-in-out infinite}
         @keyframes float{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-8px) rotate(5deg)}}
         @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-        
         .blog-card-content{padding:20px;flex:1;display:flex;flex-direction:column}
         .blog-meta{color:var(--text-muted);font-size:0.8rem;margin-bottom:8px;text-transform:uppercase;letter-spacing:0.5px}
         .blog-card h2{color:var(--text-primary);font-size:1.1rem;margin-bottom:10px;line-height:1.4}
         .blog-card p{color:var(--text-secondary);font-size:0.9rem;line-height:1.5;flex:1}
-        
         .tag{display:inline-block;background:rgba(168,85,247,0.15);color:var(--accent-purple);padding:4px 10px;border-radius:20px;font-size:0.75rem;margin-top:12px}
-        
         footer{background:var(--bg-secondary);border-top:1px solid var(--border);padding:40px 0;text-align:center;color:var(--text-muted)}
         footer a{color:var(--text-secondary)}
     </style>
@@ -76,37 +67,67 @@
 
     <section class="container">
         <div class="blog-grid">
-            <!-- Article 1: Getting Started -->
-            <a href="/blog/what-is-openclaw/" class="blog-card">
-                <div class="blog-card-image" style="background:linear-gradient(135deg,#10b981 0%,#06b6d4 100%)">
-                    <span class="card-emoji">🚀</span>
-                    <span class="card-emoji-float">✨</span>
-                    <span class="card-emoji-bounce">🦞</span>
+            <!-- NEW: API Integrations -->
+            <a href="/blog/api-integrations-guide/" class="blog-card">
+                <div class="blog-card-image" style="background:linear-gradient(135deg,#0f172a 0%,#1e1e2e 50%,#0f172a 100%)">
+                    <span class="card-emoji">🔌</span>
+                    <span class="card-emoji-float">🔗</span>
+                    <span class="card-emoji-bounce">⚡</span>
                 </div>
                 <div class="blog-card-content">
-                    <div class="blog-meta">February 25, 2026 • 8 min read</div>
-                    <h2>What is OpenClaw? A Beginner's Guide</h2>
-                    <p>Discover why thousands are switching from ChatGPT to their own private AI agents — no coding required.</p>
-                    <span class="tag">🌟 Getting Started</span>
+                    <div class="blog-meta">March 5, 2026 • 20 min read</div>
+                    <h2>API Integrations Masterclass: Connect 50+ Services</h2>
+                    <p>Master API integrations with OpenClaw. Connect Gmail, Slack, Notion, GitHub, Stripe, and dozens more with complete code examples.</p>
+                    <span class="tag">🔌 Integration</span>
                 </div>
             </a>
 
-            <!-- Article 2: Comparison -->
-            <a href="/blog/openclaw-vs-chatgpt/" class="blog-card">
-                <div class="blog-card-image" style="background:linear-gradient(135deg,#6366f1 0%,#8b5cf6 100%)">
-                    <span class="card-emoji">🦞</span>
-                    <span class="card-emoji-float">⚔️</span>
+            <!-- NEW: Cron Automation -->
+            <a href="/blog/cron-automation-workflows/" class="blog-card">
+                <div class="blog-card-image" style="background:linear-gradient(135deg,#0f172a 0%,#1e1e2e 50%,#0f172a 100%)">
+                    <span class="card-emoji">⏰</span>
+                    <span class="card-emoji-float">⚙️</span>
                     <span class="card-emoji-bounce">🤖</span>
                 </div>
                 <div class="blog-card-content">
-                    <div class="blog-meta">March 4, 2026 • 12 min read</div>
-                    <h2>OpenClaw vs ChatGPT: Complete 2026 Comparison</h2>
-                    <p>Compare privacy, cost, features, and control. See why thousands are switching to self-hosted AI.</p>
-                    <span class="tag">📊 Comparison</span>
+                    <div class="blog-meta">March 5, 2026 • 22 min read</div>
+                    <h2>Advanced Cron Workflows: Automate Everything</h2>
+                    <p>Master cron jobs and automation workflows. Build complex scheduled tasks, conditional workflows, and autonomous systems.</p>
+                    <span class="tag">⏰ Automation</span>
                 </div>
             </a>
 
-            <!-- Article 3: Mac Mini -->
+            <!-- NEW: Multi-Agent Team -->
+            <a href="/blog/multi-agent-team-setup/" class="blog-card">
+                <div class="blog-card-image" style="background:linear-gradient(135deg,#0f172a 0%,#1e1e2e 50%,#0f172a 100%)">
+                    <span class="card-emoji">🦞</span>
+                    <span class="card-emoji-float">🦞</span>
+                    <span class="card-emoji-bounce">🦞</span>
+                </div>
+                <div class="blog-card-content">
+                    <div class="blog-meta">March 5, 2026 • 19 min read</div>
+                    <h2>Building Your Agent Team: Multi-Agent Architecture</h2>
+                    <p>Learn to build multi-agent teams with OpenClaw. Create specialized AI agents that work together and share memory.</p>
+                    <span class="tag">🦞 Multi-Agent</span>
+                </div>
+            </a>
+
+            <!-- NEW: Computer Vision -->
+            <a href="/blog/computer-vision-guide/" class="blog-card">
+                <div class="blog-card-image" style="background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 50%,#0f172a 100%)">
+                    <span class="card-emoji">📷</span>
+                    <span class="card-emoji-float">👁️</span>
+                    <span class="card-emoji-bounce">🤖</span>
+                </div>
+                <div class="blog-card-content">
+                    <div class="blog-meta">March 5, 2026 • 18 min read</div>
+                    <h2>Computer Vision: AI-Powered Object Recognition</h2>
+                    <p>Teach your AI agent to see. Build vision pipelines with OpenCV, YOLO, and automated image processing.</p>
+                    <span class="tag">👁️ Advanced</span>
+                </div>
+            </a>
+
+            <!-- Mac Mini -->
             <a href="/blog/mac-mini-setup-guide/" class="blog-card">
                 <div class="blog-card-image" style="background:linear-gradient(135deg,#a855f7 0%,#ec4899 50%,#06b6d4 100%)">
                     <span class="card-emoji">🍎</span>
@@ -121,18 +142,33 @@
                 </div>
             </a>
 
-            <!-- Article 4: Computer Vision -->
-            <a href="/blog/computer-vision-guide/" class="blog-card">
-                <div class="blog-card-image" style="background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 50%,#0f172a 100%)">
-                    <span class="card-emoji">📷</span>
-                    <span class="card-emoji-float">👁️</span>
+            <!-- Comparison -->
+            <a href="/blog/openclaw-vs-chatgpt/" class="blog-card">
+                <div class="blog-card-image" style="background:linear-gradient(135deg,#6366f1 0%,#8b5cf6 100%)">
+                    <span class="card-emoji">🦞</span>
+                    <span class="card-emoji-float">⚔️</span>
                     <span class="card-emoji-bounce">🤖</span>
                 </div>
                 <div class="blog-card-content">
-                    <div class="blog-meta">March 4, 2026 • 18 min read</div>
-                    <h2>Computer Vision: AI-Powered Object Recognition</h2>
-                    <p>Teach your AI agent to see. Build vision pipelines with OpenCV, YOLO, and automated image processing.</p>
-                    <span class="tag">👁️ Advanced</span>
+                    <div class="blog-meta">March 4, 2026 • 12 min read</div>
+                    <h2>OpenClaw vs ChatGPT: Complete 2026 Comparison</h2>
+                    <p>Compare privacy, cost, features, and control. See why thousands are switching to self-hosted AI.</p>
+                    <span class="tag">📊 Comparison</span>
+                </div>
+            </a>
+
+            <!-- Getting Started -->
+            <a href="/blog/what-is-openclaw/" class="blog-card">
+                <div class="blog-card-image" style="background:linear-gradient(135deg,#10b981 0%,#06b6d4 100%)">
+                    <span class="card-emoji">🚀</span>
+                    <span class="card-emoji-float">✨</span>
+                    <span class="card-emoji-bounce">🦞</span>
+                </div>
+                <div class="blog-card-content">
+                    <div class="blog-meta">February 25, 2026 • 8 min read</div>
+                    <h2>What is OpenClaw? A Beginner's Guide</h2>
+                    <p>Discover why thousands are switching from ChatGPT to their own private AI agents — no coding required.</p>
+                    <span class="tag">🌟 Getting Started</span>
                 </div>
             </a>
         </div>
