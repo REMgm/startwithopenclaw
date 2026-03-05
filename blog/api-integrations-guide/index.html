@@ -7,333 +7,172 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-S438BQTGEF"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-S438BQTGEF');</script>
     <script type="text/javascript" data-cmp-ab="1" src="https://cdn.consentmanager.net/delivery/autoblocking/e90a6b8a42f34.js" data-cmp-host="a.delivery.consentmanager.net" data-cmp-cdn="cdn.consentmanager.net" data-cmp-codesrc="16"></script>
-    <title>API Integrations Masterclass: Connect 50+ Services to OpenClaw | Start with OpenClaw</title>
-    <meta name="description" content="Master API integrations with OpenClaw. Connect Gmail, Slack, Notion, GitHub, Stripe, and 50+ services. Complete guide with code examples.">
-    <meta name="keywords" content="openclaw api integration, connect services openclaw, webhook automation, api workflow">
+    <title>API Integrations Guide: Connect Services to OpenClaw | Start with OpenClaw</title>
+    <meta name="description" content="Learn to connect Gmail, Slack, Notion, and other services to OpenClaw. Step-by-step guide with real working code examples.">
     <link rel="canonical" href="https://startwithopenclaw.com/blog/api-integrations-guide/">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>:root{--bg-primary:#0a0a0f;--bg-secondary:#12121a;--bg-card:#1e1e2e;--text-primary:#fff;--text-secondary:#e2e8f0;--text-muted:#94a3b8;--accent-purple:#a855f7;--accent-orange:#f97316;--accent-blue:#3b82f6;--accent-green:#10b981;--border:rgba(255,255,255,0.08)}*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Inter',sans-serif;background:var(--bg-primary);color:var(--text-secondary);line-height:1.7}.container{max-width:800px;margin:0 auto;padding:0 24px}.hero-image{width:100%;height:400px;background:linear-gradient(135deg,#0a0a0f 0%,#1e1e2e 50%,#0f172a 100%);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}.hero-image::before{content:"🔌";font-size:100px;position:absolute;animation:pulse 2s ease-in-out infinite}.hero-image::after{content:"🔗";font-size:60px;position:absolute;right:20%;top:30%;animation:bounce 2s ease-in-out infinite}.connector-line{position:absolute;width:100%;height:2px;background:linear-gradient(90deg,transparent,var(--accent-orange),transparent);animation:scan 3s linear infinite}.connector-dot{position:absolute;width:15px;height:15px;background:var(--accent-orange);border-radius:50%;box-shadow:0 0 20px var(--accent-orange);animation:float 3s ease-in-out infinite}@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}@keyframes scan{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}.hero-content{text-align:center;z-index:20;position:relative}.hero-badge{display:inline-block;background:rgba(249,115,22,0.2);backdrop-filter:blur(10px);padding:8px 16px;border-radius:50px;font-size:0.9rem;color:var(--accent-orange);border:1px solid var(--accent-orange);margin-bottom:16px}.hero-title{font-size:2.5rem;font-weight:800;color:var(--text-primary);text-shadow:0 0 30px var(--accent-orange)}nav{position:fixed;top:0;left:0;right:0;background:rgba(10,10,15,0.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);z-index:1000;padding:16px 0}nav .container{display:flex;justify-content:space-between;align-items:center}.logo{display:flex;align-items:center;gap:10px;font-size:1.3rem;font-weight:800;color:var(--text-primary);text-decoration:none}.logo-text{background:linear-gradient(135deg,var(--accent-purple) 0%,#6366f1 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}.nav-links{display:flex;gap:24px;list-style:none}.nav-links a{color:var(--text-muted);text-decoration:none;font-size:0.9rem;font-weight:500}.nav-links a:hover{color:var(--text-primary)}article{padding:60px 0 80px}.article-header{text-align:center;margin-bottom:48px;margin-top:-60px;position:relative;z-index:10}.article-meta{color:var(--text-muted);font-size:0.9rem;margin-bottom:16px;background:var(--bg-card);display:inline-block;padding:8px 16px;border-radius:50px;border:1px solid var(--border)}h1{font-size:clamp(2rem,5vw,3rem);color:var(--text-primary);line-height:1.2;margin-bottom:24px}.lead{font-size:1.25rem;color:var(--text-secondary);margin-bottom:32px}.content h2{font-size:1.8rem;color:var(--text-primary);margin:48px 0 20px}.content h3{font-size:1.3rem;color:var(--text-primary);margin:32px 0 16px}.content p{margin-bottom:20px}.content ul,.content ol{margin:20px 0;padding-left:24px}.content li{margin-bottom:12px}.content a{color:#6366f1}.highlight-box{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:24px;margin:32px 0}.highlight-box h3{margin-top:0;color:var(--accent-orange)}.code-block{background:#0f172a;border:1px solid var(--border);border-radius:12px;padding:20px;margin:20px 0;overflow-x:auto;font-family:'Courier New',monospace;font-size:0.9rem;color:var(--accent-blue)}.cta-box{background:linear-gradient(135deg,rgba(99,102,241,0.1) 0%,rgba(139,92,246,0.1) 100%);border:1px solid rgba(99,102,241,0.3);border-radius:16px;padding:32px;text-align:center;margin:48px 0}.btn{display:inline-block;padding:14px 28px;background:linear-gradient(135deg,#6366f1 0%,#8b5cf6 100%);color:#fff!important;text-decoration:none;border-radius:10px;font-weight:600;margin-top:16px}footer{background:var(--bg-secondary);border-top:1px solid var(--border);padding:40px 0;text-align:center;color:var(--text-muted)}footer a{color:var(--text-secondary)}</style>
+    <style>:root{--bg-primary:#0a0a0f;--bg-secondary:#12121a;--bg-card:#1e1e2e;--text-primary:#fff;--text-secondary:#e2e8f0;--text-muted:#94a3b8;--accent-purple:#a855f7;--accent-orange:#f97316;--accent-blue:#3b82f6;--accent-green:#10b981;--border:rgba(255,255,255,0.08)}*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Inter',sans-serif;background:var(--bg-primary);color:var(--text-secondary);line-height:1.7}.container{max-width:800px;margin:0 auto;padding:0 24px}.hero-image{width:100%;height:400px;background:linear-gradient(135deg,#0a0a0f 0%,#1e1e2e 50%,#0f172a 100%);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}.hero-image::before{content:"🔌";font-size:100px;position:absolute;animation:pulse 2s ease-in-out infinite}.hero-image::after{content:"🔗";font-size:60px;position:absolute;right:20%;top:30%;animation:bounce 2s ease-in-out infinite}.connector-line{position:absolute;width:100%;height:2px;background:linear-gradient(90deg,transparent,var(--accent-orange),transparent);animation:scan 3s linear infinite}.connector-dot{position:absolute;width:15px;height:15px;background:var(--accent-orange);border-radius:50%;box-shadow:0 0 20px var(--accent-orange);animation:float 3s ease-in-out infinite}@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}@keyframes scan{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}.hero-content{text-align:center;z-index:20;position:relative}.hero-badge{display:inline-block;background:rgba(249,115,22,0.2);backdrop-filter:blur(10px);padding:8px 16px;border-radius:50px;font-size:0.9rem;color:var(--accent-orange);border:1px solid var(--accent-orange);margin-bottom:16px}.hero-title{font-size:2.5rem;font-weight:800;color:var(--text-primary);text-shadow:0 0 30px var(--accent-orange)}nav{position:fixed;top:0;left:0;right:0;background:rgba(10,10,15,0.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);z-index:1000;padding:16px 0}nav .container{display:flex;justify-content:space-between;align-items:center}.logo{display:flex;align-items:center;gap:10px;font-size:1.3rem;font-weight:800;color:var(--text-primary);text-decoration:none}.logo-text{background:linear-gradient(135deg,var(--accent-purple) 0%,#6366f1 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}.nav-links{display:flex;gap:24px;list-style:none}.nav-links a{color:var(--text-muted);text-decoration:none;font-size:0.9rem;font-weight:500}.nav-links a:hover{color:var(--text-primary)}article{padding:60px 0 80px}.article-header{text-align:center;margin-bottom:48px;margin-top:-60px;position:relative;z-index:10}.article-meta{color:var(--text-muted);font-size:0.9rem;margin-bottom:16px;background:var(--bg-card);display:inline-block;padding:8px 16px;border-radius:50px;border:1px solid var(--border)}h1{font-size:clamp(2rem,5vw,3rem);color:var(--text-primary);line-height:1.2;margin-bottom:24px}.lead{font-size:1.25rem;color:var(--text-secondary);margin-bottom:32px}.content h2{font-size:1.8rem;color:var(--text-primary);margin:48px 0 20px}.content h3{font-size:1.3rem;color:var(--text-primary);margin:32px 0 16px}.content p{margin-bottom:20px}.content ul,.content ol{margin:20px 0;padding-left:24px}.content li{margin-bottom:12px}.content a{color:#6366f1}.highlight-box{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:24px;margin:32px 0}.highlight-box h3{margin-top:0;color:var(--accent-orange)}.code-block{background:#0f172a;border:1px solid var(--border);border-radius:12px;padding:20px;margin:20px 0;overflow-x:auto;font-family:'Courier New',monospace;font-size:0.85rem;line-height:1.6;color:#e2e8f0}.code-block .comment{color:#6b7280}.code-block .keyword{color:#c084fc}.code-block .string{color:#86efac}.code-block .function{color:#60a5fa}.warning-box{background:rgba(239,68,68,0.1);border-left:4px solid var(--accent-orange);padding:16px 20px;margin:24px 0;border-radius:0 8px 8px 0}.cta-box{background:linear-gradient(135deg,rgba(99,102,241,0.1) 0%,rgba(139,92,246,0.1) 100%);border:1px solid rgba(99,102,241,0.3);border-radius:16px;padding:32px;text-align:center;margin:48px 0}.btn{display:inline-block;padding:14px 28px;background:linear-gradient(135deg,#6366f1 0%,#8b5cf6 100%);color:#fff!important;text-decoration:none;border-radius:10px;font-weight:600;margin-top:16px}footer{background:var(--bg-secondary);border-top:1px solid var(--border);padding:40px 0;text-align:center;color:var(--text-muted)}footer a{color:var(--text-secondary)}</style>
 </head>
 <body>
     <nav><div class="container"><a href="/" class="logo"><span>🦞</span><span class="logo-text">Start with OpenClaw</span></a><ul class="nav-links"><li><a href="/">🏠 Home</a></li><li><a href="/course/">📚 Course</a></li><li><a href="/mac-mini/">🍎 Mac Mini</a></li><li><a href="/blog/">📝 Blog</a></li><li><a href="/bugfixing/">🔧 Bugfixing</a></li></ul></div></nav>
-    <div class="hero-image"><div class="connector-line"></div><div class="connector-dot" style="top:30%;left:20%"></div><div class="connector-dot" style="top:60%;right:25%;animation-delay:0.5s"></div><div class="connector-dot" style="bottom:30%;left:40%;animation-delay:1s;background:var(--accent-green);box-shadow:0 0 20px var(--accent-green)"></div><div class="hero-content"><div class="hero-badge">🔌 API Mastery + 🦞 OpenClaw = ⚡ Unlimited Power</div><h1 class="hero-title">Connect Everything</h1></div></div>
-    <article><div class="container"><header class="article-header"><div class="article-meta">March 5, 2026 • 20 min read • 🔌 API Integration</div><h1>API Integrations Masterclass: Connect 50+ Services to OpenClaw</h1><p class="lead">Your AI agent's true power comes from connections. Learn to integrate Gmail, Slack, Notion, GitHub, Stripe, and dozens more services with complete code examples.</p></header>
-    <div class="content"><p>An AI agent without API integrations is like a brain without hands — intelligent but unable to act. This guide transforms your OpenClaw agent into a universal remote for the internet.</p>
-    <h2>The Integration Mindset</h2>
-    <p>Before writing code, understand the pattern: APIs are just structured conversations. Your agent sends a request ("What's in my inbox?") and receives structured data (emails, events, files). The magic happens when you chain these conversations into workflows.</p>
-    <div class="highlight-box"><h3>🎯 What You'll Build</h3><ul><li>📧 Gmail integration — read, send, label emails</li><li>💬 Slack/Discord — post messages, read channels</li><li>📝 Notion — create pages, query databases</li><li>🔧 GitHub — issues, PRs, repository actions</li><li>💳 Stripe — payment monitoring, customer lookup</li><li>📅 Calendar — events, scheduling, availability</li></ul></div>
-    <h2>The Universal Connector Pattern</h2>
-    <p>Every API integration follows the same structure. Master this pattern once, apply it everywhere:</p>
-    <div class="code-block"><pre><span style="color:#7dd3fc"># The 4-Step Integration Pattern</span>
-<span style="color:#a78bfa">1. Authenticate</span>   → Get API key/OAuth token
-<span style="color:#a78bfa">2. Request</span>      → Send structured API call
-<span style="color:#a78bfa">3. Parse</span>        → Extract relevant data
-<span style="color:#a78bfa">4. Act</span>          → Do something with results
+    <div class="hero-image"><div class="connector-line"></div><div class="connector-dot" style="top:30%;left:20%"></div><div class="connector-dot" style="top:60%;right:25%;animation-delay:0.5s"></div><div class="connector-dot" style="bottom:30%;left:40%;animation-delay:1s;background:var(--accent-green);box-shadow:0 0 20px var(--accent-green)"></div><div class="hero-content"><div class="hero-badge">🔌 API Integration Guide</div><h1 class="hero-title">Connect Your Services</h1></div></div>
+    <article><div class="container"><header class="article-header"><div class="article-meta">March 5, 2026 • 15 min read</div><h1>API Integrations Guide: Connect Services to OpenClaw</h1><p class="lead">Learn how to connect external services to your OpenClaw agent. This guide focuses on the concepts and patterns you'll use, with practical starting points for popular services.</p></header>
+    <div class="content"><p>API integrations extend what your agent can do. Instead of just chatting, your agent can send emails, post to Slack, create calendar events, and interact with hundreds of services.</p>
+    <div class="warning-box"><strong>⚠️ Important:</strong> This guide teaches integration <em>patterns</em>. Every service has different authentication and API details. Always refer to the official API documentation for the specific service you're integrating.</div>
+    <h2>The Integration Pattern</h2>
+    <p>All API integrations follow the same basic steps:</p>
+    <ol><li><strong>Get API credentials</strong> — Usually an API key or OAuth token</li><li><strong>Install the client library</strong> — Most services have Python packages</li><li><strong>Make API calls</strong> — Send requests, get responses</li><li><strong>Wire into your agent</strong> — Create commands your agent can use</li></ol>
+    <h2>Example: Simple Web API Call</h2>
+    <p>Before integrating complex services, let's start with a simple example — fetching weather data from a public API:</p>
+    <div class="code-block"><pre><span class="keyword">import</span> requests
 
-<span style="color:#7dd3fc"># OpenClaw makes this trivial:</span>
-@agent.tool
-def <span style="color:#fbbf24">get_gmail_inbox</span>(credentials, query=""):
-    <span style="color:#6b7280"># Step 1: Auth (handled by CLAW)</span>
-    service = build('gmail', 'v1', credentials=credentials)
+<span class="keyword">def</span> <span class="function">get_weather</span>(city):
+    <span class="comment"># Call a weather API (example using wttr.in)</span>
+    url = <span class="string">f"https://wttr.in/{city}?format=%C+%t"</span>
+    response = requests.get(url)
     
-    <span style="color:#6b7280"># Step 2: Request</span>
+    <span class="keyword">if</span> response.status_code == 200:
+        <span class="keyword">return</span> response.text
+    <span class="keyword">else</span>:
+        <span class="keyword">return</span> <span class="string">"Couldn't fetch weather"</span>
+
+<span class="comment"># Wire into your agent</span>
+<span class="keyword">@agent.tool</span>
+def weather(ctx, city):
+    """Get current weather for a city"""
+    return get_weather(city)
+</pre></div>
+    <p>This same pattern applies to every service: get credentials → make request → handle response → wire into agent.</p>
+    <h2>Working with Service APIs</h2>
+    <p>Most popular services follow similar patterns. Here's what you need to know for the common ones:</p>
+    <h3>Gmail / Google Services</h3>
+    <div class="code-block"><pre><span class="comment"># 1. Install the Google client library</span>
+<span class="comment"># pip install google-api-python-client google-auth</span>
+
+<span class="keyword">from</span> googleapiclient.discovery <span class="keyword">import</span> build
+<span class="keyword">from</span> google.oauth2.credentials <span class="keyword">import</span> Credentials
+
+<span class="comment"># 2. Create a client with your OAuth token</span>
+def create_gmail_client(access_token):
+    creds = Credentials(token=access_token)
+    service = build('gmail', 'v1', credentials=creds)
+    return service
+
+<span class="comment"># 3. Use it in your agent</span>
+<span class="keyword">@agent.tool</span>
+def read_emails(ctx, max_results=5):
+    """Read recent unread emails"""
+    service = create_gmail_client(ctx.user.google_token)
+    
     results = service.users().messages().list(
-        userId='me', q=query, maxResults=10
+        userId='me',
+        q='is:unread',
+        maxResults=max_results
     ).execute()
     
-    <span style="color:#6b7280"># Step 3: Parse</span>
     messages = results.get('messages', [])
-    
-    <span style="color:#6b7280"># Step 4: Return for agent to use</span>
-    return format_messages(messages)
+    return f"You have {len(messages)} unread emails"
 </pre></div>
-    <h2>Gmail Integration Deep Dive</h2>
-    <p>Let's build a complete Gmail integration. Your agent will read emails, send responses, and manage labels.</p>
-    <h3>Setup</h3>
-    <div class="code-block"><pre>pip install google-auth google-auth-oauthlib google-auth-httplib2 google-api-python-client
+    <div class="highlight-box"><h3>📋 Google Setup Steps</h3><ol><li>Go to <a href="https://console.cloud.google.com">Google Cloud Console</a></li><li>Create a project and enable Gmail API</li><li>Create OAuth 2.0 credentials</li><li>Get your client ID and secret</li><li>Use Google's OAuth playground to get a token</li></ol></div>
+    <h3>Slack</h3>
+    <div class="code-block"><pre><span class="comment"># 1. Install Slack SDK</span>
+<span class="comment"># pip install slack-sdk</span>
 
-<span style="color:#6b7280"># Save as skills/gmail_integration.py</span>
-from google.oauth2.credentials import Credentials
-from googleapiclient.discovery import build
-from email.mime.text import MIMEText
-import base64
+<span class="keyword">import</span> os
+<span class="keyword">from</span> slack_sdk <span class="keyword">import</span> WebClient
 
-class GmailClient:
-    def __init__(self, token_json):
-        creds = Credentials.from_authorized_user_info(token_json)
-        self.service = build('gmail', 'v1', credentials=creds)
-    
-    def get_unread(self, max_results=10):
-        """Fetch unread emails"""
-        results = self.service.users().messages().list(
-            userId='me', 
-            q='is:unread',
-            maxResults=max_results
-        ).execute()
-        return results.get('messages', [])
-    
-    def read_message(self, msg_id):
-        """Get full message content"""
-        message = self.service.users().messages().get(
-            userId='me', id=msg_id, format='full'
-        ).execute()
-        
-        headers = message['payload']['headers']
-        subject = next(h['value'] for h in headers if h['name'] == 'Subject')
-        sender = next(h['value'] for h in headers if h['name'] == 'From')
-        
-        # Extract body
-        if 'parts' in message['payload']:
-            body = message['payload']['parts'][0]['body'].get('data', '')
-        else:
-            body = message['payload']['body'].get('data', '')
-        
-        return {
-            'id': msg_id,
-            'subject': subject,
-            'from': sender,
-            'body': base64.urlsafe_b64decode(body).decode('utf-8') if body else ''
-        }
-    
-    def send_reply(self, original_msg_id, reply_text):
-        """Send a reply to an email"""
-        # Get original thread
-        original = self.service.users().messages().get(
-            userId='me', id=original_msg_id
-        ).execute()
-        
-        thread_id = original['threadId']
-        headers = original['payload']['headers']
-        to = next(h['value'] for h in headers if h['name'] == 'From')
-        subject = next(h['value'] for h in headers if h['name'] == 'Subject')
-        
-        # Create reply
-        message = MIMEText(reply_text)
-        message['to'] = to
-        message['subject'] = f"Re: {subject.replace('Re: ', '')}"
-        message['In-Reply-To'] = original_msg_id
-        
-        raw = base64.urlsafe_b64encode(message.as_bytes()).decode()
-        
-        self.service.users().messages().send(
-            userId='me',
-            body={'raw': raw, 'threadId': thread_id}
-        ).execute()
+<span class="comment"># 2. Get bot token from Slack app settings</span>
+slack_token = os.getenv(<span class="string">'SLACK_BOT_TOKEN'</span>)
+client = WebClient(token=slack_token)
+
+<span class="comment"># 3. Use in agent</span>
+<span class="keyword">@agent.tool</span>
+def post_to_slack(ctx, channel, message):
+    """Post a message to a Slack channel"""
+    <span class="keyword">try</span>:
+        response = client.chat_postMessage(
+            channel=channel,
+            text=message
+        )
+        <span class="keyword">return</span> <span class="string">"Message sent!"</span>
+    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:
+        <span class="keyword">return</span> <span class="string">f"Error: {str(e)}"</span>
 </pre></div>
-    <h3>Natural Language Control</h3>
-    <p>Now wire it into your agent with natural language commands:</p>
-    <div class="code-block"><pre>@agent.on_message
-def handle_email_commands(ctx, message):
-    gmail = GmailClient(ctx.user.tokens['gmail'])
+    <div class="highlight-box"><h3>📋 Slack Setup Steps</h3><ol><li>Go to <a href="https://api.slack.com/apps">Slack API</a> and create an app</li><li>Add <code>chat:write</code> bot scope</li><li>Install app to your workspace</li><li>Copy the Bot User OAuth Token</li><li>Invite the bot to channels it should post in</li></ol></div>
+    <h3>Notion</h3>
+    <div class="code-block"><pre><span class="comment"># 1. Install Notion client</span>
+<span class="comment"># pip install notion-client</span>
+
+<span class="keyword">from</span> notion_client <span class="keyword">import</span> Client
+
+<span class="comment"># 2. Initialize with integration token</span>notion = Client(auth=os.getenv(<span class="string">'NOTION_TOKEN'</span>))
+
+<span class="comment"># 3. Use in agent</span>
+<span class="keyword">@agent.tool</span>
+def add_to_notion(ctx, database_id, title, content):
+    """Add a page to a Notion database"""
     
-    if "check my email" in message.lower():
-        unread = gmail.get_unread(max_results=5)
-        
-        if not unread:
-            return "📧 No unread emails!"
-        
-        response = f"📧 {len(unread)} unread emails:\n\n"
-        
-        for msg in unread[:3]:  # Summarize top 3
-            email = gmail.read_message(msg['id'])
-            response += f"• **{email['subject']}** from {email['from']}\n"
-            response += f"  _{email['body'][:100]}..._\n\n"
-        
-        return response
+    notion.pages.create(
+        parent={<span class="string">"database_id"</span>: database_id},
+        properties={
+            <span class="string">"Name"</span>: {
+                <span class="string">"title"</span>: [{<span class="string">"text"</span>: {<span class="string">"content"</span>: title}}]
+            }
+        },
+        children=[{
+            <span class="string">"object"</span>: <span class="string">"block"</span>,
+            <span class="string">"type"</span>: <span class="string">"paragraph"</span>,
+            <span class="string">"paragraph"</span>: {
+                <span class="string">"rich_text"</span>: [{<span class="string">"text"</span>: {<span class="string">"content"</span>: content}}]
+            }
+        }]
+    )
     
-    elif message.lower().startswith("reply to"):
-        # Parse: "reply to [subject] saying [message]"
-        parts = message.replace("reply to ", "").split(" saying ", 1)
-        if len(parts) == 2:
-            subject_query, reply_text = parts
+    <span class="keyword">return</span> <span class="string">"Added to Notion!"</span>
+</pre></div>
+    <div class="highlight-box"><h3>📋 Notion Setup Steps</h3><ol><li>Go to <a href="https://www.notion.so/my-integrations">Notion Integrations</a></li><li>Create a new integration</li><li>Copy the Internal Integration Token</li><li>Share your database with the integration</li><li>Get the database ID from the URL</li></ol></div>
+    <h2>Handling API Keys Securely</h2>
+    <p>Never hardcode API keys in your code. Use environment variables:</p>
+    <div class="code-block"><pre><span class="comment"># Create a .env file (don't commit this!)</span>
+SLACK_BOT_TOKEN=xoxb-your-token-here
+NOTION_TOKEN=secret_your_token_here
+OPENAI_API_KEY=sk-your-key-here
+
+<span class="comment"># In your Python code</span>
+<span class="keyword">import</span> os
+<span class="keyword">from</span> dotenv <span class="keyword">import</span> load_dotenv
+
+load_dotenv()  <span class="comment"># Load variables from .env file</span>
+
+slack_token = os.getenv(<span class="string">'SLACK_BOT_TOKEN'</span>)
+notion_token = os.getenv(<span class="string">'NOTION_TOKEN'</span>)
+</pre></div>
+    <h2>Error Handling Best Practices</h2>
+    <p>APIs fail. Networks timeout. Always handle errors gracefully:</p>
+    <div class="code-block"><pre><span class="keyword">@agent.tool</span>
+def safe_api_call(ctx, service):
+    """Example of robust error handling"""
+    
+    max_retries = 3
+    
+    <span class="keyword">for</span> attempt <span class="keyword">in</span> range(max_retries):
+        <span class="keyword">try</span>:
+            result = call_external_api(service)
+            <span class="keyword">if</span> result:
+                <span class="keyword">return</span> result
+                
+        <span class="keyword">except</span> requests.Timeout:
+            <span class="keyword">if</span> attempt <span class="keyword">==</span> max_retries - 1:
+                <span class="keyword">return</span> <span class="string">"Service timed out. Please try again."</span>
+            time.sleep(2 ** attempt)  <span class="comment"># Wait longer each retry</span>
             
-            # Find the email
-            results = gmail.service.users().messages().list(
-                userId='me', q=f"subject:{subject_query}", maxResults=1
-            ).execute()
-            
-            if results['messages']:
-                msg_id = results['messages'][0]['id']
-                gmail.send_reply(msg_id, reply_text)
-                return f"✅ Reply sent to {subject_query}"
-            else:
-                return f"❌ Couldn't find email with subject: {subject_query}"
+        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:
+            <span class="keyword">return</span> <span class="string">f"Error: {str(e)}"</span>
+    
+    <span class="keyword">return</span> <span class="string">"Failed after retries"</span>
 </pre></div>
-    <h2>Slack Integration</h2>
-    <p>Connect your agent to team communication:</p>
-    <div class="code-block"><pre>import slack_sdk
-
-class SlackClient:
-    def __init__(self, bot_token):
-        self.client = slack_sdk.WebClient(token=bot_token)
-    
-    def post_message(self, channel, text, blocks=None):
-        """Post to any channel"""
-        return self.client.chat_postMessage(
-            channel=channel,
-            text=text,
-            blocks=blocks
-        )
-    
-    def read_messages(self, channel, limit=10):
-        """Read recent messages"""
-        result = self.client.conversations_history(
-            channel=channel,
-            limit=limit
-        )
-        return result['messages']
-    
-    def upload_file(self, channel, file_path, title=None):
-        """Share files"""
-        return self.client.files_upload_v2(
-            channel=channel,
-            file=file_path,
-            title=title
-        )
-
-<span style="color:#6b7280"># Agent command examples:</span>
-"Post to #general: Good morning team! ☕"
-"Summarize the last 20 messages in #engineering"
-"Upload my report.pdf to #marketing"
-</pre></div>
-    <h2>Notion Integration</h2>
-    <div class="code-block"><pre>from notion_client import Client
-
-class NotionClient:
-    def __init__(self, token):
-        self.client = Client(auth=token)
-    
-    def create_page(self, parent_id, title, content):
-        """Create a new Notion page"""
-        return self.client.pages.create(
-            parent={"database_id": parent_id},
-            properties={
-                "Name": {"title": [{"text": {"content": title}}]}
-            },
-            children=[{
-                "object": "block",
-                "type": "paragraph",
-                "paragraph": {
-                    "rich_text": [{"text": {"content": content}}]
-                }
-            }]
-        )
-    
-    def query_database(self, database_id, filter_obj=None):
-        """Search and filter databases"""
-        return self.client.databases.query(
-            database_id=database_id,
-            filter=filter_obj
-        )
-
-<span style="color:#6b7280"># Natural language commands:</span>
-"Create a meeting notes page for today's standup"
-"Add 'Buy milk' to my personal tasks database"
-"Query the projects database for items due this week"
-</pre></div>
-    <h2>GitHub Integration</h2>
-    <div class="code-block"><pre>import requests
-
-class GitHubClient:
-    def __init__(self, token):
-        self.headers = {
-            "Authorization": f"token {token}",
-            "Accept": "application/vnd.github.v3+json"
-        }
-    
-    def get_issues(self, repo, state="open"):
-        """List issues for a repository"""
-        url = f"https://api.github.com/repos/{repo}/issues"
-        params = {"state": state}
-        response = requests.get(url, headers=self.headers, params=params)
-        return response.json()
-    
-    def create_issue(self, repo, title, body, labels=None):
-        """Create a new issue"""
-        url = f"https://api.github.com/repos/{repo}/issues"
-        data = {"title": title, "body": body, "labels": labels or []}
-        response = requests.post(url, headers=self.headers, json=data)
-        return response.json()
-    
-    def get_pull_requests(self, repo, state="open"):
-        """List PRs"""
-        url = f"https://api.github.com/repos/{repo}/pulls"
-        params = {"state": state}
-        response = requests.get(url, headers=self.headers, params=params)
-        return response.json()
-
-<span style="color:#6b7280"># Agent commands:</span>
-"List open issues in my-website repo"
-"Create an issue: Fix broken login button"
-"Summarize the open PRs in backend-api"
-</pre></div>
-    <h2>The Webhook Superpower</h2>
-    <p>APIs let your agent pull data. Webhooks let services push data to your agent. This enables real-time reactions.</p>
-    <div class="code-block"><pre><span style="color:#6b7280"># Set up a webhook endpoint in OpenClaw</span>
-from flask import Flask, request
-
-app = Flask(__name__)
-
-@app.route('/webhook/stripe', methods=['POST'])
-def handle_stripe_payment():
-    """Receive real-time payment events"""
-    event = request.json
-    
-    if event['type'] == 'payment_intent.succeeded':
-        payment = event['data']['object']
-        
-        # Notify user
-        agent.send_message(f"""
-💰 New payment received!
-Amount: ${payment['amount'] / 100}
-Customer: {payment['customer']}
-Status: ✅ Succeeded
-        """)
-        
-        # Add to Notion CRM
-        notion.create_page(
-            database_id="payments_db",
-            title=f"Payment from {payment['customer']}",
-            content=str(payment)
-        )
-    
-    return "OK", 200
-
-<span style="color:#6b7280"># Now your agent reacts instantly to:</span>
-- New Stripe payments
-- GitHub PR merges
-- Form submissions
-- Server alerts
-- Calendar invites
-</pre></div>
-    <h2>50+ Services Cheat Sheet</h2>
-    <div class="highlight-box"><h3>📧 Communication</h3><p>Gmail, Outlook, Slack, Discord, Teams, Telegram, WhatsApp, Zoom</p></div>
-    <div class="highlight-box"><h3>📝 Productivity</h3><p>Notion, Trello, Asana, Monday, Jira, Linear, ClickUp, Airtable</p></div>
-    <div class="highlight-box"><h3>💳 Finance</h3><p>Stripe, PayPal, QuickBooks, Xero, Wise, Plaid, Coinbase</p></div>
-    <div class="highlight-box"><h3>🔧 Development</h3><p>GitHub, GitLab, Bitbucket, Vercel, Netlify, AWS, DigitalOcean</p></div>
-    <div class="highlight-box"><h3>📊 Analytics</h3><p>Google Analytics, Mixpanel, Amplitude, PostHog, Plausible</p></div>
-    <div class="highlight-box"><h3>🎨 Design</h3><p>Figma, Canva, Unsplash, Cloudinary, Imgur</p></div>
-    <h2>Building Your Integration Library</h2>
-    <p>Don't build every integration from scratch. Create reusable skill modules:</p>
-    <div class="code-block"><pre>skills/
-├── gmail/
-│   ├── __init__.py
-│   ├── client.py
-│   └── tools.py
-├── slack/
-│   ├── __init__.py
-│   ├── client.py
-│   └── tools.py
-├── notion/
-│   └── ...
-├── github/
-│   └── ...
-└── stripe/
-    └── ...
-</pre></div>
-    <p>Each module exposes simple functions your agent can call. The complexity stays hidden.</p>
-    <div class="cta-box"><h3>🚀 Ready to Connect Everything?</h3><p>Get the complete integration starter pack with working code for 20+ services.</p><a href="/course/" class="btn">Get the Integration Pack →</a></div>
-    <p><strong>Questions?</strong> The OpenClaw community has built 100+ integrations. Share yours in our <a href="https://discord.com/invite/clawd">Discord</a>! 🔌🦞</p></div></div></article>
-    <footer><div class="container"><p>© 2026 StartWithOpenClaw.com • <a href="/">Home</a> • <a href="/course/">Free Course</a> • <a href="/blog/">Blog</a></p></div></footer>
-</body>
-</html>
+    <h2>Popular Services Quick Reference</h2>
+    <table style="width:100%;border-collapse:collapse;margin:24px 0"><thead><tr style="border-bottom:1px solid var(--border)"><th style="text-align:left;padding:12px;color:var(--text-primary)">Service</th><th style="text-align:left;padding:12px;color:var(--text-primary)">Python Package</th><th style="text-align:left;padding:12px;color:var(--text-primary)">Auth Type</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--border)"><td style="padding:12px">Gmail</td><td style="padding:12px;font-family:monospace">google-api-python-client</td><td style="padding:12px">OAuth 2.0</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:12px">Slack</td><td style="padding:12px;font-family:monospace">slack-sdk</td><td style="padding:12px">Bot Token</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:12px">Notion</td><td style="padding:12px;font-family:monospace">notion-client</td><td style="padding:12px">Integration Token</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:12px">GitHub</td><td style="padding:12px;font-family:monospace">PyGithub</td><td style="padding:12px">Personal Access Token</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:12px">Stripe</td><td style="padding:12px;font-family:monospace">stripe</td><td style="padding:12px">Secret Key</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:12px">Discord</td><td style="padding:12px;font-family:monospace">discord.py</td><td style="padding:12px">Bot Token</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:12px">Trello</td><td style="padding:12px;font-family:monospace">py-trello</td><td style="padding:12px">API Key + Token</td></tr><tr><td style="padding:12px">Airtable</td><td style="padding:12px;font-family:monospace">pyairtable</td><td style="padding:12px">API Key</td></tr></tbody></table>
+    <h2>Next Steps</h2>
+    <ol><li><strong>Pick one service</strong> to start with — don't try to integrate everything at once</li><li><strong>Follow the official docs</strong> for authentication setup</li><li><strong>Start simple</strong> — just reading data before writing</li><li><strong>Test thoroughly</strong> before giving your agent access</li></ol>
+    <div class="cta-box"><h3>🚀 Need More Help?</h3><p>The OpenClaw community has built integrations for 50+ services. Check the docs for detailed setup guides.</p><a href="https://docs.openclaw.ai" class="btn">View Integration Docs →</a></div>

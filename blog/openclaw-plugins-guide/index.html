@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-S438BQTGEF"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-S438BQTGEF');</script>
+    <title>OpenClaw Plugins Guide: Extend Your Agent | Start with OpenClaw</title>
+    <meta name="description" content="Learn to build and install OpenClaw plugins. Extend your AI agent with custom tools, skills, and integrations.">
+    <link rel="canonical" href="https://startwithopenclaw.com/blog/openclaw-plugins-guide/">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>:root{--bg-primary:#0a0a0f;--bg-secondary:#12121a;--bg-card:#1e1e2e;--text-primary:#fff;--text-secondary:#e2e8f0;--text-muted:#94a3b8;--accent-purple:#a855f7;--accent-green:#22c55e;--accent-yellow:#eab308;--border:rgba(255,255,255,0.08)}*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Inter',sans-serif;background:var(--bg-primary);color:var(--text-secondary);line-height:1.7}.container{max-width:800px;margin:0 auto;padding:0 24px}.hero-image{width:100%;height:400px;background:linear-gradient(135deg,#0a0a0f 0%,#1e1e2e 50%,#0f172a 100%);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}.hero-image::before{content:"🔌";font-size:100px;position:absolute;animation:plug-in 2s ease-in-out infinite}.hero-image::after{content:"⚡";font-size:60px;position:absolute;right:20%;top:30%;animation:spark 1.5s ease-in-out infinite}.plugin-icon{position:absolute;font-size:40px;animation:float 3s ease-in-out infinite}@keyframes plug-in{0%,100%{transform:translateX(0)}50%{transform:translateX(10px)}}@keyframes spark{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.3)}}@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}.hero-content{text-align:center;z-index:20;position:relative}.hero-badge{display:inline-block;background:rgba(34,197,94,0.2);backdrop-filter:blur(10px);padding:8px 16px;border-radius:50px;font-size:0.9rem;color:var(--accent-green);border:1px solid var(--accent-green);margin-bottom:16px}.hero-title{font-size:2.5rem;font-weight:800;color:var(--text-primary);text-shadow:0 0 30px var(--accent-green)}nav{position:fixed;top:0;left:0;right:0;background:rgba(10,10,15,0.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);z-index:1000;padding:16px 0}nav .container{display:flex;justify-content:space-between;align-items:center}.logo{display:flex;align-items:center;gap:10px;font-size:1.3rem;font-weight:800;color:var(--text-primary);text-decoration:none}.logo-text{background:linear-gradient(135deg,var(--accent-purple) 0%,#6366f1 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}.nav-links{display:flex;gap:24px;list-style:none}.nav-links a{color:var(--text-muted);text-decoration:none;font-size:0.9rem;font-weight:500}.nav-links a:hover{color:var(--text-primary)}article{padding:60px 0 80px}.article-header{text-align:center;margin-bottom:48px;margin-top:-60px;position:relative;z-index:10}.article-meta{color:var(--text-muted);font-size:0.9rem;margin-bottom:16px;background:var(--bg-card);display:inline-block;padding:8px 16px;border-radius:50px;border:1px solid var(--border)}h1{font-size:clamp(2rem,5vw,3rem);color:var(--text-primary);line-height:1.2;margin-bottom:24px}.lead{font-size:1.25rem;color:var(--text-secondary);margin-bottom:32px}.content h2{font-size:1.8rem;color:var(--text-primary);margin:48px 0 20px}.content h3{font-size:1.3rem;color:var(--text-primary);margin:32px 0 16px}.content p{margin-bottom:20px}.content ul,.content ol{margin:20px 0;padding-left:24px}.content li{margin-bottom:12px}.content a{color:#6366f1}.highlight-box{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:24px;margin:32px 0}.highlight-box h3{margin-top:0;color:var(--accent-green)}.code-block{background:#0f172a;border:1px solid var(--border);border-radius:12px;padding:20px;margin:20px 0;overflow-x:auto;font-family:'Courier New',monospace;font-size:0.85rem;line-height:1.6;color:#e2e8f0}.code-block .comment{color:#6b7280}.code-block .keyword{color:#c084fc}.code-block .string{color:#86efac}.cta-box{background:linear-gradient(135deg,rgba(99,102,241,0.1) 0%,rgba(139,92,246,0.1) 100%);border:1px solid rgba(99,102,241,0.3);border-radius:16px;padding:32px;text-align:center;margin:48px 0}.btn{display:inline-block;padding:14px 28px;background:linear-gradient(135deg,#6366f1 0%,#8b5cf6 100%);color:#fff!important;text-decoration:none;border-radius:10px;font-weight:600;margin-top:16px}footer{background:var(--bg-secondary);border-top:1px solid var(--border);padding:40px 0;text-align:center;color:var(--text-muted)}footer a{color:var(--text-secondary)}</style>
+</head>
+<body>
+    <nav><div class="container"><a href="/" class="logo"><span>🦞</span><span class="logo-text">Start with OpenClaw</span></a><ul class="nav-links"><li><a href="/">🏠 Home</a></li><li><a href="/course/">📚 Course</a></li><li><a href="/mac-mini/">🍎 Mac Mini</a></li><li><a href="/blog/">📝 Blog</a></li><li><a href="/bugfixing/">🔧 Bugfixing</a></li></ul></div></nav>
+    <div class="hero-image"><div class="plugin-icon" style="top:25%;left:15%">🔧</div><div class="plugin-icon" style="top:60%;right:20%;animation-delay:0.5s">📦</div><div class="plugin-icon" style="bottom:30%;left:30%;animation-delay:1s">⚙️</div><div class="hero-content"><div class="hero-badge">🔌 Plugin System</div><h1 class="hero-title">Extend Your Agent</h1></div></div>
+    <article><div class="container"><header class="article-header"><div class="article-meta">March 6, 2026 • 14 min read</div><h1>OpenClaw Plugins Guide: Extend Your Agent</h1><p class="lead">Plugins let you add new capabilities to your OpenClaw agent without modifying core code. Learn to build, install, and share plugins.</p></header>
+    <div class="content"><p>The real power of OpenClaw comes from its plugin architecture. Instead of waiting for official features, you can build exactly what you need — or install plugins created by the community.</p>
+    <h2>What Are Plugins?</h2>
+    <p>Plugins are self-contained Python modules that add new tools, skills, or integrations to your agent. They live in the <code>skills/</code> directory and are automatically discovered when your agent starts.</p>
+    <div class="highlight-box"><h3>📦 Plugin Structure</h3><pre style="color:#e2e8f0">skills/
+├── weather/
+│   ├── __init__.py      # Plugin entry point
+│   ├── client.py        # API client
+│   └── tools.py         # Agent tools
+├── stocks/
+│   ├── __init__.py
+│   └── tools.py
+└── my_custom/
+    └── __init__.py
+</pre></div>
+    <h2>Building Your First Plugin</h2>
+    <p>Let's create a simple weather plugin:</p>
+    <div class="code-block"><pre><span class="comment"># skills/weather/__init__.py</span>
+<span class="keyword">import</span> requests
+
+<span class="keyword">def</span> <span class="function">get_weather</span>(city):
+    <span class="string">"""Get weather for a city"""</span>
+    url = <span class="string">f"https://wttr.in/{city}?format=%C+%t"</span>
+    
+    <span class="keyword">try</span>:
+        response = requests.get(url, timeout=5)
+        <span class="keyword">if</span> response.status_code == 200:
+            <span class="keyword">return</span> response.text.strip()
+        <span class="keyword">return</span> <span class="string">"Weather service unavailable"</span>
+    <span class="keyword">except</span> requests.Timeout:
+        <span class="keyword">return</span> <span class="string">"Request timed out"</span>
+
+<span class="comment"># Register with agent</span>
+def setup(agent):
+    agent.register_tool(
+        name=<span class="string">"weather"</span>,
+        func=get_weather,
+        description=<span class="string">"Get current weather for a city"</span>
+    )
+</pre></div>
+    <h2>Installing Community Plugins</h2>
+    <p>The community maintains plugins for hundreds of services:</p>
+    <ul><li>Clone into <code>skills/</code> directory</li><li>Install dependencies if needed</li><li>Restart your agent</li></ul>
+    <div class="code-block"><pre><span class="comment"># Install a community plugin</span>
+cd skills
+git clone https://github.com/openclaw-plugins/spotify.git
+
+<span class="comment"># Install dependencies</span>
+pip install -r spotify/requirements.txt
+
+<span class="comment"># Restart agent</span>
+docker-compose restart
+</pre></div>
+    <h2>Best Practices</h2>
+    <div class="highlight-box"><h3>✅ Do's</h3><ul><li>Keep plugins focused on one purpose</li><li>Handle errors gracefully</li><li>Document required environment variables</li><li>Add timeouts to API calls</li></ul></div>
+    <div class="highlight-box"><h3>❌ Don'ts</h3><ul><li>Don't hardcode API keys</li><li>Don't make synchronous calls that block</li><li>Don't modify core agent files</li><li>Don't ignore rate limits</li></ul></div>
+    <div class="cta-box"><h3>🚀 Build Something Great</h3><p>Start with a simple plugin that solves a problem you have. Share it with the community!</p><a href="https://github.com/openclaw/plugins" class="btn">Browse Community Plugins →</a></div></div></div></article>
+    <footer><div class="container"><p>© 2026 StartWithOpenClaw.com • <a href="/">Home</a> • <a href="/course/">Free Course</a> • <a href="/blog/">Blog</a></p></div></footer>
+</body>
+</html>
